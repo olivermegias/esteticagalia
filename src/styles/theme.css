@@ -1,0 +1,16 @@
+:root {
+  /* Brand colors (ajústalos cuando quieras) */
+  --color-primary: #c69c6d;
+  --color-secondary: #2f2f2f;
+  --color-accent: #e6b8a2;
+
+  /* Base UI */
+  --color-bg: #ffffff;
+  --color-bg-soft: #f7f7f7;
+  --color-text: #1a1a1a;
+  --color-muted: #6b7280;
+
+  /* Feedback */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+}
