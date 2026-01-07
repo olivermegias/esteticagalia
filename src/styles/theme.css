@@ -1,16 +1,16 @@
 :root {
-  /* Brand colors (ajústalos cuando quieras) */
-  --color-primary: #c69c6d;
-  --color-secondary: #2f2f2f;
-  --color-accent: #e6b8a2;
+  /* Brand colors - Verde olivo y tonos marrones */
+  --color-primary: #8B9474;      /* Verde olivo suave */
+  --color-secondary: #3C3C3C;    /* Gris oscuro (casi negro) */
+  --color-accent: #C4B5A0;       /* Marrón claro/beige */
 
   /* Base UI */
-  --color-bg: #ffffff;
-  --color-bg-soft: #f7f7f7;
-  --color-text: #1a1a1a;
-  --color-muted: #6b7280;
+  --color-bg: #FFFFFF;           /* Fondo blanco */
+  --color-bg-soft: #F5F4F0;      /* Fondo suave beige muy claro */
+  --color-text: #2D2D2D;         /* Texto principal */
+  --color-muted: #6B6B6B;        /* Texto secundario */
 
   /* Feedback */
-  --color-success: #22c55e;
-  --color-error: #ef4444;
+  --color-success: #7A9B76;      /* Verde suave para éxito */
+  --color-error: #C77B7B;        /* Rojo suave para error */
 }

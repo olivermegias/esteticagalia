@@ -3,8 +3,745 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <section style="padding: 4rem 1rem; text-align: center;">
-    <h1>Estética Galia</h1>
-    <p>Centro de estética avanzada</p>
+  <Fragment slot="head">
+    <title>Estética GaliaBeauty - Centro de Estética en Granada</title>
+    <meta name="description" content="Centro de estética avanzada en Granada. Tratamientos faciales, corporales, microblading y los últimos avances en estética profesional." />
+  </Fragment>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-quote">"La belleza comienza en el instante en que decides ser tú misma"</p>
+      <p class="hero-author">— Coco Chanel</p>
+      <h1 class="hero-title">Centro de Estética GaliaBeauty</h1>
+      <p class="hero-subtitle">Tu centro de estética avanzada en Granada</p>
+      <div class="hero-buttons">
+        <a href="tel:+34652112621" class="btn btn-primary">
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          Pide cita: 652 11 26 21
+        </a>
+        <a href="/contacto" class="btn btn-secondary">Más información</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <div class="about-content">
+        <h2>Bienvenida a GaliaBeauty</h2>
+        <p>En Estética GaliaBeauty disponemos de los últimos tratamientos de estética avanzada para ofrecerte un servicio personalizado. Déjate aconsejar por nuestras técnicas especializadas para recomendarte el mejor tratamiento que se adapte a tus necesidades.</p>
+        <div class="features-grid">
+          <div class="feature">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+            </svg>
+            <h3>Tratamientos Faciales</h3>
+            <p>Tecnología avanzada para el cuidado de tu piel</p>
+          </div>
+          <div class="feature">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            <h3>Tratamientos Corporales</h3>
+            <p>Eliminación de grasa localizada y celulitis</p>
+          </div>
+          <div class="feature">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+              <line x1="9" y1="9" x2="9.01" y2="9"></line>
+              <line x1="15" y1="9" x2="15.01" y2="9"></line>
+            </svg>
+            <h3>Manicura y Pedicura</h3>
+            <p>Uñas de gel, porcelana y esmaltado permanente</p>
+          </div>
+          <div class="feature">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <h3>Microblading</h3>
+            <p>Micropigmentación de cejas profesional</p>
+          </div>
+        </div>
+        <p class="ovaco-badge">
+          <svg class="badge-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <strong>Centro Oficial OVACO</strong> - Cosmética profesional de última generación
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Treatments -->
+  <section class="treatments">
+    <div class="container">
+      <h2 class="section-title">Tratamientos Destacados</h2>
+      <div class="treatments-grid">
+        <article class="treatment-card">
+          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);">
+            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <div class="treatment-content">
+            <h3>BB Glow</h3>
+            <p>Tratamiento revolucionario para una piel perfecta y luminosa.</p>
+            <a href="/servicios#bb-glow" class="treatment-link">
+              Ver tratamiento
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);">
+            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            </svg>
+          </div>
+          <div class="treatment-content">
+            <h3>Tratamiento para el acné OVACO</h3>
+            <p>Solución profesional para pieles con tendencia acneica.</p>
+            <a href="/servicios#acne" class="treatment-link">
+              Ver tratamiento
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);">
+            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <div class="treatment-content">
+            <h3>Microblading</h3>
+            <p>Cejas perfectas con técnica de micropigmentación pelo a pelo.</p>
+            <a href="/servicios#microblading" class="treatment-link">
+              Ver tratamiento
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);">
+            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+          </div>
+          <div class="treatment-content">
+            <h3>Liposonix</h3>
+            <p>Reducción de grasa localizada sin cirugía ni tiempo de recuperación.</p>
+            <a href="/servicios#liposonix" class="treatment-link">
+              Ver tratamiento
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);">
+            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+          </div>
+          <div class="treatment-content">
+            <h3>Maderoterapia</h3>
+            <p>Técnica natural para modelar tu figura y eliminar la celulitis.</p>
+            <a href="/servicios#maderoterapia" class="treatment-link">
+              Ver tratamiento
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);">
+            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+          </div>
+          <div class="treatment-content">
+            <h3>Diagnóstico Facial</h3>
+            <p>Análisis personalizado para el cuidado específico de tu piel.</p>
+            <a href="/servicios#diagnostico" class="treatment-link">
+              Ver tratamiento
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Lista para tu transformación?</h2>
+        <p>Nuestro equipo de profesionales está preparado para asesorarte</p>
+        <div class="cta-buttons">
+          <a href="tel:+34652112621" class="btn btn-primary-inverted">
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            Llamar ahora
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=+34652112621" class="btn btn-secondary-inverted" target="_blank" rel="noopener">
+            <svg class="icon" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section class="location">
+    <div class="container">
+      <div class="location-content">
+        <div class="location-info">
+          <h2>Encuéntranos</h2>
+          <div class="info-item">
+            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div>
+              <strong>Dirección</strong>
+              <p>C/ Torre de los Picos nº11<br>Granada, CP: 18008</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <div>
+              <strong>Teléfono</strong>
+              <p><a href="tel:+34958125993">958 12 59 93</a> / <a href="tel:+34652112621">652 11 26 21</a></p>
+            </div>
+          </div>
+          <div class="info-item">
+            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <div>
+              <strong>Horario</strong>
+              <p>Lunes a Viernes: 10:00 - 20:00<br>Sábados: 10:00 - 14:00</p>
+            </div>
+          </div>
+        </div>
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1431.6852220070284!2d-3.591946465401182!3d37.1552452255883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fb5825db2647%3A0x17656bc6e8b9b3bf!2sCentro%20Galia%20Est%C3%A9tico!5e0!3m2!1ses!2ses!4v1767812060551!5m2!1ses!2ses"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="white" fill-opacity="0.1"/></svg>') repeat;
+    animation: float 20s infinite linear;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(212, 175, 137, 0.2) 0%, transparent 50%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 2rem;
+  }
+
+  .hero-quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    opacity: 0.95;
+    animation: fadeInDown 1s ease-out;
+  }
+
+  .hero-author {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease-out 0.2s both;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 1s ease-out 0.4s both;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.6s both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 0.8s both;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    font-size: 1rem;
+  }
+
+  .btn .icon {
+    flex-shrink: 0;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--color-secondary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary-inverted {
+    background: var(--color-accent);
+    color: var(--color-secondary);
+  }
+
+  .btn-primary-inverted:hover {
+    background: var(--color-accent-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-secondary-inverted {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary-inverted:hover {
+    background: white;
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* About Section */
+  .about {
+    padding: 6rem 0;
+    background: var(--color-bg);
+  }
+
+  .about-content h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-content > p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    line-height: 1.8;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature {
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .feature:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+  }
+
+  .feature-icon {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .feature h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .feature p {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .ovaco-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+  }
+
+  .badge-icon {
+    flex-shrink: 0;
+  }
+
+  /* Treatments Section */
+  .treatments {
+    padding: 6rem 0;
+    background: var(--color-bg-soft);
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 3rem;
+  }
+
+  .treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .treatment-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .treatment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .treatment-image {
+    height: 200px;
+    position: relative;
+  }
+
+  .treatment-content {
+    padding: 1.5rem;
+  }
+
+  .treatment-content h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .treatment-content p {
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .treatment-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-base);
+  }
+
+  .treatment-link:hover {
+    color: var(--color-primary-dark);
+    gap: 0.75rem;
+  }
+
+  .treatment-link svg {
+    transition: transform var(--transition-base);
+  }
+
+  .treatment-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* CTA Section */
+  .cta {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    color: white;
+  }
+
+  .cta-content {
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Location Section */
+  .location {
+    padding: 6rem 0;
+    background: var(--color-bg);
+  }
+
+  .location-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .location-info h2 {
+    color: var(--color-secondary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .info-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .info-item strong {
+    display: block;
+    color: var(--color-secondary);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+
+  .info-item p {
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .info-item a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .info-item a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
+  .location-map {
+    height: 400px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 70vh;
+    }
+
+    .hero-quote {
+      font-size: 1.2rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .about-content h2,
+    .section-title,
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+
+    .treatments-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .location-map {
+      height: 300px;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .hero-buttons,
+    .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+</style>
