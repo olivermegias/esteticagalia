@@ -2,15 +2,35 @@
   /* Brand colors - Verde olivo y tonos marrones */
   --color-primary: #8B9474;      /* Verde olivo suave */
   --color-secondary: #3C3C3C;    /* Gris oscuro (casi negro) */
-  --color-accent: #C4B5A0;       /* Marrón claro/beige */
+  --color-accent: #F4E7D6;       /* Marrón claro/beige */
 
   /* Base UI */
-  --color-bg: #FFFFFF;           /* Fondo blanco */
+  --color-bg: #6A7662;           /* Fondo principal oscuro */
   --color-bg-soft: #F5F4F0;      /* Fondo suave beige muy claro */
-  --color-text: #2D2D2D;         /* Texto principal */
+  --color-text: #F5F4F0;         /* Texto principal */
   --color-muted: #6B6B6B;        /* Texto secundario */
 
   /* Feedback */
   --color-success: #7A9B76;      /* Verde suave para éxito */
   --color-error: #C77B7B;        /* Rojo suave para error */
+
+  --color-brand: #5b6d5b; /* Tu verde */
+  --color-cream: #f3e3d2;
+  --color-gold: #d4af37;
+
+  --color-logo: #fcf7f4;
+
+  /* Layout tokens */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --transition-base: 0.28s cubic-bezier(.4,0,.2,1);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(11,11,11,0.06);
+  --shadow-md: 0 8px 20px rgba(11,11,11,0.08);
+  --shadow-lg: 0 12px 32px rgba(11,11,11,0.10);
+  --shadow-xl: 0 20px 48px rgba(11,11,11,0.12);
 }

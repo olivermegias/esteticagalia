@@ -2,28 +2,36 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Estética GaliaBeauty - Centro de Estética en Granada"
+  description="Centro de estética avanzada en Granada. Tratamientos faciales, corporales, microblading y los últimos avances en estética profesional."
+>
   <Fragment slot="head">
     <title>Estética GaliaBeauty - Centro de Estética en Granada</title>
-    <meta name="description" content="Centro de estética avanzada en Granada. Tratamientos faciales, corporales, microblading y los últimos avances en estética profesional." />
+    <meta
+      name="description"
+      content="Centro de estética avanzada en Granada. Tratamientos faciales, corporales, microblading y los últimos avances en estética profesional."
+    />
   </Fragment>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-quote">"La belleza comienza en el instante en que decides ser tú misma"</p>
-      <p class="hero-author">— Coco Chanel</p>
-      <h1 class="hero-title">Centro de Estética GaliaBeauty</h1>
-      <p class="hero-subtitle">Tu centro de estética avanzada en Granada</p>
-      <div class="hero-buttons">
-        <a href="tel:+34652112621" class="btn btn-primary">
-          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-          </svg>
-          Pide cita: 652 11 26 21
-        </a>
-        <a href="/contacto" class="btn btn-secondary">Más información</a>
+    <div class="hero-bg-accent"></div>
+    <div class="hero-bg-accent-small"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tagline">Centro de Estética Avanzada en Granada</span>
+        <h1 class="hero-title">
+          Realza tu belleza natural con calma y elegancia
+        </h1>
+        <p class="hero-quote">
+          Cuidamos de tu piel, atendemos sus necesidades y personalizamos los
+          tratamientos para conseguir los mejores resultados
+        </p>
+        <div class="hero-buttons">
+          <a href="tel:+34652112621" class="btn btn-primary">Llámanos</a>
+          <a href="/servicios" class="btn btn-outline">Explorar Servicios</a>
+        </div>
       </div>
     </div>
   </section>
@@ -33,49 +41,76 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="container">
       <div class="about-content">
         <h2>Bienvenida a GaliaBeauty</h2>
-        <p>En Estética GaliaBeauty disponemos de los últimos tratamientos de estética avanzada para ofrecerte un servicio personalizado. Déjate aconsejar por nuestras técnicas especializadas para recomendarte el mejor tratamiento que se adapte a tus necesidades.</p>
+        <p>
+          En Estética Galia cuidamos de ti con una selección de tratamientos
+          diseñados para realzar tu belleza y bienestar: faciales, corporales,
+          mirada, depilación láser y asesoramiento cosmético personalizado. Te
+          escuchamos, te asesoramos y te acompañamos para encontrar el
+          tratamiento perfecto para ti, porque cada piel y cada persona son
+          únicas
+        </p>
         <div class="features-grid">
           <div class="feature">
-            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              <line x1="12" y1="19" x2="12" y2="22"></line>
-            </svg>
-            <h3>Tratamientos Faciales</h3>
-            <p>Tecnología avanzada para el cuidado de tu piel</p>
+            <div class="feature-image-bg">
+              <img
+                src="/images/tratamiento-facial.png"
+                alt="Tratamiento facial"
+              />
+              <div class="feature-overlay"></div>
+            </div>
+            <div class="feature-content">
+              <h3>Tratamientos Faciales</h3>
+              <p>Tecnología avanzada para el cuidado de tu piel</p>
+            </div>
           </div>
+
           <div class="feature">
-            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-            <h3>Tratamientos Corporales</h3>
-            <p>Eliminación de grasa localizada y celulitis</p>
+            <div class="feature-image-bg">
+              <img
+                src="/images/tratamiento-facial.png"
+                alt="Tratamiento facial"
+              />
+              <div class="feature-overlay"></div>
+            </div>
+            <div class="feature-content">
+              <h3>Tratamientos Corporales</h3>
+              <p>Tratamientos para grasa localizada, celulitis y flacidez</p>
+            </div>
           </div>
+
           <div class="feature">
-            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-              <line x1="9" y1="9" x2="9.01" y2="9"></line>
-              <line x1="15" y1="9" x2="15.01" y2="9"></line>
-            </svg>
-            <h3>Manicura y Pedicura</h3>
-            <p>Uñas de gel, porcelana y esmaltado permanente</p>
+            <div class="feature-image-bg">
+              <img
+                src="/images/tratamiento-facial.png"
+                alt="Depilación láser"
+              />
+              <div class="feature-overlay"></div>
+            </div>
+            <div class="feature-content">
+              <h3>Depilación Láser</h3>
+              <p>Despídete del vello, da la bienvenida a la comodidad</p>
+            </div>
           </div>
+
           <div class="feature">
-            <svg class="feature-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-            <h3>Microblading</h3>
-            <p>Micropigmentación de cejas profesional</p>
+            <div class="feature-image-bg">
+              <img src="/images/tratamiento-facial.png" alt="Mirada" />
+              <div class="feature-overlay"></div>
+            </div>
+            <div class="feature-content">
+              <h3>Mirada</h3>
+              <p>Luce pestañas y cejas perfectas cada día</p>
+            </div>
           </div>
         </div>
-        <p class="ovaco-badge">
-          <svg class="badge-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <strong>Centro Oficial OVACO</strong> - Cosmética profesional de última generación
-        </p>
+
+        <div class="ovaco-badge-container">
+          <p class="ovaco-badge">
+            <span class="check-icon">✓</span>
+            <strong>Centro Oficial OVACO</strong> - Cosmética profesional de última
+            generación
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -84,21 +119,55 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section class="treatments">
     <div class="container">
       <h2 class="section-title">Tratamientos Destacados</h2>
+
+      <div class="bonos-badge-wrapper">
+        <div class="bonos-badge">
+          <svg
+            class="bonos-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"></path>
+            <path d="M12 2v10"></path>
+            <path d="m8 8 4-4 4 4"></path>
+            <rect x="8" y="16" width="8" height="4" rx="1"></rect>
+          </svg>
+          <span
+            ><strong>¡Regala bienestar!</strong> Todos nuestros tratamientos están
+            disponibles en bonos regalo</span
+          >
+        </div>
+      </div>
+
       <div class="treatments-grid">
         <article class="treatment-card">
-          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);">
-            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="6"></circle>
-              <circle cx="12" cy="12" r="2"></circle>
-            </svg>
+          <div class="treatment-image">
+            <img
+              src="/images/tratamiento-facial.png"
+              alt="Mesoterapia Dermapen"
+              class="treatment-image-photo"
+            />
           </div>
           <div class="treatment-content">
-            <h3>BB Glow</h3>
-            <p>Tratamiento revolucionario para una piel perfecta y luminosa.</p>
-            <a href="/servicios#bb-glow" class="treatment-link">
+            <h3>Mesoterapia Dermapen</h3>
+            <p>
+              Rejuvenecimiento facial con tecnología de microagujas para una
+              piel radiante.
+            </p>
+            <a href="/servicios#mesoterapia" class="treatment-link">
               Ver tratamiento
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
@@ -107,18 +176,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <article class="treatment-card">
-          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);">
-            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-            </svg>
+          <div class="treatment-image">
+            <img
+              src="/images/tratamiento-facial.png"
+              alt="Micropigmentación"
+              class="treatment-image-photo"
+            />
           </div>
           <div class="treatment-content">
-            <h3>Tratamiento para el acné OVACO</h3>
-            <p>Solución profesional para pieles con tendencia acneica.</p>
-            <a href="/servicios#acne" class="treatment-link">
+            <h3>Micropigmentación</h3>
+            <p>
+              Cejas y labios perfectos con técnica de micropigmentación
+              profesional.
+            </p>
+            <a href="/servicios#micropigmentacion" class="treatment-link">
               Ver tratamiento
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
@@ -127,57 +207,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <article class="treatment-card">
-          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);">
-            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </div>
-          <div class="treatment-content">
-            <h3>Microblading</h3>
-            <p>Cejas perfectas con técnica de micropigmentación pelo a pelo.</p>
-            <a href="/servicios#microblading" class="treatment-link">
-              Ver tratamiento
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-        </article>
-
-        <article class="treatment-card">
-          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);">
-            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M12 6v6l4 2"></path>
-            </svg>
-          </div>
-          <div class="treatment-content">
-            <h3>Liposonix</h3>
-            <p>Reducción de grasa localizada sin cirugía ni tiempo de recuperación.</p>
-            <a href="/servicios#liposonix" class="treatment-link">
-              Ver tratamiento
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-        </article>
-
-        <article class="treatment-card">
-          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);">
-            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-            </svg>
+          <div class="treatment-image">
+            <img
+              src="/images/tratamiento-facial.png"
+              alt="Maderoterapia"
+              class="treatment-image-photo"
+            />
           </div>
           <div class="treatment-content">
             <h3>Maderoterapia</h3>
-            <p>Técnica natural para modelar tu figura y eliminar la celulitis.</p>
+            <p>
+              Técnica natural para modelar tu figura y eliminar la celulitis.
+            </p>
             <a href="/servicios#maderoterapia" class="treatment-link">
               Ver tratamiento
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
@@ -186,45 +237,96 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <article class="treatment-card">
-          <div class="treatment-image" style="background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);">
-            <svg class="treatment-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-            </svg>
+          <div class="treatment-image">
+            <img
+              src="/images/tratamiento-facial.png"
+              alt="Diatermia"
+              class="treatment-image-photo"
+            />
           </div>
           <div class="treatment-content">
-            <h3>Diagnóstico Facial</h3>
-            <p>Análisis personalizado para el cuidado específico de tu piel.</p>
-            <a href="/servicios#diagnostico" class="treatment-link">
+            <h3>Diatermia</h3>
+            <p>
+              Tecnología avanzada para reducción de grasa y reafirmación
+              corporal.
+            </p>
+            <a href="/servicios#diatermia" class="treatment-link">
               Ver tratamiento
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-content">
-        <h2>¿Lista para tu transformación?</h2>
-        <p>Nuestro equipo de profesionales está preparado para asesorarte</p>
-        <div class="cta-buttons">
-          <a href="tel:+34652112621" class="btn btn-primary-inverted">
-            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            Llamar ahora
-          </a>
-          <a href="https://api.whatsapp.com/send?phone=+34652112621" class="btn btn-secondary-inverted" target="_blank" rel="noopener">
-            <svg class="icon" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            WhatsApp
-          </a>
-        </div>
+        <article class="treatment-card">
+          <div class="treatment-image">
+            <img
+              src="/images/tratamiento-facial.png"
+              alt="Lifting de Pestañas"
+              class="treatment-image-photo"
+            />
+          </div>
+          <div class="treatment-content">
+            <h3>Lifting de Pestañas</h3>
+            <p>
+              Luce pestañas naturalmente curvadas y voluminosas sin extensiones.
+            </p>
+            <a href="/servicios#lifting-pestanas" class="treatment-link">
+              Ver tratamiento
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="treatment-card">
+          <div class="treatment-image">
+            <img
+              src="/images/tratamiento-facial.png"
+              alt="Depilación Láser"
+              class="treatment-image-photo"
+            />
+          </div>
+          <div class="treatment-content">
+            <h3>Depilación Láser</h3>
+            <p>
+              Despídete del vello para siempre con nuestra tecnología láser de
+              última generación.
+            </p>
+            <a href="/servicios#depilacion-laser" class="treatment-link">
+              Ver tratamiento
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -236,32 +338,66 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div class="location-info">
           <h2>Encuéntranos</h2>
           <div class="info-item">
-            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg
+              class="info-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
             <div>
               <strong>Dirección</strong>
-              <p>C/ Torre de los Picos nº11<br>Granada, CP: 18008</p>
+              <p>C/ Torre de los Picos nº11<br />Granada, CP: 18008</p>
             </div>
           </div>
           <div class="info-item">
-            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            <svg
+              class="info-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
             </svg>
             <div>
               <strong>Teléfono</strong>
-              <p><a href="tel:+34958125993">958 12 59 93</a> / <a href="tel:+34652112621">652 11 26 21</a></p>
+              <p>
+                <a href="tel:+34958125993">958 12 59 93</a> / <a
+                  href="tel:+34652112621">652 11 26 21</a
+                >
+              </p>
             </div>
           </div>
           <div class="info-item">
-            <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg
+              class="info-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
             <div>
               <strong>Horario</strong>
-              <p>Lunes a Viernes: 10:00 - 20:00<br>Sábados: 10:00 - 14:00</p>
+              <p>
+                Lunes: 15:00 - 19:00 <br />
+                Martes a Viernes: 10:00 - 19:00 <br />
+                Sábados: 10:00 - 14:00
+              </p>
             </div>
           </div>
         </div>
@@ -281,106 +417,96 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
   /* Hero Section */
   .hero {
     position: relative;
-    min-height: 85vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background-color: var(--color-cream);
     overflow: hidden;
+    padding-top: 2rem;
   }
 
-  .hero::before {
-    content: '';
+  .hero-bg-accent {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="white" fill-opacity="0.1"/></svg>') repeat;
-    animation: float 20s infinite linear;
+    top: 10%;
+    right: -5%;
+    width: 50vw;
+    height: 50vw;
+    background: #fcf7f4 url("/images/logo.png") 100% 20% no-repeat;
+    background-size: 90%;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: 0;
+    opacity: 0.7;
   }
 
-  @keyframes float {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-100px); }
-  }
-
-  .hero-overlay {
+  .hero-bg-accent-small {
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(212, 175, 137, 0.2) 0%, transparent 50%);
+    top: 8%;
+    left: 5%;
+    width: 20vw;
+    height: 20vw;
+    background: #fcf7f4;
+    background-size: 60%;
+    border-radius: 50% 40% 60% 50% / 60% 50% 40% 60%;
+    z-index: 0;
+    opacity: 0.6;
   }
 
   .hero-content {
     position: relative;
     z-index: 1;
+    max-width: 700px;
+  }
+
+  .hero-tagline {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.3rem;
+    color: var(--color-brand);
+    margin-bottom: 1rem;
+    font-weight: 600;
     text-align: center;
-    color: white;
-    max-width: 800px;
-    padding: 2rem;
-  }
-
-  .hero-quote {
-    font-size: 1.5rem;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-    opacity: 0.95;
-    animation: fadeInDown 1s ease-out;
-  }
-
-  .hero-author {
-    font-size: 0.95rem;
-    opacity: 0.85;
-    margin-bottom: 3rem;
-    animation: fadeInDown 1s ease-out 0.2s both;
   }
 
   .hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.2;
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-    animation: fadeInUp 1s ease-out 0.4s both;
+    font-weight: 700;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-secondary);
+    text-align: center;
   }
 
-  .hero-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2.5rem;
-    opacity: 0.9;
-    animation: fadeInUp 1s ease-out 0.6s both;
+  .hero-quote {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--color-brand);
+    font-style: italic;
   }
 
   .hero-buttons {
     display: flex;
-    gap: 1rem;
     justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeInUp 1s ease-out 0.8s both;
-  }
-
-  @keyframes fadeInDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    gap: 1.5rem;
   }
 
   /* Buttons */
@@ -401,26 +527,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .btn-primary {
-    background: white;
-    color: var(--color-secondary);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
-  }
-
-  .btn-secondary {
-    background: transparent;
+    background: var(--color-brand);
     color: white;
-    border: 2px solid white;
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
   }
 
-  .btn-secondary:hover {
-    background: white;
-    color: var(--color-secondary);
-    transform: translateY(-2px);
+  .btn-outline {
+    border: 1px solid var(--color-brand);
+    color: var(--color-brand);
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
   }
 
   .btn-primary-inverted {
@@ -446,94 +566,258 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     transform: translateY(-2px);
   }
 
-  /* Container */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
   /* About Section */
   .about {
-    padding: 6rem 0;
-    background: var(--color-bg);
-  }
-
-  .about-content h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--color-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .about-content > p {
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    max-width: 800px;
-    margin: 0 auto 4rem;
-    line-height: 1.8;
+    padding: 1rem 0 2rem;
+    background-color: var(--color-bg); /* Color verde salvia de fondo */
   }
 
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
   }
 
-  .feature {
-    text-align: center;
-    padding: 2rem;
-    background: var(--color-bg-soft);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
-    border: 1px solid var(--color-border-light);
+  .feature-media {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border-radius: 15px; /* Imagen ligeramente redondeada */
   }
 
-  .feature:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary);
+  .feature-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .feature-icon {
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .feature h3 {
-    color: var(--color-secondary);
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-  }
-
-  .feature p {
-    color: var(--color-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
+  /* OVACO Badge - Estilo Pill */
+  .ovaco-badge-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2rem;
   }
 
   .ovaco-badge {
+    background: #ffffff;
+    padding: 0.8rem 2rem;
+    border-radius: 100px; /* Forma de píldora */
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .check-icon {
+    background: #fdf4eb;
+    color: #d4a373;
+    width: 24px;
+    height: 24px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .about-content h2 {
+    text-align: center;
+    font-size: 2.75rem;
+    color: var(--color-logo);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative;
+  }
+
+  .about-content h2::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 6px;
+    margin: 0.75rem auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-cream), var(--color-logo));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    opacity: 0.95;
+  }
+
+  .about-content > p {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--color-logo);
+    max-width: 820px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.9;
+  }
+
+  /* Feature cards: background image with overlay + content */
+  .feature {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 400px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .feature:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .feature-image-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .feature:hover .feature-image-bg img {
+    transform: scale(1.05);
+  }
+
+  .feature-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    z-index: 2;
+  }
+
+  .feature-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    z-index: 3;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .feature h3 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .feature p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .feature {
+      height: 320px;
+    }
+
+    .feature-content {
+      padding: 1.5rem;
+    }
+
+    .feature h3 {
+      font-size: 1.25rem;
+    }
+
+    .feature p {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .feature {
+      height: 450px;
+    }
+
+    .feature-content {
+      padding: 2.5rem;
+    }
+
+    .feature h3 {
+      font-size: 1.75rem;
+    }
+  }
+
+  .ovaco-badge {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
     text-align: center;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    color: white;
-    border-radius: var(--radius-lg);
-    font-size: 1.1rem;
+    padding: 0.9rem 1.25rem;
+    background: #ffffff;
+    color: var(--color-secondary);
+    border-radius: calc(var(--radius-lg) + 4px);
+    font-size: 1.05rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+    margin: 1rem auto 0;
+    width: max-content;
   }
 
-  .badge-icon {
+  /* make sure .ovaco-badge inside .about-content does not inherit the pale paragraph color */
+  .about-content .ovaco-badge,
+  .ovaco-badge {
+    color: var(--color-secondary);
+  }
+
+  .ovaco-badge strong {
+    color: inherit;
+    font-weight: 700;
+  }
+
+  .ovaco-badge .badge-icon {
+    background: var(--color-cream);
+    padding: 6px;
+    border-radius: 6px;
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+  }
+
+  .ovaco-badge:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
   }
 
   /* Treatments Section */
   .treatments {
-    padding: 6rem 0;
+    padding: 1rem 0 4rem;
     background: var(--color-bg-soft);
   }
 
@@ -567,6 +851,38 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .treatment-image {
     height: 200px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--color-cream);
+  }
+
+  /* Overlay sutil sobre la imagen */
+  .treatment-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(212, 163, 115, 0.25) 0%,
+      rgba(212, 163, 115, 0.5) 100%
+    );
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .treatment-card:hover .treatment-image-photo {
+    transform: scale(1.08);
+    filter: brightness(0.95) contrast(1.1);
+  }
+
+  .treatment-card:hover .treatment-image::after {
+    opacity: 0.5;
   }
 
   .treatment-content {
@@ -611,7 +927,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   /* CTA Section */
   .cta {
     padding: 5rem 0;
-    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-secondary) 0%,
+      var(--color-primary) 100%
+    );
     color: white;
   }
 
@@ -639,7 +959,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   /* Location Section */
   .location {
-    padding: 6rem 0;
+    padding: 4rem 0;
     background: var(--color-bg);
   }
 
@@ -651,7 +971,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .location-info h2 {
-    color: var(--color-secondary);
+    color: var(--color-text);
     font-size: 2rem;
     margin-bottom: 2rem;
   }
@@ -664,33 +984,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .info-icon {
-    color: var(--color-primary);
+    color: var(--color-text);
     flex-shrink: 0;
     margin-top: 0.25rem;
   }
 
   .info-item strong {
     display: block;
-    color: var(--color-secondary);
+    color: var(--color-text);
     margin-bottom: 0.25rem;
     font-weight: 600;
   }
 
   .info-item p {
-    color: var(--color-text-light);
+    color: var(--color-text);
     margin: 0;
     line-height: 1.6;
   }
 
   .info-item a {
-    color: var(--color-primary);
-    text-decoration: none;
+    color: var(--color-text);
+    text-decoration: underline;
     transition: color var(--transition-base);
   }
 
   .info-item a:hover {
-    color: var(--color-primary-dark);
-    text-decoration: underline;
+    color: var(--color-secondary);
+    text-decoration: none;
   }
 
   .location-map {
@@ -699,6 +1019,72 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     overflow: hidden;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--color-border);
+  }
+
+  .location-map iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bonos-badge-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .bonos-badge {
+    background: linear-gradient(135deg, #fdf8f3 0%, #fff 100%);
+    border: 2px solid var(--color-brand);
+    padding: 1.25rem 2.5rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 20px rgba(212, 163, 115, 0.15);
+    transition: all 0.3s ease;
+    max-width: 600px;
+  }
+
+  .bonos-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(212, 163, 115, 0.25);
+  }
+
+  .bonos-icon {
+    flex-shrink: 0;
+    color: var(--color-brand);
+    animation: bounce 2s infinite;
+  }
+
+  .treatment-image-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      transform 0.4s ease,
+      filter 0.4s ease;
+    filter: brightness(0.85) contrast(1.05);
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .bonos-badge span {
+    color: var(--color-secondary);
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .bonos-badge strong {
+    color: var(--color-brand);
+    font-weight: 700;
   }
 
   /* Responsive */
@@ -742,6 +1128,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .cta-buttons {
       flex-direction: column;
       width: 100%;
+    }
+    .bonos-badge {
+      padding: 1rem 1.5rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+    }
+
+    .bonos-badge span {
+      font-size: 0.95rem;
     }
   }
 </style>
