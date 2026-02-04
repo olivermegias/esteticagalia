@@ -9,7 +9,7 @@ const serviciosCollection = defineCollection({
     descripcion: z.string(),
     duracion: z.string().optional(),
     precio: z.string().optional(),
-    imagen: z.string().optional(),
+    imagen: z.array(z.string()).optional(),
     orden: z.number().default(0),
   }),
 });

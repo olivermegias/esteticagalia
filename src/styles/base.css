@@ -16,3 +16,134 @@ body {
   color: var(--color-text);
   line-height: 1.6;
 }
+
+/* ================================
+   UTILIDADES GLOBALES
+   ================================ */
+
+/* Container global */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ================================
+   BOTONES GLOBALES
+   ================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn .icon {
+  flex-shrink: 0;
+}
+
+.btn-primary {
+  background: var(--color-brand);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-brand);
+  border: 2px solid var(--color-brand);
+}
+
+.btn-secondary:hover {
+  background: var(--color-brand);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 2px solid var(--color-brand);
+  color: var(--color-brand);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--color-brand);
+  color: white;
+}
+
+/* Variantes para fondos oscuros */
+.btn-primary-inverted {
+  background: var(--color-cream);
+  color: var(--color-secondary);
+}
+
+.btn-primary-inverted:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary-inverted {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary-inverted:hover {
+  background: white;
+  color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+/* ================================
+   TÍTULOS DE SECCIÓN
+   ================================ */
+.section-title {
+  text-align: center;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-secondary);
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+
+.section-title-light {
+  color: white;
+}
+
+/* ================================
+   RESPONSIVE UTILITIES
+   ================================ */
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+  }
+  
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}

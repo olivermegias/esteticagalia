@@ -31,7 +31,14 @@ const { title, description = "Centro de estética en Granada especializado en tr
     </main>
     <Footer />
 
-    <script type="module" src="/src/scripts/main.ts"></script>
+    <script>
+      import { initScrollAnimations, animateCounters } from '../scripts/scrollAnimations';
+      
+      document.addEventListener('astro:page-load', () => {
+        initScrollAnimations();
+        animateCounters();
+      });
+    </script>
 
   </body>
 </html>

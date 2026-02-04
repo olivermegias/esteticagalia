@@ -5,7 +5,7 @@ descripcion: "Tratamiento completo de limpieza facial que elimina impurezas, pun
 duracion: "60 min"
 precio: "45€"
 orden: 1
-imagen: "/images/limpieza-facial.jpg"
+imagen: ["/images/limpieza-facial.jpg", "/images/tratamiento-facial.jpg"]
 ---
 
 ## Descripción del tratamiento

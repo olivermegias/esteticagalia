@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import ServiciosFilter from "../components/islands/ServiciosFilter";
 
 const servicios = await getCollection("servicios");
 
@@ -19,6 +20,19 @@ const categorias = [
   { id: "corporal", label: "Corporal" },
   { id: "depilacion", label: "Depilación" },
 ];
+
+// Preparar los datos para el componente React
+const serviciosData = serviciosOrdenados.map(s => ({
+  slug: s.slug,
+  data: {
+    title: s.data.title,
+    categoria: s.data.categoria,
+    descripcion: s.data.descripcion,
+    duracion: s.data.duracion,
+    precio: s.data.precio,
+    imagen: Array.isArray(s.data.imagen) ? s.data.imagen[0] : s.data.imagen,
+  }
+}));
 ---
 
 <BaseLayout
@@ -31,135 +45,48 @@ const categorias = [
       name="description"
       content="Descubre nuestra amplia gama de tratamientos profesionales: faciales, corporales, microblading, depilación y mucho más."
     />
+    <!-- Schema.org para SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Estética GaliaBeauty",
+        "description": "Centro de estética avanzada en Granada",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "C/ Torre de los Picos nº11",
+          "addressLocality": "Granada",
+          "postalCode": "18008",
+          "addressCountry": "ES"
+        },
+        "telephone": "+34652112621",
+        "priceRange": "€€",
+        "image": "https://esteticagalia.es/images/logo.png"
+      }
+    </script>
   </Fragment>
 
   <!-- Hero Section -->
-  <section class="hero animate-on-scroll">
-    <div class="hero-overlay"></div>
+  <section class="hero">
+    <div class="hero-bg-accent"></div>
     <div class="hero-content">
-      <h1 class="hero-title animate-fade-in-down">Nuestros Servicios</h1>
-      <p class="hero-subtitle animate-fade-in-up delay-200">
+      <h1 class="hero-title">Nuestros Servicios</h1>
+      <p class="hero-subtitle">
         Descubre nuestra amplia gama de tratamientos profesionales diseñados
         para realzar tu belleza natural
       </p>
     </div>
   </section>
 
-  <!-- Barra de filtros -->
-  <div class="filter-bar">
-    <div class="container">
-      <nav class="filter-nav">
-        {
-          categorias.map((cat) => (
-            <button
-              data-filter={cat.id}
-              class:list={["filter-btn", { active: cat.id === "todos" }]}
-            >
-              {cat.label}
-            </button>
-          ))
-        }
-      </nav>
-    </div>
-  </div>
-
-  <!-- Contenido principal -->
+  <!-- Contenido principal con filtros interactivos -->
   <section class="servicios-section">
     <div class="container">
-      <!-- Grid de servicios -->
-      <div class="servicios-grid" id="servicios-grid">
-        {
-          serviciosOrdenados.map((servicio, index) => (
-            <article
-              class="servicio-card animate-on-scroll hover-lift"
-              data-categoria={servicio.data.categoria}
-              style={`transition-delay: ${index * 0.05}s`}
-            >
-              <div
-                class="servicio-image"
-                style={
-                  servicio.data.imagen
-                    ? `background-image: url(${servicio.data.imagen}); background-size: cover; background-position: center;`
-                    : "background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);"
-                }
-              >
-                {!servicio.data.imagen && (
-                  <svg
-                    class="servicio-icon"
-                    width="64"
-                    height="64"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    stroke-width="1.5"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <circle cx="12" cy="12" r="6" />
-                  </svg>
-                )}
-              </div>
-
-              <div class="servicio-content">
-                <div class="servicio-header">
-                  <span class="servicio-categoria">
-                    {
-                      categorias.find((c) => c.id === servicio.data.categoria)
-                        ?.label
-                    }
-                  </span>
-                  {servicio.data.duracion && (
-                    <span class="servicio-duracion">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                      </svg>
-                      {servicio.data.duracion}
-                    </span>
-                  )}
-                </div>
-
-                <h3>{servicio.data.title}</h3>
-
-                <p class="servicio-descripcion">{servicio.data.descripcion}</p>
-
-                <div class="servicio-footer">
-                  {servicio.data.precio && (
-                    <span class="servicio-precio">{servicio.data.precio}</span>
-                  )}
-                  <a href={`/servicios/${servicio.slug}`} class="servicio-link">
-                    Ver más
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-
-      <!-- Mensaje cuando no hay resultados -->
-      <div id="no-results" class="no-results">
-        <div class="no-results-icon">🔍</div>
-        <h3>No se encontraron servicios</h3>
-        <p>Prueba con otra categoría</p>
-      </div>
+      <!-- Componente React Island con client:load para interactividad -->
+      <ServiciosFilter 
+        client:load
+        categorias={categorias}
+        servicios={serviciosData}
+      />
     </div>
   </section>
 
@@ -173,7 +100,7 @@ const categorias = [
           servicio
         </p>
         <div class="cta-buttons">
-          <a href="tel:+34652112621" class="btn btn-primary-inverted">
+          <a href="tel:+34652112621" class="btn btn-primary">
             <svg
               class="icon"
               width="18"
@@ -189,7 +116,7 @@ const categorias = [
             </svg>
             Llamar ahora
           </a>
-          <a href="/contacto" class="btn btn-secondary-inverted"> Contactar </a>
+          <a href="/contacto" class="btn btn-secondary"> Contactar </a>
         </div>
       </div>
     </div>
@@ -197,6 +124,13 @@ const categorias = [
 </BaseLayout>
 
 <style>
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
   /* Hero Section */
   .hero {
     position: relative;
@@ -204,50 +138,27 @@ const categorias = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(
-      135deg,
-      var(--color-primary) 0%,
-      var(--color-secondary) 100%
-    );
+    background-color: var(--color-cream);
     overflow: hidden;
   }
 
-  .hero::before {
-    content: "";
+  .hero-bg-accent {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="white" fill-opacity="0.1"/></svg>')
-      repeat;
-    animation: float 20s infinite linear;
-  }
-
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-100px);
-    }
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at 30% 50%,
-      rgba(212, 175, 137, 0.2) 0%,
-      transparent 50%
-    );
+    top: 10%;
+    right: -5%;
+    width: 50vw;
+    height: 50vw;
+    background: #fcf7f4;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: 0;
+    opacity: 0.7;
   }
 
   .hero-content {
     position: relative;
     z-index: 1;
     text-align: center;
-    color: white;
+    color: var(--color-secondary);
     max-width: 800px;
     padding: 2rem;
   }
@@ -258,12 +169,14 @@ const categorias = [
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
     animation: fadeInUp 1s ease-out;
+    color: var(--color-secondary);
   }
 
   .hero-subtitle {
     font-size: 1.25rem;
     opacity: 0.9;
     animation: fadeInUp 1s ease-out 0.2s both;
+    color: var(--color-primary);
   }
 
   @keyframes fadeInUp {
@@ -277,234 +190,16 @@ const categorias = [
     }
   }
 
-  /* Filter Bar */
-  .filter-bar {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    background: white;
-    border-bottom: 1px solid var(--color-border-light);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .filter-nav {
-    display: flex;
-    overflow-x: auto;
-    gap: 0.75rem;
-    padding: 1rem 0;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .filter-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .filter-btn {
-    white-space: nowrap;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    background: #f9fafb;
-    color: #6b7280;
-    border: 2px solid #e5e7eb;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .filter-btn:hover {
-    border-color: #d4af89;
-    color: #d4af89;
-    transform: translateY(-2px);
-  }
-
-  .filter-btn.active {
-    background: linear-gradient(135deg, #d4af89 0%, #8b7355 100%);
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 4px 12px rgba(212, 175, 137, 0.3);
-  }
-
-  /* Container */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
   /* Servicios Section */
   .servicios-section {
     padding: 4rem 0;
-    background: #fafafa;
-  }
-
-  .servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-  }
-
-  .servicio-card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: 1px solid #e5e7eb;
-    animation: fadeIn 0.6s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .servicio-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
-  }
-
-  .servicio-image {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .servicio-icon {
-    opacity: 0.9;
-  }
-
-  .servicio-content {
-    padding: 1.5rem;
-  }
-
-  .servicio-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    gap: 0.5rem;
-  }
-
-  .servicio-categoria {
-    display: inline-block;
-    padding: 0.375rem 0.875rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #d4af89;
-    background: #f9fafb;
-    border-radius: 50px;
-    border: 1px solid #e5e7eb;
-  }
-
-  .servicio-duracion {
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-size: 0.875rem;
-    color: #6b7280;
-  }
-
-  .servicio-content h3 {
-    color: #1f2937;
-    margin-bottom: 0.75rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-  }
-
-  .servicio-descripcion {
-    color: #4b5563;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .servicio-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1rem;
-    border-top: 1px solid #e5e7eb;
-  }
-
-  .servicio-precio {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #d4af89;
-  }
-
-  .servicio-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.625rem 1.25rem;
-    background: linear-gradient(135deg, #d4af89 0%, #8b7355 100%);
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.875rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-  }
-
-  .servicio-link:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(212, 175, 137, 0.4);
-  }
-
-  .servicio-link svg {
-    transition: transform 0.3s ease;
-  }
-
-  .servicio-link:hover svg {
-    transform: translateX(4px);
-  }
-
-  /* No Results */
-  .no-results {
-    display: none;
-    text-align: center;
-    padding: 4rem 2rem;
-  }
-
-  .no-results-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    opacity: 0.3;
-  }
-
-  .no-results h3 {
-    color: var(--color-secondary);
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .no-results p {
-    color: var(--color-muted);
+    background: var(--color-bg-soft);
   }
 
   /* CTA Section */
   .cta {
     padding: 5rem 0;
-    background: linear-gradient(
-      135deg,
-      var(--color-secondary) 0%,
-      var(--color-primary) 100%
-    );
+    background: var(--color-primary);
     color: white;
   }
 
@@ -515,12 +210,15 @@ const categorias = [
   .cta-content h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    animation: fadeInUp 0.6s ease-out;
+    color: white;
   }
 
   .cta-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
   }
 
   .cta-buttons {
@@ -528,6 +226,7 @@ const categorias = [
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
   }
 
   /* Buttons */
@@ -536,7 +235,7 @@ const categorias = [
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
-    border-radius: var(--radius-full);
+    border-radius: 50px;
     font-weight: 600;
     text-decoration: none;
     transition: all var(--transition-base);
@@ -547,24 +246,24 @@ const categorias = [
     flex-shrink: 0;
   }
 
-  .btn-primary-inverted {
-    background: var(--color-accent);
+  .btn-primary {
+    background: var(--color-cream);
     color: var(--color-secondary);
   }
 
-  .btn-primary-inverted:hover {
-    background: var(--color-accent-light);
+  .btn-primary:hover {
+    background: var(--color-accent);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
 
-  .btn-secondary-inverted {
+  .btn-secondary {
     background: transparent;
     color: white;
     border: 2px solid white;
   }
 
-  .btn-secondary-inverted:hover {
+  .btn-secondary:hover {
     background: white;
     color: var(--color-secondary);
     transform: translateY(-2px);
@@ -573,40 +272,65 @@ const categorias = [
   /* Responsive */
   @media (max-width: 768px) {
     .hero {
-      min-height: 40vh;
+      min-height: 30vh;
     }
 
     .hero-title {
-      font-size: 2rem;
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
     }
 
     .hero-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
-    .servicios-grid {
-      grid-template-columns: 1fr;
+    .servicios-section {
+      padding: 2rem 0;
+    }
+
+    .cta {
+      padding: 3rem 0;
     }
 
     .cta-content h2 {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-content p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .cta-buttons {
       flex-direction: column;
       width: 100%;
+      gap: 0.75rem;
     }
 
     .btn {
       width: 100%;
       justify-content: center;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
     }
-    .is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transform: scale(0.95);
-}
+  }
 
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 25vh;
+    }
+
+    .hero-title {
+      font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+    }
+
+    .servicios-section {
+      padding: 1.5rem 0;
+    }
   }
 </style>

@@ -38,7 +38,6 @@ export function animateCounters() {
     const target = Number(element.dataset.counter);
     const duration = Number(element.dataset.duration ?? 2000);
 
-    let start = 0;
     let started = false;
 
     const observer = new IntersectionObserver((entries) => {

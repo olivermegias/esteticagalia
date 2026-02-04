@@ -1,0 +1,981 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Información del negocio centralizada
+const businessInfo = {
+  name: "Estética GaliaBeauty",
+  address: {
+    street: "C/ Torre de los Picos nº11",
+    city: "Granada",
+    postalCode: "18008",
+    country: "España"
+  },
+  phones: [
+    { number: "+34958125993", display: "958 12 59 93", label: "Fijo" },
+    { number: "+34652112621", display: "652 11 26 21", label: "Móvil/WhatsApp" }
+  ],
+  email: "esteticagaliaguerrero@gmail.com",
+  social: {
+    instagram: "https://www.instagram.com/estetica_galiabeauty",
+    whatsapp: "https://api.whatsapp.com/send?phone=+34652112621"
+  },
+  hours: [
+    { day: "Lunes", hours: "15:00 - 19:00" },
+    { day: "Martes", hours: "10:00 - 19:00" },
+    { day: "Miércoles", hours: "10:00 - 19:00" },
+    { day: "Jueves", hours: "10:00 - 19:00" },
+    { day: "Viernes", hours: "10:00 - 19:00" },
+    { day: "Sábado", hours: "10:00 - 14:00" },
+    { day: "Domingo", hours: "Cerrado" }
+  ]
+};
+
+// Schema.org para SEO local
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": businessInfo.name,
+  "description": "Centro de estética avanzada en Granada. Tratamientos faciales, corporales, microblading y depilación láser.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": businessInfo.address.street,
+    "addressLocality": businessInfo.address.city,
+    "postalCode": businessInfo.address.postalCode,
+    "addressCountry": "ES"
+  },
+  "telephone": businessInfo.phones[1].number,
+  "email": businessInfo.email,
+  "url": "https://esteticagalia.es",
+  "priceRange": "€€",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Monday",
+      "opens": "15:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "10:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "10:00",
+      "closes": "14:00"
+    }
+  ],
+  "sameAs": [
+    businessInfo.social.instagram
+  ]
+};
+---
+
+<BaseLayout
+  title="Contacto - Estética GaliaBeauty"
+  description="Contacta con Estética GaliaBeauty en Granada. Reserva tu cita, consulta nuestros horarios y cómo llegar. Estamos en C/ Torre de los Picos nº11."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-accent"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Contacto</h1>
+      <p class="hero-subtitle">
+        Estamos aquí para atenderte. Reserva tu cita o consúltanos cualquier duda
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <!-- Columna Izquierda: Información de contacto -->
+        <div class="contact-info">
+          <div class="info-card">
+            <h2>Información de contacto</h2>
+            
+            <!-- Dirección -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="info-content">
+                <strong>Dirección</strong>
+                <p>
+                  {businessInfo.address.street}<br>
+                  {businessInfo.address.city}, CP: {businessInfo.address.postalCode}
+                </p>
+                <a 
+                  href="https://maps.google.com/?q=Centro+Galia+Estético+Granada" 
+                  target="_blank" 
+                  rel="noopener"
+                  class="info-link"
+                >
+                  Cómo llegar →
+                </a>
+              </div>
+            </div>
+
+            <!-- Teléfonos -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="info-content">
+                <strong>Teléfonos</strong>
+                {businessInfo.phones.map(phone => (
+                  <p>
+                    <a href={`tel:${phone.number}`}>{phone.display}</a>
+                    <span class="phone-label">({phone.label})</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="info-content">
+                <strong>Email</strong>
+                <p>
+                  <a href={`mailto:${businessInfo.email}`}>{businessInfo.email}</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="social-section">
+              <strong>Síguenos</strong>
+              <div class="social-links">
+                <a 
+                  href={businessInfo.social.instagram} 
+                  target="_blank" 
+                  rel="noopener" 
+                  aria-label="Instagram"
+                  class="social-link instagram"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                  @estetica_galiabeauty
+                </a>
+                <a 
+                  href={businessInfo.social.whatsapp} 
+                  target="_blank" 
+                  rel="noopener" 
+                  aria-label="WhatsApp"
+                  class="social-link whatsapp"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Horarios -->
+          <div class="hours-card">
+            <h2>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Horario de atención
+            </h2>
+            <ul class="hours-list">
+              {businessInfo.hours.map(item => (
+                <li class:list={[{ closed: item.hours === "Cerrado" }]}>
+                  <span class="day">{item.day}</span>
+                  <span class="hours">{item.hours}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Formulario y Mapa -->
+        <div class="contact-form-section">
+          <!-- Formulario de contacto -->
+          <div class="form-card">
+            <h2>Envíanos un mensaje</h2>
+            <p class="form-intro">
+              ¿Tienes alguna pregunta o quieres reservar una cita? Rellena el formulario y te responderemos lo antes posible.
+            </p>
+            
+            <form id="contactForm" class="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nombre">Nombre *</label>
+                  <input 
+                    type="text" 
+                    id="nombre" 
+                    name="nombre" 
+                    required 
+                    placeholder="Tu nombre"
+                  >
+                </div>
+                <div class="form-group">
+                  <label for="telefono">Teléfono</label>
+                  <input 
+                    type="tel" 
+                    id="telefono" 
+                    name="telefono" 
+                    placeholder="Tu teléfono"
+                  >
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required 
+                  placeholder="tu@email.com"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="servicio">Servicio de interés</label>
+                <select id="servicio" name="servicio">
+                  <option value="">Selecciona un servicio (opcional)</option>
+                  <option value="facial">Tratamientos Faciales</option>
+                  <option value="corporal">Tratamientos Corporales</option>
+                  <option value="mirada">Mirada (Pestañas y Cejas)</option>
+                  <option value="depilacion">Depilación Láser</option>
+                  <option value="otro">Otro / Consulta general</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="mensaje">Mensaje *</label>
+                <textarea 
+                  id="mensaje" 
+                  name="mensaje" 
+                  rows="5" 
+                  required 
+                  placeholder="¿En qué podemos ayudarte?"
+                ></textarea>
+              </div>
+
+              <div class="form-group checkbox-group">
+                <input type="checkbox" id="privacidad" name="privacidad" required>
+                <label for="privacidad">
+                  He leído y acepto la <a href="/politica-privacidad">política de privacidad</a>
+                </label>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-submit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                Enviar mensaje
+              </button>
+            </form>
+          </div>
+
+          <!-- Mapa -->
+          <div class="map-card">
+            <h2>Cómo llegar</h2>
+            <div class="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1431.6852220070284!2d-3.591946465401182!3d37.1552452255883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fb5825db2647%3A0x17656bc6e8b9b3bf!2sCentro%20Galia%20Est%C3%A9tico!5e0!3m2!1ses!2ses!4v1767812060551!5m2!1ses!2ses"
+                width="100%"
+                height="350"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación de Estética GaliaBeauty en Granada"
+              ></iframe>
+            </div>
+            <div class="map-directions">
+              <p>
+                <strong>Estamos en el barrio del Zaidín.</strong> Fácil aparcamiento en las inmediaciones.
+              </p>
+              <a 
+                href="https://maps.google.com/?q=Centro+Galia+Estético+Granada" 
+                target="_blank" 
+                rel="noopener"
+                class="btn btn-outline"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                </svg>
+                Abrir en Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Prefieres llamarnos directamente?</h2>
+        <p>Estaremos encantadas de atenderte y resolver todas tus dudas</p>
+        <div class="cta-buttons">
+          <a href="tel:+34652112621" class="btn btn-primary-inverted">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            Llamar ahora
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=+34652112621" target="_blank" rel="noopener" class="btn btn-secondary-inverted">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contactForm');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Aquí irá la lógica de envío del formulario (ej: API, Netlify Forms, etc.)
+    // Por ahora mostramos un mensaje de confirmación
+    alert('¡Gracias por tu mensaje! Te responderemos lo antes posible.');
+    (form as HTMLFormElement).reset();
+  });
+</script>
+
+<style>
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-cream);
+    overflow: hidden;
+  }
+
+  .hero-bg-accent {
+    position: absolute;
+    top: 10%;
+    right: -5%;
+    width: 50vw;
+    height: 50vw;
+    background: #fcf7f4;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    padding: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-primary);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Contact Section */
+  .contact-section {
+    padding: 4rem 0;
+    background: var(--color-bg-soft);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Info Card */
+  .info-card,
+  .hours-card,
+  .form-card,
+  .map-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+  }
+
+  .info-card h2,
+  .hours-card h2,
+  .form-card h2,
+  .map-card h2 {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hours-card h2 svg,
+  .map-card h2 svg {
+    color: var(--color-primary);
+  }
+
+  /* Info Items */
+  .info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .info-item:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .info-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--color-cream);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  .info-content strong {
+    display: block;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .info-content p {
+    margin: 0 0 0.5rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  .info-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .info-content a:hover {
+    color: var(--color-brand);
+    text-decoration: underline;
+  }
+
+  .info-link {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .phone-label {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    margin-left: 0.5rem;
+  }
+
+  /* Social Section */
+  .social-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f3f4f6;
+  }
+
+  .social-section strong {
+    display: block;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .social-link.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+  }
+
+  .social-link.whatsapp {
+    background: #25D366;
+    color: white;
+  }
+
+  .social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Hours Card */
+  .hours-card {
+    margin-top: 1.5rem;
+  }
+
+  .hours-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .hours-list li:last-child {
+    border-bottom: none;
+  }
+
+  .hours-list .day {
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+
+  .hours-list .hours {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .hours-list li.closed .hours {
+    color: var(--color-muted);
+  }
+
+  /* Form Card */
+  .form-card {
+    margin-bottom: 2rem;
+  }
+
+  .form-intro {
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 500;
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: var(--color-secondary);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(139, 148, 116, 0.1);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--color-muted);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .checkbox-group {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: var(--color-primary);
+  }
+
+  .checkbox-group label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+
+  .checkbox-group label a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .btn-submit {
+    margin-top: 0.5rem;
+    padding: 1rem 2rem;
+  }
+
+  /* Map Card */
+  .map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .map-container iframe {
+    display: block;
+  }
+
+  .map-directions {
+    text-align: center;
+  }
+
+  .map-directions p {
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+  }
+
+  .map-directions .btn {
+    display: inline-flex;
+  }
+
+  /* CTA Section */
+  .cta {
+    padding: 4rem 0;
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+      order: 2;
+    }
+
+    .contact-form-section {
+      order: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 25vh;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .contact-section {
+      padding: 1.5rem 0;
+    }
+
+    .contact-grid {
+      gap: 1.5rem;
+    }
+
+    .info-card,
+    .hours-card,
+    .form-card,
+    .map-card {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+
+    .info-card h2,
+    .hours-card h2,
+    .form-card h2,
+    .map-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-item {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
+
+    .info-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .info-content strong {
+      font-size: 0.9rem;
+    }
+
+    .info-content p {
+      font-size: 0.85rem;
+    }
+
+    .phone-label {
+      font-size: 0.75rem;
+    }
+
+    .social-link {
+      padding: 0.6rem 0.875rem;
+      font-size: 0.9rem;
+    }
+
+    .hours-card {
+      margin-top: 1rem;
+    }
+
+    .hours-list li {
+      padding: 0.6rem 0;
+      font-size: 0.9rem;
+    }
+
+    .hours-list .day {
+      font-size: 0.9rem;
+    }
+
+    .hours-list .hours {
+      font-size: 0.85rem;
+    }
+
+    .form-intro {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+      gap: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 0.875rem;
+      font-size: 0.95rem;
+      border-radius: 10px;
+    }
+
+    .checkbox-group label {
+      font-size: 0.8rem;
+    }
+
+    .btn-submit {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .map-container {
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .map-container iframe {
+      height: 280px;
+    }
+
+    .map-directions p {
+      font-size: 0.9rem;
+    }
+
+    .cta {
+      padding: 2.5rem 0;
+    }
+
+    .cta-content h2 {
+      font-size: 1.35rem;
+    }
+
+    .cta-content p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cta-buttons .btn {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 20vh;
+    }
+
+    .hero-title {
+      font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+    }
+
+    .info-card,
+    .hours-card,
+    .form-card,
+    .map-card {
+      padding: 1rem;
+    }
+
+    .info-item {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+
+    .info-icon {
+      margin-bottom: 0.5rem;
+    }
+
+    .info-content {
+      text-align: center;
+    }
+
+    .social-links {
+      align-items: center;
+    }
+
+    .map-container iframe {
+      height: 220px;
+    }
+  }
+</style>
