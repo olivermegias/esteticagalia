@@ -1,0 +1,68 @@
+---
+/**
+ * Breadcrumb reutilizable.
+ * Uso: <Breadcrumb items={[{ label: "Inicio", href: "/" }, { label: "Servicios", href: "/servicios" }, { label: "Actual" }]} />
+ */
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="breadcrumb-section">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      {items.map((item, i) => (
+        <>
+          {i > 0 && <span class="separator" aria-hidden="true">/</span>}
+          {item.href ? (
+            <a href={item.href}>{item.label}</a>
+          ) : (
+            <span class="current" aria-current="page">{item.label}</span>
+          )}
+        </>
+      ))}
+    </nav>
+  </div>
+</section>
+
+<style>
+  .breadcrumb-section {
+    padding: 1.5rem 0;
+    background: var(--color-bg-soft);
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-primary);
+  }
+
+  .breadcrumb .separator {
+    color: var(--color-muted);
+  }
+
+  .breadcrumb .current {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+</style>

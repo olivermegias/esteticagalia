@@ -14,9 +14,16 @@
   --color-success: #7A9B76;      /* Verde suave para éxito */
   --color-error: #C77B7B;        /* Rojo suave para error */
 
-  --color-brand: #5b6d5b; /* Tu verde */
+  --color-brand: #5b6d5b;
   --color-cream: #f3e3d2;
   --color-gold: #d4af37;
+
+  /* Accent light (hover suave) */
+  --color-accent-light: #f9f0e3;
+
+  /* Bordes */
+  --color-border-light: #e5e7eb;
+  --color-border-soft: #f3f4f6;
 
   --color-logo: #fcf7f4;
 

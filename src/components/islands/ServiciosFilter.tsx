@@ -1,5 +1,4 @@
-import { useState, useMemo } from 'react';
-import './servicios-filter.css';
+import { useState, useMemo, useEffect } from 'react';
 
 interface Categoria {
   id: string;
@@ -26,6 +25,19 @@ interface Props {
 export default function ServiciosFilter({ categorias, servicios }: Props) {
   const [activeFilter, setActiveFilter] = useState('todos');
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Leer parámetro de categoría de la URL al cargar
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const categoria = params.get('categoria');
+    if (categoria && categorias.some(cat => cat.id === categoria)) {
+      setActiveFilter(categoria);
+      // Scroll suave a los filtros
+      setTimeout(() => {
+        document.querySelector('.filter-nav')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }, [categorias]);
 
   // Filtrar servicios
   const filteredServicios = useMemo(() => {

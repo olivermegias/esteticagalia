@@ -1,0 +1,143 @@
+---
+import TreatmentCard from "../cards/TreatmentCard.astro";
+
+/**
+ * Sección de tratamientos destacados de la Home.
+ * En el futuro los datos podrían venir de una collection.
+ */
+const treatments = [
+  {
+    title: "Mesoterapia Dermapen",
+    description: "Rejuvenecimiento facial con tecnología de microagujas para una piel radiante.",
+    image: "/images/tratamiento-facial.png",
+    href: "/servicios/mesoterapia-dermapen",
+  },
+  {
+    title: "Micropigmentación",
+    description: "Cejas y labios perfectos con técnica de micropigmentación profesional.",
+    image: "/images/tratamiento-facial.png",
+    href: "/servicios/micropigmentacion",
+  },
+  {
+    title: "Maderoterapia",
+    description: "Técnica natural para modelar tu figura y eliminar la celulitis.",
+    image: "/images/tratamiento-facial.png",
+    href: "/servicios/maderoterapia",
+  },
+  {
+    title: "Diatermia",
+    description: "Tecnología avanzada para reducción de grasa y reafirmación corporal.",
+    image: "/images/tratamiento-facial.png",
+    href: "/servicios/diatermia",
+  },
+  {
+    title: "Lifting de Pestañas",
+    description: "Luce pestañas naturalmente curvadas y voluminosas sin extensiones.",
+    image: "/images/tratamiento-facial.png",
+    href: "/servicios/pestanas",
+  },
+  {
+    title: "Depilación Láser",
+    description: "Despídete del vello para siempre con nuestra tecnología láser de última generación.",
+    image: "/images/tratamiento-facial.png",
+    href: "/servicios/depilacion-laser",
+  },
+];
+---
+
+<section class="treatments">
+  <div class="container">
+    <h2 class="section-title">Tratamientos Destacados</h2>
+
+    <div class="bonos-badge-wrapper">
+      <div class="bonos-badge">
+        <svg class="bonos-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"></path>
+          <path d="M12 2v10"></path>
+          <path d="m8 8 4-4 4 4"></path>
+          <rect x="8" y="16" width="8" height="4" rx="1"></rect>
+        </svg>
+        <span><strong>¡Regala bienestar!</strong> Todos nuestros tratamientos están disponibles en bonos regalo</span>
+      </div>
+    </div>
+
+    <div class="treatments-grid">
+      {treatments.map((t) => (
+        <TreatmentCard {...t} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .treatments {
+    padding: 1rem 0 4rem;
+    background: var(--color-bg-soft);
+  }
+
+  .treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .bonos-badge-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .bonos-badge {
+    background: linear-gradient(135deg, #fdf8f3 0%, #fff 100%);
+    border: 2px solid var(--color-brand);
+    padding: 1.25rem 2.5rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 20px rgba(212, 163, 115, 0.15);
+    transition: all 0.3s ease;
+    max-width: 600px;
+  }
+
+  .bonos-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(212, 163, 115, 0.25);
+  }
+
+  .bonos-icon {
+    flex-shrink: 0;
+    color: var(--color-brand);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .bonos-badge span {
+    color: var(--color-secondary);
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .bonos-badge strong {
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .treatments { padding: 0.5rem 0 2.5rem; }
+    .treatments-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .bonos-badge-wrapper { margin-bottom: 2rem; }
+    .bonos-badge {
+      padding: 0.875rem 1.25rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+      border-radius: 16px;
+    }
+    .bonos-badge span { font-size: 0.9rem; }
+  }
+</style>

@@ -1,21 +1,24 @@
 ---
 title: "Limpieza Facial Profunda"
 categoria: "facial"
-descripcion: "Tratamiento completo de limpieza facial que elimina impurezas, puntos negros y células muertas, dejando la piel suave y luminosa."
+descripcion: "Una limpieza facial profunda que eliminará todas las impurezas, puntos negros y milium, eliminando células muertas, el exceso de grasa y restos de la contaminación que obstruyen los poros."
 duracion: "60 min"
 precio: "45€"
 orden: 1
 imagen: ["/images/limpieza-facial.jpg", "/images/tratamiento-facial.jpg"]
 ---
 
-## Descripción del tratamiento
+## Elimina las impurezas y oxigena tu piel
 
-La limpieza facial profunda es un tratamiento esencial para mantener la piel sana y radiante. Este procedimiento elimina las impurezas acumuladas en los poros, células muertas y exceso de grasa.
+Una limpieza facial profunda que eliminará todas las impurezas, puntos negros y milium, eliminando células muertas, el exceso de grasa y restos de la contaminación que obstruyen los poros. Es un tratamiento esencial que sirve como punto de partida para comenzar a cuidar tu piel desde dentro.
 
 ### Beneficios
 
-- Desobstrucción de poros
-- Eliminación de puntos negros
-- Piel más suave y luminosa
-- Mejora la absorción de productos
-- Previene el acné
+- Revitaliza la piel
+- Elimina las células muertas ayudando a la renovación de la piel
+- Evita la aparición de imperfecciones
+- Prepara la piel para que los tratamientos posteriores sean más efectivos
+
+### ¿Para quién está indicada?
+
+Para todo tipo de pieles, sobre todo aquellas que necesitan una extracción profunda. Es aconsejable realizarla de forma periódica para evitar que los poros se obstruyan en exceso.

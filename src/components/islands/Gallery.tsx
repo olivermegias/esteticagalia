@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './gallery.css';
 
 interface Props {
   imagenes: string[];

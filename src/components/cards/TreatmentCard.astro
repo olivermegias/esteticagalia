@@ -1,0 +1,113 @@
+---
+import ArrowRightIcon from "../icons/ArrowRightIcon.astro";
+
+/**
+ * Tarjeta de tratamiento destacado para la Home.
+ */
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+}
+
+const { title, description, image, href } = Astro.props;
+---
+
+<article class="treatment-card">
+  <div class="treatment-image">
+    <img src={image} alt={title} class="treatment-image-photo" loading="lazy" />
+  </div>
+  <div class="treatment-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <a href={href} class="treatment-link">
+      Ver tratamiento
+      <ArrowRightIcon size={16} />
+    </a>
+  </div>
+</article>
+
+<style>
+  .treatment-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .treatment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .treatment-image {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    background: var(--color-cream);
+  }
+
+  .treatment-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(212,163,115,0.25) 0%, rgba(212,163,115,0.5) 100%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .treatment-image-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: brightness(0.85) contrast(1.05);
+  }
+
+  .treatment-card:hover .treatment-image-photo {
+    transform: scale(1.08);
+    filter: brightness(0.95) contrast(1.1);
+  }
+
+  .treatment-content {
+    padding: 1.5rem;
+  }
+
+  .treatment-content h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .treatment-content p {
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .treatment-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-base);
+  }
+
+  .treatment-link:hover {
+    color: var(--color-brand);
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    .treatment-image { height: 180px; }
+    .treatment-content { padding: 1.25rem; }
+    .treatment-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .treatment-content p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+  }
+</style>

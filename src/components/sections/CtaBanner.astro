@@ -1,0 +1,89 @@
+---
+import PhoneIcon from "../icons/PhoneIcon.astro";
+import { business } from "../../data/business";
+
+interface Props {
+  title?: string;
+  text?: string;
+  variant?: "primary" | "gradient";
+  showWhatsApp?: boolean;
+}
+
+const {
+  title = "¿Lista para reservar tu cita?",
+  text = "Nuestro equipo de profesionales está listo para ofrecerte el mejor servicio",
+  variant = "primary",
+  showWhatsApp = true,
+} = Astro.props;
+
+const bgClass = variant === "gradient" ? "cta--gradient" : "cta--primary";
+---
+
+<section class:list={["cta", bgClass]}>
+  <div class="container">
+    <div class="cta-content">
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div class="cta-buttons">
+        <a href={`tel:${business.mainPhone}`} class="btn btn-primary-inverted">
+          <PhoneIcon size={18} />
+          Llamar ahora
+        </a>
+        {showWhatsApp && (
+          <a href={business.social.whatsapp} target="_blank" rel="noopener" class="btn btn-secondary-inverted">
+            WhatsApp
+          </a>
+        )}
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: 5rem 0;
+    color: white;
+  }
+
+  .cta--primary {
+    background: var(--color-primary);
+  }
+
+  .cta--gradient {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .cta { padding: 3rem 0; }
+    .cta-content h2 { font-size: 1.5rem; }
+    .cta-content p { font-size: 1rem; margin-bottom: 1.5rem; }
+    .cta-buttons { flex-direction: column; width: 100%; }
+    .cta-buttons :global(.btn) { width: 100%; justify-content: center; }
+  }
+</style>

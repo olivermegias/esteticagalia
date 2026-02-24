@@ -2,10 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import ServiciosFilter from "../components/islands/ServiciosFilter";
+import PageHero from "../components/sections/PageHero.astro";
+import CtaBanner from "../components/sections/CtaBanner.astro";
+import { serviceCategories } from "../data/navigation";
+import { getBeautySalonSchema } from "../data/schema";
 
 const servicios = await getCollection("servicios");
 
-// Ordenar servicios por categoría y orden
 const serviciosOrdenados = servicios.sort((a, b) => {
   if (a.data.categoria === b.data.categoria) {
     return a.data.orden - b.data.orden;
@@ -13,16 +16,7 @@ const serviciosOrdenados = servicios.sort((a, b) => {
   return a.data.categoria.localeCompare(b.data.categoria);
 });
 
-const categorias = [
-  { id: "todos", label: "Todos" },
-  { id: "facial", label: "Facial" },
-  { id: "mirada", label: "Mirada" },
-  { id: "corporal", label: "Corporal" },
-  { id: "depilacion", label: "Depilación" },
-];
-
-// Preparar los datos para el componente React
-const serviciosData = serviciosOrdenados.map(s => ({
+const serviciosData = serviciosOrdenados.map((s) => ({
   slug: s.slug,
   data: {
     title: s.data.title,
@@ -31,158 +25,214 @@ const serviciosData = serviciosOrdenados.map(s => ({
     duracion: s.data.duracion,
     precio: s.data.precio,
     imagen: Array.isArray(s.data.imagen) ? s.data.imagen[0] : s.data.imagen,
-  }
+  },
 }));
+
+const schema = getBeautySalonSchema();
 ---
 
 <BaseLayout
   title="Servicios - Estética GaliaBeauty"
   description="Descubre nuestra amplia gama de tratamientos profesionales: faciales, corporales, microblading, depilación y mucho más."
+  schema={schema}
 >
-  <Fragment slot="head">
-    <title>Servicios - Estética GaliaBeauty</title>
-    <meta
-      name="description"
-      content="Descubre nuestra amplia gama de tratamientos profesionales: faciales, corporales, microblading, depilación y mucho más."
-    />
-    <!-- Schema.org para SEO -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BeautySalon",
-        "name": "Estética GaliaBeauty",
-        "description": "Centro de estética avanzada en Granada",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "C/ Torre de los Picos nº11",
-          "addressLocality": "Granada",
-          "postalCode": "18008",
-          "addressCountry": "ES"
-        },
-        "telephone": "+34652112621",
-        "priceRange": "€€",
-        "image": "https://esteticagalia.es/images/logo.png"
-      }
-    </script>
-  </Fragment>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-bg-accent"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">Nuestros Servicios</h1>
-      <p class="hero-subtitle">
-        Descubre nuestra amplia gama de tratamientos profesionales diseñados
-        para realzar tu belleza natural
-      </p>
-    </div>
-  </section>
+  <PageHero
+    title="Nuestros Servicios"
+    subtitle="Descubre nuestra amplia gama de tratamientos profesionales diseñados para realzar tu belleza natural"
+  />
 
   <!-- Contenido principal con filtros interactivos -->
   <section class="servicios-section">
     <div class="container">
-      <!-- Componente React Island con client:load para interactividad -->
-      <ServiciosFilter 
+      <ServiciosFilter
         client:load
-        categorias={categorias}
+        categorias={serviceCategories as unknown as { id: string; label: string }[]}
         servicios={serviciosData}
       />
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-content">
-        <h2>¿Lista para reservar tu cita?</h2>
-        <p>
-          Nuestro equipo de profesionales está listo para ofrecerte el mejor
-          servicio
-        </p>
-        <div class="cta-buttons">
-          <a href="tel:+34652112621" class="btn btn-primary">
-            <svg
-              class="icon"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-              ></path>
-            </svg>
-            Llamar ahora
-          </a>
-          <a href="/contacto" class="btn btn-secondary"> Contactar </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <CtaBanner />
 </BaseLayout>
 
 <style>
-  /* Container */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+  .servicios-section {
+    padding: 4rem 0;
+    background: var(--color-bg-soft);
   }
 
-  /* Hero Section */
-  .hero {
+  @media (max-width: 768px) {
+    .servicios-section { padding: 2rem 0; }
+  }
+
+  @media (max-width: 480px) {
+    .servicios-section { padding: 1.5rem 0; }
+  }
+</style>
+
+<style is:global>
+  /* ================================
+     SERVICIOS FILTER STYLES
+     ================================ */
+
+  .servicios-filter-wrapper {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  /* ---- SEARCH BAR ---- */
+  .search-bar {
     position: relative;
-    min-height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-cream);
-    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto 2rem;
   }
 
-  .hero-bg-accent {
+  .search-icon {
     position: absolute;
-    top: 10%;
-    right: -5%;
-    width: 50vw;
-    height: 50vw;
-    background: #fcf7f4;
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    z-index: 0;
-    opacity: 0.7;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-muted);
+    pointer-events: none;
+    transition: color 0.3s ease;
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: var(--color-secondary);
-    max-width: 800px;
-    padding: 2rem;
-  }
-
-  .hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-    animation: fadeInUp 1s ease-out;
+  .search-input {
+    width: 100%;
+    padding: 1rem 1.25rem 1rem 3.5rem;
+    border: 2px solid var(--color-border-light, #e5e7eb);
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
     color: var(--color-secondary);
   }
 
-  .hero-subtitle {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    animation: fadeInUp 1s ease-out 0.2s both;
+  .search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(139, 148, 116, 0.1);
+  }
+
+  .search-input:focus + .search-icon {
     color: var(--color-primary);
   }
 
-  @keyframes fadeInUp {
+  .search-input::placeholder {
+    color: var(--color-muted);
+  }
+
+  .clear-search {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--color-muted);
+  }
+
+  .clear-search:hover {
+    background: #e5e7eb;
+    color: var(--color-secondary);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  /* ---- FILTER NAV ---- */
+  .filter-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .filter-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    white-space: nowrap;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: white;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-primary);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: var(--color-cream);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .filter-btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .filter-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(139, 148, 116, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active::before {
+    display: none;
+  }
+
+  /* ---- RESULTS COUNT ---- */
+  .results-count {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--color-muted);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  /* ---- SERVICIOS GRID ---- */
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    min-height: 400px;
+  }
+
+  @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -190,147 +240,248 @@ const serviciosData = serviciosOrdenados.map(s => ({
     }
   }
 
-  /* Servicios Section */
-  .servicios-section {
-    padding: 4rem 0;
-    background: var(--color-bg-soft);
+  .servicio-card.animate-in {
+    animation: slideUp 0.6s ease-out both;
   }
 
-  /* CTA Section */
-  .cta {
-    padding: 5rem 0;
-    background: var(--color-primary);
-    color: white;
+  .servicio-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
   }
 
-  .cta-content {
-    text-align: center;
+  .servicio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
   }
 
-  .cta-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    animation: fadeInUp 0.6s ease-out;
-    color: white;
-  }
-
-  .cta-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    animation: fadeInUp 0.6s ease-out 0.2s both;
-  }
-
-  .cta-buttons {
+  .servicio-image {
+    height: 200px;
     display: flex;
-    gap: 1rem;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeInUp 0.6s ease-out 0.4s both;
+    position: relative;
+    overflow: hidden;
+    background: var(--color-cream);
   }
 
-  /* Buttons */
-  .btn {
+  .servicio-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(139, 148, 116, 0.15);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .servicio-card:hover .servicio-image::after {
+    opacity: 0.3;
+  }
+
+  .servicio-icon {
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+    color: var(--color-primary);
+    stroke: var(--color-primary);
+  }
+
+  .servicio-card:hover .servicio-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .servicio-content {
+    padding: 1.5rem;
+  }
+
+  .servicio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+  }
+
+  .servicio-categoria {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    background: var(--color-cream);
+    border-radius: 50px;
+    border: 1px solid var(--color-primary);
+  }
+
+  .servicio-duracion {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+
+  .servicio-content h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .servicio-descripcion {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .servicio-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .servicio-precio {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .servicio-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .servicio-link:hover {
+    background: var(--color-secondary);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(60, 60, 60, 0.3);
+  }
+
+  .servicio-link svg {
+    transition: transform 0.3s ease;
+  }
+
+  .servicio-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* ---- NO RESULTS ---- */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .no-results-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .no-results h3 {
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .no-results p {
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-reset {
+    padding: 0.875rem 2rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
     border-radius: 50px;
     font-weight: 600;
-    text-decoration: none;
-    transition: all var(--transition-base);
-    font-size: 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
-  .btn .icon {
-    flex-shrink: 0;
-  }
-
-  .btn-primary {
-    background: var(--color-cream);
-    color: var(--color-secondary);
-  }
-
-  .btn-primary:hover {
-    background: var(--color-accent);
+  .btn-reset:hover {
+    background: var(--color-secondary);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px rgba(60, 60, 60, 0.3);
   }
 
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn-secondary:hover {
-    background: white;
-    color: var(--color-secondary);
-    transform: translateY(-2px);
-  }
-
-  /* Responsive */
+  /* ---- RESPONSIVE ---- */
   @media (max-width: 768px) {
-    .hero {
-      min-height: 30vh;
-    }
-
-    .hero-title {
-      font-size: 1.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-subtitle {
-      font-size: 0.95rem;
-    }
-
-    .servicios-section {
-      padding: 2rem 0;
-    }
-
-    .cta {
-      padding: 3rem 0;
-    }
-
-    .cta-content h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .cta-content p {
-      font-size: 1rem;
+    .search-bar {
       margin-bottom: 1.5rem;
     }
 
-    .cta-buttons {
-      flex-direction: column;
-      width: 100%;
-      gap: 0.75rem;
+    .search-input {
+      padding: 0.875rem 1rem 0.875rem 3rem;
+      font-size: 0.95rem;
     }
 
-    .btn {
-      width: 100%;
-      justify-content: center;
-      padding: 0.875rem 1.5rem;
-      font-size: 0.95rem;
+    .filter-nav {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+    }
+
+    .servicios-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .servicio-card {
+      max-width: 100%;
     }
   }
 
   @media (max-width: 480px) {
-    .hero {
-      min-height: 25vh;
+    .servicio-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
 
-    .hero-title {
-      font-size: 1.5rem;
+    .servicio-footer {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
     }
 
-    .hero-subtitle {
-      font-size: 0.9rem;
-    }
-
-    .servicios-section {
-      padding: 1.5rem 0;
+    .servicio-link {
+      justify-content: center;
     }
   }
 </style>
