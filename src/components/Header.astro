@@ -5,6 +5,7 @@ import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
 import InstagramIcon from "./icons/InstagramIcon.astro";
 import { business } from "../data/business";
 import { navLinks } from "../data/navigation";
+import TiktokIcon from "./icons/TiktokIcon.astro";
 
 const currentPath = Astro.url.pathname;
 
@@ -49,6 +50,15 @@ const isActive = (path: string) => {
           class="social-link instagram"
         >
           <InstagramIcon size={18} />
+        </a>
+        <a
+          href={business.social.tiktok}
+          target="_blank"
+          rel="noopener"
+          aria-label="TikTok"
+          class="social-link tiktok"
+        >
+          <TiktokIcon size={18} />
         </a>
       </div>
     </div>
@@ -156,7 +166,7 @@ const isActive = (path: string) => {
     });
   }
 
-  initHeader();
+  document.addEventListener("astro:page-load", initHeader);
 </script>
 
 <style>

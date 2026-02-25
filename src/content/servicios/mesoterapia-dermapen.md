@@ -1,7 +1,7 @@
 ---
-title: "Mesoterapia Dermapen (Microneedling)"
+title: "Dermapen (Microneedling)"
 categoria: "facial"
-descripcion: "Tratamiento facial avanzado que estimula la regeneración de la piel mediante micro heridas internas que activan la producción de colágeno y elastina."
+descripcion: "Renueva tu piel desde dentro con un tratamiento que estimula su regeneración natural y mejora visiblemente su textura y firmeza."
 duracion: "60 min"
 precio: "65€"
 orden: 3

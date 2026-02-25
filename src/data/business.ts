@@ -33,6 +33,8 @@ export const business = {
     instagramHandle: "@estetica_galiabeauty",
     facebook: "https://www.facebook.com/esteticagaliabeauty",
     whatsapp: "https://api.whatsapp.com/send?phone=+34652112621",
+    tiktok: "https://www.tiktok.com/@centrogaliabeauty",
+    tiktokHandle: "@centrogaliabeauty",
   },
 
   hours: [

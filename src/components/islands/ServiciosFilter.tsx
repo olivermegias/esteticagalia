@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import React from 'react';
 
 interface Categoria {
   id: string;

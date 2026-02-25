@@ -1,7 +1,7 @@
 ---
-title: "Diatermia Facial"
+title: "Diatermia/Radiofrecuencia"
 categoria: "facial"
-descripcion: "Tratamiento que utiliza energía térmica para activar la circulación y estimular la producción de colágeno y elastina, reafirmando la piel y contrarrestando la pérdida de definición del óvalo facial."
+descripcion: "Un tratamiento no invasivo que reactiva los procesos naturales de la piel, combatiendo la flacidez y mejorando visiblemente su tonicidad, definición y vitalidad."
 duracion: "60 min"
 precio: "45€"
 orden: 4

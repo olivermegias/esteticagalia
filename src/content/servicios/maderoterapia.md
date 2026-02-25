@@ -7,9 +7,12 @@ precio: "45€"
 orden: 1
 ---
 
-## Moldea tu figura de forma natural
+## Descubre un tratamiento natural, no invasivo que ayuda a reducir la grasa localizada
 
-La maderoterapia es una técnica de masaje corporal que utiliza instrumentos de madera de diferentes formas y tamaños para trabajar sobre la grasa localizada, la celulitis y la flacidez. Es un método 100% natural que activa la circulación, drena líquidos y remodela la silueta.
+Esta técnica milenaria se usa para mejorar la celulitis y atacar a la grasa localizada de manera directa y efectiva. Su objetivo es eliminar la grasa persistente en muslos, abdomen, caderas y moldear dicha zona. Actúa activando la circulación y poniendo en marcha los procesos metabólicos de los adipocitos, consiguiendo además una gran mejora en la textura de la piel, reduciendo la piel de naranja. Sumado a estos efectos también conseguimos estimular el sistema linfático para ayudar a eliminar líquidos y toxinas. 
+
+Un complemento ideal para este tratamiento es la presoterapia para conseguir potenciar los efectos de la maderoterapia  y eliminar más rápidamente las toxinas y conseguir que la grasa movilizada pueda ser eliminada. Aunque no olvides que tienes que beber mucha agua para favorecer este movimiento, además de realizar deporte y tener una dieta saludable. 
+
 
 ### Beneficios
 
