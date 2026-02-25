@@ -59,56 +59,47 @@ const schema = getServiceSchema(servicio.data);
 
         <!-- Columna Izquierda: Contenido -->
         <div class="servicio-main">
+
           <div class="servicio-header">
-            <div class="servicio-meta">
-              <span class="servicio-categoria">
-                {categoryLabels[servicio.data.categoria] ?? servicio.data.categoria}
-              </span>
-              {servicio.data.duracion && (
-                <span class="servicio-duracion">
-                  <ClockIcon size={20} />
-                  {servicio.data.duracion}
-                </span>
-              )}
-            </div>
-
             <h1>{servicio.data.title}</h1>
-            <p class="servicio-intro">{servicio.data.descripcion}</p>
-
-            {servicio.data.precio && (
-              <div class="servicio-precio-badge">
-                <span class="precio-valor">{servicio.data.precio}</span>
-              </div>
-            )}
+            <div class="title-separator"></div>
           </div>
 
           <article class="servicio-content prose">
             <Content />
           </article>
 
-          <!-- CTA en mobile -->
-          <div class="cta-mobile">
-            <div class="cta-buttons-mobile">
-              <a href={`tel:${business.mainPhone}`} class="btn btn-primary-inverted">
-                <PhoneIcon size={18} />
-                Llamar
-              </a>
-              <a href={business.social.whatsapp} class="btn btn-secondary-inverted" target="_blank" rel="noopener">
-                <WhatsAppIcon size={18} />
-                WhatsApp
-              </a>
+          <!-- Footer: precio, duración + CTA -->
+          <div class="servicio-footer">
+            <div class="footer-separator"></div>
+            <div class="footer-inner">
+              <div class="servicio-info-pills">
+                {servicio.data.duracion && (
+                  <div class="info-pill">
+                    <ClockIcon size={15} />
+                    <span>{servicio.data.duracion}</span>
+                  </div>
+                )}
+                {servicio.data.precio && (
+                  <div class="info-pill info-pill--price">
+                    <span class="pill-label">Desde</span>
+                    <span class="pill-price">{servicio.data.precio}</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
+
         </div>
 
-        <!-- Columna Derecha: Galería y CTA -->
+        <!-- Columna Derecha: Galería y CTA sticky (sin cambios) -->
         <aside class="servicio-sidebar">
           <Gallery client:load imagenes={imagenes} title={servicio.data.title} />
 
           <div class="cta-sticky">
             <h3>Reserva tu cita</h3>
             <p>Nuestro equipo está listo para asesorarte</p>
-            <div class="cta-buttons">
+            <div class="cta-buttons-sidebar">
               <a href={`tel:${business.mainPhone}`} class="btn btn-primary-inverted">
                 <PhoneIcon size={18} />
                 Llamar ahora
@@ -163,141 +154,222 @@ const schema = getServiceSchema(servicio.data);
 </BaseLayout>
 
 <style>
+  /* ══════════════════════════════════════
+     LAYOUT
+  ══════════════════════════════════════ */
   .servicio-detail {
-    padding: 3rem 0;
+    padding: 3rem 0 5rem;
     background: var(--color-bg-soft);
   }
 
   .servicio-layout {
     display: grid;
     grid-template-columns: 1fr 420px;
-    gap: 3rem;
+    gap: 3.5rem;
     align-items: start;
   }
 
-  .servicio-main { animation: fadeInUp 0.6s ease-out; }
+  .servicio-main {
+    animation: fadeInUp 0.5s ease-out both;
+  }
 
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .servicio-header { margin-bottom: 3rem; }
-
-  .servicio-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .servicio-categoria {
-    display: inline-block;
-    padding: 0.5rem 1.25rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    background: var(--color-cream);
-    border-radius: var(--radius-full);
-    border: 1px solid var(--color-primary);
-  }
-
-  .servicio-duracion {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.95rem;
-    color: var(--color-secondary);
-  }
-
-  .servicio-header h1 {
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    color: var(--color-secondary);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .servicio-intro {
-    font-size: 1.15rem;
-    color: var(--color-secondary);
-    line-height: 1.7;
+  /* ══════════════════════════════════════
+     ENCABEZADO
+  ══════════════════════════════════════ */
+  .servicio-header {
     margin-bottom: 2rem;
   }
 
-  .servicio-precio-badge {
-    display: inline-flex;
-    padding: 1rem 2rem;
-    background: var(--color-primary);
-    color: white;
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-md);
-  }
-
-  .precio-valor { font-size: 2rem; font-weight: 700; }
-
-  /* Prose content */
-  .servicio-content {
-    padding: 3rem;
-    background: white;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-border-light);
-  }
-
-  .servicio-content :global(h2) {
+  .servicio-header h1 {
+    font-size: clamp(2rem, 4.5vw, 2.85rem);
     color: var(--color-secondary);
-    font-weight: 700;
-    font-size: 1.75rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-border-light);
+    font-weight: 400;
+    font-family: var(--font-serif, Georgia, serif);
+    margin: 0 0 1.1rem 0;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
 
-  .servicio-content :global(h2:first-child) { margin-top: 0; }
-
-  .servicio-content :global(h3) {
-    color: var(--color-primary);
-    font-weight: 600;
-    font-size: 1.4rem;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+  .title-separator {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border-light);
   }
 
+  /* ══════════════════════════════════════
+     PROSE — cuerpo del markdown
+  ══════════════════════════════════════ */
+  .servicio-content {
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Párrafo introductorio */
   .servicio-content :global(p) {
     color: var(--color-secondary);
-    line-height: 1.8;
-    margin-bottom: 1.25rem;
-    font-size: 1.05rem;
+    line-height: 1.85;
+    margin: 0 0 0.25rem;
+    font-size: 0.975rem;
   }
 
+  /* H2 / H3 → cabecera de sección con línea superior */
+  .servicio-content :global(h2),
+  .servicio-content :global(h3) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-family: var(--font-sans, system-ui, sans-serif);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.9rem;
+    padding-top: 1.6rem;
+    margin-top: 1.6rem;
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  /* Lista con bullet limpio */
   .servicio-content :global(ul),
   .servicio-content :global(ol) {
     list-style: none;
-    padding-left: 0;
-    margin: 1.5rem 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .servicio-content :global(li) {
-    position: relative;
-    padding-left: 2rem;
-    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
     color: var(--color-secondary);
-    line-height: 1.7;
+    line-height: 1.65;
+    font-size: 0.975rem;
+    padding-left: 0;
   }
 
+  /* Bullet custom: punto con color primario */
   .servicio-content :global(li::before) {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary);
-    font-weight: bold;
-    font-size: 1.25rem;
+    content: "·" !important;
+    font-size: 1.5rem;
+    line-height: 0;
+    position: relative;
+    top: 0.1em;
+    color: var(--color-primary) !important;
+    flex-shrink: 0;
   }
 
-  /* Sidebar */
-  .servicio-sidebar { position: sticky; top: 2rem; }
+  .servicio-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+
+  .servicio-content :global(em) {
+    font-style: italic;
+    color: var(--color-secondary);
+  }
+
+  /* ══════════════════════════════════════
+     FOOTER: precio · duración · CTA
+  ══════════════════════════════════════ */
+  .servicio-footer {
+    margin-top: 2rem;
+  }
+
+  .footer-separator {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border-light);
+    margin-bottom: 1.4rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Pills de info */
+  .servicio-info-pills {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .info-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    color: var(--color-secondary);
+    background: white;
+    white-space: nowrap;
+    font-family: var(--font-sans, system-ui, sans-serif);
+  }
+
+  .info-pill--price {
+    border-color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 6%, white);
+  }
+
+  .pill-label {
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  .pill-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  /* Botón único de reserva */
+  .btn-reserva {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 1.75rem;
+    margin-left: auto;
+    background: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-sans, system-ui, sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 999px;
+    border: 1.5px solid var(--color-primary);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-reserva:hover {
+    background: var(--color-primary-dark, #8a6a3e);
+    border-color: var(--color-primary-dark, #8a6a3e);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 35%, transparent);
+  }
+
+  /* ══════════════════════════════════════
+     SIDEBAR (sin cambios de fondo)
+  ══════════════════════════════════════ */
+  .servicio-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
 
   .cta-sticky {
     background: var(--color-primary);
@@ -308,9 +380,9 @@ const schema = getServiceSchema(servicio.data);
   }
 
   .cta-sticky h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .cta-sticky p { opacity: 0.9; margin-bottom: 1.5rem; }
+  .cta-sticky p  { opacity: 0.9; margin-bottom: 1.5rem; }
 
-  .cta-buttons {
+  .cta-buttons-sidebar {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -330,9 +402,9 @@ const schema = getServiceSchema(servicio.data);
 
   .link-servicios:hover { opacity: 1; gap: 0.75rem; }
 
-  .cta-mobile { display: none; }
-
-  /* Related */
+  /* ══════════════════════════════════════
+     RELACIONADOS
+  ══════════════════════════════════════ */
   .related-services { padding: 4rem 0; background: var(--color-bg-soft); }
 
   .related-grid {
@@ -351,7 +423,6 @@ const schema = getServiceSchema(servicio.data);
   }
 
   .related-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); }
-
   .related-link { text-decoration: none; color: inherit; display: block; }
 
   .related-image {
@@ -364,7 +435,14 @@ const schema = getServiceSchema(servicio.data);
 
   .related-icon { opacity: 0.9; color: var(--color-primary); }
   .related-content { padding: 1.5rem; }
-  .related-content h3 { color: var(--color-secondary); margin-bottom: 0.75rem; font-size: 1.15rem; font-weight: 700; }
+
+  .related-content h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
   .related-content p {
     color: var(--color-muted);
     font-size: 0.9rem;
@@ -375,44 +453,29 @@ const schema = getServiceSchema(servicio.data);
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   .related-precio { font-size: 1.25rem; font-weight: 700; color: var(--color-primary); }
 
-  /* Responsive */
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
   @media (max-width: 1024px) {
     .servicio-layout { grid-template-columns: 1fr; }
     .servicio-sidebar { position: static; order: -1; }
     .cta-sticky { display: none; }
-    .cta-mobile {
-      display: block;
-      margin-top: 3rem;
-      padding: 2rem;
-      background: var(--color-primary);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-    }
-    .cta-buttons-mobile { display: flex; gap: 1rem; }
-    .cta-buttons-mobile :global(.btn) { flex: 1; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .btn-reserva { margin-left: 0; width: 100%; justify-content: center; }
   }
 
   @media (max-width: 768px) {
     .servicio-header h1 { font-size: 1.75rem; }
-    .servicio-intro { font-size: 1rem; }
-    .servicio-content { padding: 2rem 1.5rem; }
-    .servicio-content :global(h2) { font-size: 1.5rem; }
-    .cta-buttons-mobile { flex-direction: column; }
     .related-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 480px) {
-    .servicio-precio-badge { padding: 0.75rem 1.5rem; }
-    .precio-valor { font-size: 1.5rem; }
-    .servicio-meta { flex-direction: column; align-items: flex-start; }
   }
 </style>
 
 <style is:global>
   /* ================================
-     GALLERY STYLES
+     GALLERY STYLES (sin cambios)
      ================================ */
 
   .gallery-container {
@@ -449,9 +512,7 @@ const schema = getServiceSchema(servicio.data);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .gallery-main-wrapper:hover .gallery-main-image {
-    transform: scale(1.05);
-  }
+  .gallery-main-wrapper:hover .gallery-main-image { transform: scale(1.05); }
 
   .image-overlay {
     position: absolute;
@@ -467,20 +528,9 @@ const schema = getServiceSchema(servicio.data);
     transition: opacity 0.3s ease;
   }
 
-  .gallery-main-wrapper:hover .image-overlay {
-    opacity: 1;
-  }
+  .gallery-main-wrapper:hover .image-overlay { opacity: 1; }
 
-  .image-counter {
-    color: white;
-    font-size: 0.875rem;
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 0.4rem 0.8rem;
-    border-radius: 50px;
-    backdrop-filter: blur(10px);
-  }
-
+  .image-counter,
   .zoom-hint {
     color: white;
     font-size: 0.875rem;
@@ -489,10 +539,9 @@ const schema = getServiceSchema(servicio.data);
     padding: 0.4rem 0.8rem;
     border-radius: 50px;
     backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
   }
+
+  .zoom-hint { display: flex; align-items: center; gap: 0.5rem; }
 
   .gallery-nav {
     position: absolute;
@@ -514,16 +563,8 @@ const schema = getServiceSchema(servicio.data);
     opacity: 0;
   }
 
-  .gallery-main:hover .gallery-nav {
-    opacity: 1;
-  }
-
-  .gallery-nav:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
-
+  .gallery-main:hover .gallery-nav { opacity: 1; }
+  .gallery-nav:hover { background: white; transform: translateY(-50%) scale(1.1); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
   .gallery-nav-prev { left: 1rem; }
   .gallery-nav-next { right: 1rem; }
 
@@ -547,44 +588,13 @@ const schema = getServiceSchema(servicio.data);
     position: relative;
   }
 
-  .thumbnail::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0);
-    transition: background 0.3s ease;
-  }
-
-  .thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    display: block;
-  }
-
-  .thumbnail:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  .thumbnail:hover::after {
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  .thumbnail:hover img {
-    transform: scale(1.1);
-  }
-
-  .thumbnail.active {
-    border-color: #d4af89;
-    box-shadow: 0 4px 12px rgba(212, 175, 137, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .thumbnail.active::after {
-    background: rgba(212, 175, 137, 0.1);
-  }
+  .thumbnail::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background 0.3s ease; }
+  .thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; display: block; }
+  .thumbnail:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+  .thumbnail:hover::after { background: rgba(0,0,0,0.1); }
+  .thumbnail:hover img { transform: scale(1.1); }
+  .thumbnail.active { border-color: #d4af89; box-shadow: 0 4px 12px rgba(212,175,137,0.4); transform: translateY(-2px); }
+  .thumbnail.active::after { background: rgba(212,175,137,0.1); }
 
   .gallery-placeholder {
     aspect-ratio: 4/3;
@@ -600,26 +610,15 @@ const schema = getServiceSchema(servicio.data);
     margin-bottom: 2rem;
   }
 
-  .gallery-placeholder svg {
-    opacity: 0.6;
-    animation: rotate 20s linear infinite;
-  }
+  .gallery-placeholder svg { opacity: 0.6; animation: rotate 20s linear infinite; }
+  .gallery-placeholder p { font-size: 1.1rem; font-weight: 500; opacity: 0.9; }
 
-  @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .gallery-placeholder p {
-    font-size: 1.1rem;
-    font-weight: 500;
-    opacity: 0.9;
-  }
+  @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
   .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0,0,0,0.95);
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -629,17 +628,14 @@ const schema = getServiceSchema(servicio.data);
     cursor: zoom-out;
   }
 
-  @keyframes lightboxFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+  @keyframes lightboxFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
   .lightbox-close {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.3);
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -653,11 +649,7 @@ const schema = getServiceSchema(servicio.data);
     z-index: 10001;
   }
 
-  .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: white;
-    transform: rotate(90deg) scale(1.1);
-  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); border-color: white; transform: rotate(90deg) scale(1.1); }
 
   .lightbox-content {
     position: relative;
@@ -667,30 +659,15 @@ const schema = getServiceSchema(servicio.data);
     cursor: default;
   }
 
-  @keyframes zoomIn {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
+  @keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
 
-  .lightbox-image {
-    max-width: 100%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  }
+  .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
 
   .lightbox-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255,255,255,0.9);
     border: none;
     width: 56px;
     height: 56px;
@@ -701,14 +678,10 @@ const schema = getServiceSchema(servicio.data);
     cursor: pointer;
     transition: all 0.3s ease;
     color: #1f2937;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   }
 
-  .lightbox-nav:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.15);
-  }
-
+  .lightbox-nav:hover { background: white; transform: translateY(-50%) scale(1.15); }
   .lightbox-nav-prev { left: -80px; }
   .lightbox-nav-next { right: -80px; }
 
@@ -720,11 +693,11 @@ const schema = getServiceSchema(servicio.data);
     color: white;
     font-size: 1rem;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255,255,255,0.2);
   }
 
   @media (max-width: 1024px) {
@@ -734,56 +707,18 @@ const schema = getServiceSchema(servicio.data);
   }
 
   @media (max-width: 768px) {
-    .gallery-thumbnails {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .lightbox {
-      padding: 1rem;
-    }
-
-    .lightbox-close {
-      top: 1rem;
-      right: 1rem;
-      width: 48px;
-      height: 48px;
-    }
-
-    .lightbox-nav {
-      width: 48px;
-      height: 48px;
-    }
-
-    .lightbox-nav svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .lightbox-counter {
-      font-size: 0.875rem;
-      padding: 0.5rem 1rem;
-    }
+    .gallery-thumbnails { grid-template-columns: repeat(4, 1fr); }
+    .lightbox { padding: 1rem; }
+    .lightbox-close { top: 1rem; right: 1rem; width: 48px; height: 48px; }
+    .lightbox-nav { width: 48px; height: 48px; }
+    .lightbox-nav svg { width: 24px; height: 24px; }
+    .lightbox-counter { font-size: 0.875rem; padding: 0.5rem 1rem; }
   }
 
   @media (max-width: 480px) {
-    .gallery-thumbnails {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .gallery-nav {
-      width: 40px;
-      height: 40px;
-    }
-
-    .gallery-nav svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .lightbox-nav {
-      width: 40px;
-      height: 40px;
-    }
+    .gallery-thumbnails { grid-template-columns: repeat(3, 1fr); }
+    .gallery-nav, .lightbox-nav { width: 40px; height: 40px; }
+    .gallery-nav svg, .lightbox-nav svg { width: 20px; height: 20px; }
   }
 
   .thumbnail:focus,
@@ -794,4 +729,3 @@ const schema = getServiceSchema(servicio.data);
     outline-offset: 2px;
   }
 </style>
-
