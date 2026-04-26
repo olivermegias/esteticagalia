@@ -1,46 +1,51 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Gallery from "../../components/islands/Gallery";
 import Breadcrumb from "../../components/ui/Breadcrumb.astro";
 import PhoneIcon from "../../components/icons/PhoneIcon.astro";
 import WhatsAppIcon from "../../components/icons/WhatsAppIcon.astro";
 import ClockIcon from "../../components/icons/ClockIcon.astro";
 import { business } from "../../data/business";
-import { categoryLabels } from "../../data/navigation";
 import { getServiceSchema } from "../../data/schema";
+
+const withBase = (path?: string) => {
+  if (!path) return "";
+  if (/^(https?:|\/\/|data:|mailto:|tel:)/.test(path)) return path;
+  return `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+};
 
 export async function getStaticPaths() {
   const servicios = await getCollection("servicios");
   return servicios.map((servicio) => ({
-    params: { slug: servicio.slug },
+    params: { slug: servicio.id.replace(/\.md$/, "") },
     props: { servicio },
   }));
 }
 
 const { servicio } = Astro.props;
-const { Content } = await servicio.render();
+const { Content } = await render(servicio);
 
 const todosServicios = await getCollection("servicios");
 const serviciosRelacionados = todosServicios
   .filter(
     (s) =>
       s.data.categoria === servicio.data.categoria &&
-      s.slug !== servicio.slug,
+      s.id !== servicio.id,
   )
   .slice(0, 3);
 
 const imagenes = servicio.data?.imagen
   ? Array.isArray(servicio.data.imagen)
-    ? servicio.data.imagen
-    : [servicio.data.imagen]
+    ? servicio.data.imagen.map((img) => withBase(img))
+    : [withBase(servicio.data.imagen)]
   : [];
 
 const schema = getServiceSchema(servicio.data);
 ---
 
 <BaseLayout
-  title={`${servicio.data.title} - Estética GaliaBeauty`}
+  title={`${servicio.data.title} - EstÃ©tica GaliaBeauty`}
   description={servicio.data.descripcion}
   image={imagenes[0]}
   schema={schema}
@@ -60,56 +65,67 @@ const schema = getServiceSchema(servicio.data);
         <!-- Columna Izquierda: Contenido -->
         <div class="servicio-main">
 
+          <!-- Encabezado: tÃ­tulo + pills precio/duraciÃ³n -->
           <div class="servicio-header">
             <h1>{servicio.data.title}</h1>
-            <div class="title-separator"></div>
+            <div class="servicio-meta">
+              {servicio.data.duracion && (
+                <span class="meta-pill">
+                  <ClockIcon size={15} />
+                  {servicio.data.duracion}
+                </span>
+              )}
+              {servicio.data.precio && (
+                <span class="meta-pill">
+                  {servicio.data.precio}
+                </span>
+              )}
+              <span class="meta-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="8" width="18" height="13" rx="2"></rect>
+                  <path d="M12 8V21"></path>
+                  <path d="M3 12h18"></path>
+                  <path d="M12 8c-2-3-6-3-6 0s4 3 6 0"></path>
+                  <path d="M12 8c2-3 6-3 6 0s-4 3-6 0"></path>
+                </svg>
+                Bono regalo
+              </span>
+            </div>
           </div>
 
+          <!-- Contenido Markdown -->
           <article class="servicio-content prose">
             <Content />
           </article>
 
-          <!-- Footer: precio, duración + CTA -->
-          <div class="servicio-footer">
-            <div class="footer-separator"></div>
-            <div class="footer-inner">
-              <div class="servicio-info-pills">
-                {servicio.data.duracion && (
-                  <div class="info-pill">
-                    <ClockIcon size={15} />
-                    <span>{servicio.data.duracion}</span>
-                  </div>
-                )}
-                {servicio.data.precio && (
-                  <div class="info-pill info-pill--price">
-                    <span class="pill-label">Desde</span>
-                    <span class="pill-price">{servicio.data.precio}</span>
-                  </div>
-                )}
+          <!-- CTA Reserva (en columna izquierda) -->
+          <div class="cta-inline">
+            <div class="cta-inline-content">
+              <div class="cta-inline-text">
+                <h3>¿Te interesa este tratamiento?</h3>
+                <p>Reserva tu cita o consúltanos sin compromiso</p>
+              </div>
+              <div class="cta-inline-buttons">
+                <a href={`tel:${business.mainPhone}`} class="btn btn-primary">
+                  <PhoneIcon size={18} />
+                  Llamar
+                </a>
+                <a href={business.social.whatsapp} class="btn btn-outline" target="_blank" rel="noopener">
+                  <WhatsAppIcon size={18} />
+                  WhatsApp
+                </a>
               </div>
             </div>
           </div>
 
         </div>
 
-        <!-- Columna Derecha: Galería y CTA sticky (sin cambios) -->
+        <!-- Columna Derecha: GalerÃ­a -->
         <aside class="servicio-sidebar">
           <Gallery client:load imagenes={imagenes} title={servicio.data.title} />
 
-          <div class="cta-sticky">
-            <h3>Reserva tu cita</h3>
-            <p>Nuestro equipo está listo para asesorarte</p>
-            <div class="cta-buttons-sidebar">
-              <a href={`tel:${business.mainPhone}`} class="btn btn-primary-inverted">
-                <PhoneIcon size={18} />
-                Llamar ahora
-              </a>
-              <a href={business.social.whatsapp} class="btn btn-secondary-inverted" target="_blank" rel="noopener">
-                <WhatsAppIcon size={18} />
-                WhatsApp
-              </a>
-            </div>
-            <a href="/servicios" class="link-servicios">← Ver más servicios</a>
+          <div class="sidebar-back">
+            <a href={withBase("/servicios")} class="link-servicios">← Ver todos los servicios</a>
           </div>
         </aside>
       </div>
@@ -123,12 +139,12 @@ const schema = getServiceSchema(servicio.data);
         <div class="related-grid">
           {serviciosRelacionados.map((s) => (
             <article class="related-card">
-              <a href={`/servicios/${s.slug}`} class="related-link">
+              <a href={withBase(`/servicios/${s.id.replace(/\.md$/, "")}`)} class="related-link">
                 <div
                   class="related-image"
                   style={
                     s.data.imagen
-                      ? `background-image: url(${Array.isArray(s.data.imagen) ? s.data.imagen[0] : s.data.imagen}); background-size: cover; background-position: center;`
+                      ? `background-image: url(${withBase(Array.isArray(s.data.imagen) ? s.data.imagen[0] : s.data.imagen)}); background-size: cover; background-position: center;`
                       : "background: var(--color-cream);"
                   }
                 >
@@ -178,11 +194,13 @@ const schema = getServiceSchema(servicio.data);
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ══════════════════════════════════════
-     ENCABEZADO
-  ══════════════════════════════════════ */
+  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     ENCABEZADO â€” tÃ­tulo + meta pills
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
   .servicio-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border-light);
   }
 
   .servicio-header h1 {
@@ -190,20 +208,41 @@ const schema = getServiceSchema(servicio.data);
     color: var(--color-secondary);
     font-weight: 400;
     font-family: var(--font-serif, Georgia, serif);
-    margin: 0 0 1.1rem 0;
+    margin: 0 0 1.25rem 0;
     line-height: 1.15;
     letter-spacing: -0.02em;
   }
 
-  .title-separator {
-    width: 100%;
-    height: 1px;
-    background: var(--color-border-light);
+  .servicio-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
   }
 
-  /* ══════════════════════════════════════
-     PROSE — cuerpo del markdown
-  ══════════════════════════════════════ */
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: 999px;
+    white-space: nowrap;
+    font-family: var(--font-sans, system-ui, sans-serif);
+    border-color: var(--color-brand);
+    background: linear-gradient(135deg, #fdf8f3, #fff);
+    color: var(--color-brand);
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .meta-pill svg {
+    color: var(--color-brand);
+  }
+
+  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     PROSE â€” cuerpo del markdown
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
   .servicio-content {
     padding: 0;
     background: transparent;
@@ -211,15 +250,22 @@ const schema = getServiceSchema(servicio.data);
     box-shadow: none;
   }
 
-  /* Párrafo introductorio */
-  .servicio-content :global(p) {
-    color: var(--color-secondary);
-    line-height: 1.85;
-    margin: 0 0 0.25rem;
-    font-size: 0.975rem;
+  /* Primer H2 â€” subtÃ­tulo destacado */
+  .servicio-content :global(h2:first-of-type) {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--color-brand);
+    font-family: var(--font-serif, Georgia, serif);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    border: none;
+    line-height: 1.45;
+    font-style: italic;
   }
 
-  /* H2 / H3 → cabecera de sección con línea superior */
+  /* H2 / H3 restantes â†’ cabecera de secciÃ³n */
   .servicio-content :global(h2),
   .servicio-content :global(h3) {
     font-size: 0.9rem;
@@ -234,37 +280,57 @@ const schema = getServiceSchema(servicio.data);
     border-top: 1px solid var(--color-border-light);
   }
 
-  /* Lista con bullet limpio */
-  .servicio-content :global(ul),
-  .servicio-content :global(ol) {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .servicio-content :global(li) {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
+  /* PÃ¡rrafos */
+  .servicio-content :global(p) {
     color: var(--color-secondary);
-    line-height: 1.65;
+    line-height: 1.85;
+    margin: 0 0 0.25rem;
     font-size: 0.975rem;
-    padding-left: 0;
   }
 
-  /* Bullet custom: punto con color primario */
-  .servicio-content :global(li::before) {
-    content: "·" !important;
-    font-size: 1.5rem;
-    line-height: 0;
-    position: relative;
-    top: 0.1em;
-    color: var(--color-primary) !important;
-    flex-shrink: 0;
+  /* Primer pÃ¡rrafo tras el h2 destacado: mÃ¡s grande */
+  .servicio-content :global(h2:first-of-type + p) {
+    font-size: 1.05rem;
+    line-height: 1.9;
   }
+
+ /* Lista con bullet mejorado */
+.servicio-content :global(ul),
+.servicio-content :global(ol) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.servicio-content :global(li) {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--color-secondary);
+  line-height: 1.65;
+  font-size: 0.975rem;
+  padding: 0.65rem 0;
+  transition: padding-left 0.2s ease;
+}
+
+
+.servicio-content :global(li:hover) {
+  padding-left: 0.35rem;
+}
+
+.servicio-content :global(li::before) {
+  content: "" !important;
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
 
   .servicio-content :global(strong) {
     font-weight: 600;
@@ -276,91 +342,84 @@ const schema = getServiceSchema(servicio.data);
     color: var(--color-secondary);
   }
 
-  /* ══════════════════════════════════════
-     FOOTER: precio · duración · CTA
-  ══════════════════════════════════════ */
-  .servicio-footer {
-    margin-top: 2rem;
+  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     CTA INLINE â€” dentro de columna izquierda
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+  .cta-inline {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
   }
 
-  .footer-separator {
-    width: 100%;
-    height: 1px;
-    background: var(--color-border-light);
-    margin-bottom: 1.4rem;
-  }
-
-  .footer-inner {
+  .cta-inline-content {
+    background: var(--color-brand);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-md);
   }
 
-  /* Pills de info */
-  .servicio-info-pills {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-
-  .info-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.45rem 0.9rem;
-    border: 1px solid var(--color-border-light);
-    border-radius: 999px;
-    font-size: 0.82rem;
-    color: var(--color-secondary);
-    background: white;
-    white-space: nowrap;
-    font-family: var(--font-sans, system-ui, sans-serif);
-  }
-
-  .info-pill--price {
-    border-color: var(--color-primary);
-    background: color-mix(in srgb, var(--color-primary) 6%, white);
-  }
-
-  .pill-label {
-    font-size: 0.75rem;
-    color: var(--color-primary);
-    opacity: 0.8;
-    font-weight: 400;
-  }
-
-  .pill-price {
-    font-size: 1rem;
+  .cta-inline-text h3 {
+    color: white;
+    font-size: 1.25rem;
+    margin: 0 0 0.35rem;
     font-weight: 700;
-    color: var(--color-primary);
-    letter-spacing: -0.02em;
   }
 
-  /* Botón único de reserva */
-  .btn-reserva {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.65rem 1.75rem;
-    margin-left: auto;
-    background: var(--color-primary);
-    color: #fff;
-    font-family: var(--font-sans, system-ui, sans-serif);
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border-radius: 999px;
-    border: 1.5px solid var(--color-primary);
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  .cta-inline-text p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .cta-inline-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cta-inline-buttons .btn {
     white-space: nowrap;
   }
 
-  .btn-reserva:hover {
-    background: var(--color-primary-dark, #8a6a3e);
-    border-color: var(--color-primary-dark, #8a6a3e);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 35%, transparent);
+  /* Estilos **locales** para los botones dentro del CTA de este servicio
+     â€” solo aplican aquÃ­ para no tocar estilos globales */
+  .cta-inline .btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+  }
+
+  /* BotÃ³n principal sobre fondo oscuro: versiÃ³n invertida solo aquÃ­ */
+  .cta-inline .btn.btn-primary {
+    background: var(--color-cream);
+    color: var(--color-secondary);
+    border: 2px solid transparent;
+  }
+
+  .cta-inline .btn.btn-primary:hover {
+    background: #fff8f0;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* BotÃ³n secundario (WhatsApp) en CTA oscuro: borde y texto blanco */
+  .cta-inline .btn.btn-outline {
+    border: 2px solid rgba(255,255,255,0.18);
+    color: white;
+    background: transparent;
+  }
+
+  .cta-inline .btn.btn-outline:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.28);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1024px) {
+    .cta-inline .btn { width: 100%; }
   }
 
   /* ══════════════════════════════════════
@@ -371,41 +430,28 @@ const schema = getServiceSchema(servicio.data);
     top: 2rem;
   }
 
-  .cta-sticky {
-    background: var(--color-primary);
-    color: white;
-    padding: 2rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .cta-sticky h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .cta-sticky p  { opacity: 0.9; margin-bottom: 1.5rem; }
-
-  .cta-buttons-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+  .sidebar-back {
+    margin-top: 1.25rem;
+    text-align: center;
   }
 
   .link-servicios {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: white;
+    color: var(--color-muted);
     text-decoration: none;
-    font-size: 0.95rem;
-    opacity: 0.9;
+    font-size: 0.9rem;
+    font-weight: 500;
     transition: all var(--transition-base);
   }
 
-  .link-servicios:hover { opacity: 1; gap: 0.75rem; }
+  .link-servicios:hover {
+    color: var(--color-primary);
+    gap: 0.75rem;
+  }
 
-  /* ══════════════════════════════════════
-     RELACIONADOS
-  ══════════════════════════════════════ */
-  .related-services { padding: 4rem 0; background: var(--color-bg-soft); }
+  .related-services { padding: 0.5rem 0 3rem; background: var(--color-bg-soft); }
 
   .related-grid {
     display: grid;
@@ -437,14 +483,13 @@ const schema = getServiceSchema(servicio.data);
   .related-content { padding: 1.5rem; }
 
   .related-content h3 {
-    color: var(--color-secondary);
+    color: var(--color-brand);
     margin-bottom: 0.75rem;
     font-size: 1.15rem;
     font-weight: 700;
   }
 
   .related-content p {
-    color: var(--color-muted);
     font-size: 0.9rem;
     line-height: 1.6;
     margin-bottom: 1rem;
@@ -452,24 +497,50 @@ const schema = getServiceSchema(servicio.data);
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: var(--color-muted);
   }
 
   .related-precio { font-size: 1.25rem; font-weight: 700; color: var(--color-primary); }
 
-  /* ══════════════════════════════════════
+  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      RESPONSIVE
-  ══════════════════════════════════════ */
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
   @media (max-width: 1024px) {
     .servicio-layout { grid-template-columns: 1fr; }
     .servicio-sidebar { position: static; order: -1; }
-    .cta-sticky { display: none; }
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-    .btn-reserva { margin-left: 0; width: 100%; justify-content: center; }
+
+    .cta-inline-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .cta-inline-buttons {
+      width: 100%;
+    }
+
+    .cta-inline-buttons .btn {
+      flex: 1;
+      justify-content: center;
+    }
   }
 
   @media (max-width: 768px) {
+    .servicio-detail { padding: 2rem 0 3rem; }
     .servicio-header h1 { font-size: 1.75rem; }
-    .related-grid { grid-template-columns: 1fr; }
+    .servicio-meta { gap: 0.5rem; }
+    .meta-pill { font-size: 0.78rem; padding: 0.35rem 0.7rem; }
+    .servicio-content :global(h2:first-of-type) { font-size: 1.15rem; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .related-image { height: 120px; }
+    .related-content { padding: 1rem; }
+    .related-content h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .related-content p { font-size: 0.8rem; -webkit-line-clamp: 2; }
+    .related-precio { font-size: 1rem; }
+  }
+
+  @media (max-width: 480px) {
+    .servicio-meta { flex-direction: column; align-items: flex-start; }
+    .cta-inline-buttons { flex-direction: column; }
   }
 </style>
 
@@ -483,13 +554,12 @@ const schema = getServiceSchema(servicio.data);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb;
     margin-bottom: 2rem;
   }
 
   .gallery-main {
     position: relative;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
     overflow: hidden;
     background: #f9fafb;
   }
@@ -597,7 +667,7 @@ const schema = getServiceSchema(servicio.data);
   .thumbnail.active::after { background: rgba(212,175,137,0.1); }
 
   .gallery-placeholder {
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -619,7 +689,7 @@ const schema = getServiceSchema(servicio.data);
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.95);
-    z-index: 9999;
+    z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;

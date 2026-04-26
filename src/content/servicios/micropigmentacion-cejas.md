@@ -4,6 +4,7 @@ categoria: "mirada"
 descripcion: "Técnica de maquillaje semipermanente que define y rellena las cejas de forma natural, logrando un aspecto perfecto que dura años."
 duracion: "120 min"
 precio: "200€"
+imagen: ["/images/micropigmentacion-cejas.jpg"]
 orden: 2
 ---
 

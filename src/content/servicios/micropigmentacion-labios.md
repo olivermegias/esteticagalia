@@ -4,6 +4,7 @@ categoria: "mirada"
 descripcion: "Técnica de maquillaje semipermanente que define, rellena y aporta color a los labios de forma natural y duradera."
 duracion: "120 min"
 precio: "200€"
+imagen: ["/images/micropigmentacion-labiosjpg.jpg"]
 orden: 3
 ---
 

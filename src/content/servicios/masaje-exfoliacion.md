@@ -4,6 +4,7 @@ categoria: "corporal"
 descripcion: "Tratamiento corporal que combina exfoliación profunda y masaje relajante para renovar la piel, mejorar su textura y proporcionar una sensación inmediata de bienestar."
 duracion: "60 min"
 precio: "60€"
+imagen: ["/images/masaje-exfoliacion.jpeg"]
 orden: 6
 ---
 

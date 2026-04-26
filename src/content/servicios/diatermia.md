@@ -4,7 +4,8 @@ categoria: "facial"
 descripcion: "Un tratamiento no invasivo que reactiva los procesos naturales de la piel, combatiendo la flacidez y mejorando visiblemente su tonicidad, definición y vitalidad."
 duracion: "60 min"
 precio: "45€"
-orden: 4
+imagen: ["/images/diatermia-facial.png"]
+orden: 5
 ---
 
 ## Tecnología que estimula, regenera y reafirma

@@ -18,6 +18,8 @@ const {
   image,
   schema,
 } = Astro.props;
+
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 ---
 
 <!doctype html>
@@ -25,7 +27,7 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" href={withBase("/mini-logo.png")} />
     <meta name="generator" content={Astro.generator} />
 
     <SEO title={title} description={description} image={image} schema={schema} />
@@ -40,8 +42,69 @@ const {
     </main>
     <Footer />
 
-    <script>
-      import { initScrollAnimations, animateCounters } from '../scripts/scrollAnimations';
+    <script is:inline>
+      let scrollObserver = null;
+      let counterObservers = [];
+
+      function initScrollAnimations() {
+        if (scrollObserver) {
+          scrollObserver.disconnect();
+        }
+
+        scrollObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                scrollObserver?.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px',
+          }
+        );
+
+        document
+          .querySelectorAll('.animate-on-scroll')
+          .forEach((el) => {
+            el.classList.remove('in-view');
+            scrollObserver?.observe(el);
+          });
+      }
+
+      function animateCounters() {
+        counterObservers.forEach((observer) => observer.disconnect());
+        counterObservers = [];
+
+        document.querySelectorAll('[data-counter]').forEach((counter) => {
+          const element = counter;
+          const target = Number(element.dataset.counter);
+          const duration = Number(element.dataset.duration ?? 2000);
+
+          let started = false;
+
+          const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !started) {
+              started = true;
+              const startTime = performance.now();
+
+              const animate = (time) => {
+                const progress = Math.min((time - startTime) / duration, 1);
+                element.textContent = Math.floor(progress * target).toString();
+                if (progress < 1) requestAnimationFrame(animate);
+              };
+
+              requestAnimationFrame(animate);
+              observer.disconnect();
+            }
+          });
+
+          observer.observe(element);
+          counterObservers.push(observer);
+        });
+      }
 
       document.addEventListener('astro:page-load', () => {
         initScrollAnimations();

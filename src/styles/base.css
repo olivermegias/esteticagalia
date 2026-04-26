@@ -133,10 +133,6 @@ body {
    RESPONSIVE UTILITIES
    ================================ */
 @media (max-width: 768px) {
-  .btn {
-    width: 100%;
-  }
-  
   .hide-mobile {
     display: none !important;
   }

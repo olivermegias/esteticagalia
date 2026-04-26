@@ -7,19 +7,19 @@ export const business = {
   shortName: "GaliaBeauty",
   url: "https://esteticagalia.es",
   description:
-    "Centro de estética avanzada en Granada. Tratamientos faciales, corporales, microblading y los últimos avances en estética profesional.",
+    "Centro de estética avanzada en Granada. Especialistas en tratamientos faciales, corporales, láser y diseño de mirada. Centro oficial OVACO, cosmética coreana.",
 
-  address: {
+  address: {                            
     street: "C/ Torre de los Picos nº11",
-    city: "Granada",
-    postalCode: "18008",
-    country: "España",
-    countryCode: "ES",
+    city: "Granada",            
+    postalCode: "18008",        
+    country: "España",          
+    countryCode: "ES",          
   },
 
-  phones: [
-    { number: "+34958125993", display: "958 12 59 93", label: "Fijo" },
+  phones: [                     
     { number: "+34652112621", display: "652 11 26 21", label: "Móvil/WhatsApp" },
+    { number: "+34958125993", display: "958 12 59 93", label: "Fijo" },
   ],
 
   /** Teléfono principal para CTAs */

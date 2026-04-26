@@ -9,6 +9,7 @@ import { business } from "../data/business";
 import { navLinks, footerServiceLinks, legalLinks } from "../data/navigation";
 
 const currentYear = new Date().getFullYear();
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 ---
 
 <footer class="footer">
@@ -17,9 +18,9 @@ const currentYear = new Date().getFullYear();
       <div class="footer-grid">
         <!-- Columna 1: Logo y descripción -->
         <div class="footer-column">
-          <a href="/" class="footer-logo">
+          <a href={withBase("/")} class="footer-logo">
             <img
-              src="/images/logo-galia.jpg"
+              src={withBase("/images/logo_new.PNG")}
               alt={business.name}
               class="footer-logo-img"
             />
@@ -37,7 +38,7 @@ const currentYear = new Date().getFullYear();
           <h3 class="footer-title">Enlaces rápidos</h3>
           <ul class="footer-links">
             {navLinks.map((link) => (
-              <li><a href={link.href}>{link.label}</a></li>
+              <li><a href={withBase(link.href)}>{link.label}</a></li>
             ))}
           </ul>
         </div>
@@ -47,7 +48,7 @@ const currentYear = new Date().getFullYear();
           <h3 class="footer-title">Servicios populares</h3>
           <ul class="footer-links">
             {footerServiceLinks.map((link) => (
-              <li><a href={link.href}>{link.label}</a></li>
+              <li><a href={withBase(link.href)}>{link.label}</a></li>
             ))}
           </ul>
         </div>
@@ -62,7 +63,7 @@ const currentYear = new Date().getFullYear();
                 <strong>Dirección</strong>
                 <p>
                   {business.address.street}<br />
-                  {business.address.city}, CP: {business.address.postalCode}
+                  {business.address.city}, {business.address.postalCode}
                 </p>
               </div>
             </li>
@@ -113,7 +114,7 @@ const currentYear = new Date().getFullYear();
           {legalLinks.map((link, i) => (
             <>
               {i > 0 && <span class="separator">•</span>}
-              <a href={link.href}>{link.label}</a>
+              <a href={withBase(link.href)}>{link.label}</a>
             </>
           ))}
         </div>
@@ -162,7 +163,7 @@ const currentYear = new Date().getFullYear();
     box-shadow: var(--shadow-md);
   }
 
-  .footer-logo-img { height: 45px; width: auto; display: block; }
+  .footer-logo-img { height: 45px; width: auto; display: block; mix-blend-mode: multiply; }
 
   .footer-description {
     font-size: 0.95rem;

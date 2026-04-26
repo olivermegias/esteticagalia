@@ -22,7 +22,10 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://esteticagalia.es";
-const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
+const basePath = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL.replace(/\/$/, "");
+const fullImageUrl = image.startsWith("http")
+  ? image
+  : `${siteUrl}${basePath}${image.startsWith("/") ? image : `/${image}`}`;
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 ---
 
@@ -48,5 +51,5 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 
 <!-- Schema.org -->
 {schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 )}

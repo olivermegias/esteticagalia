@@ -4,6 +4,7 @@ categoria: "mirada"
 descripcion: "Tratamiento que levanta y riza tus pestañas naturales, proporcionando una mirada más abierta y expresiva sin necesidad de extensiones."
 duracion: "45 min"
 precio: "35€"
+imagen: ["/images/pestanas.jpg"]
 orden: 1
 ---
 

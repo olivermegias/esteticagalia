@@ -2,16 +2,16 @@
 export const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/servicios", label: "Servicios" },
-  { href: "/productos", label: "Productos" },
+  { href: "/asesoramiento", label: "Asesoramiento" },
   { href: "/contacto", label: "Contacto" },
 ] as const;
 
 /** Links del footer – servicios populares */
 export const footerServiceLinks = [
-  { href: "/servicios#facial", label: "Tratamientos Faciales" },
-  { href: "/servicios#corporal", label: "Tratamientos Corporales" },
-  { href: "/servicios#mirada", label: "Pestañas y Cejas" },
-  { href: "/servicios#depilacion", label: "Depilación Láser" },
+  { href: "/servicios?categoria=facial", label: "Tratamientos Faciales" },
+  { href: "/servicios?categoria=corporal", label: "Tratamientos Corporales" },
+  { href: "/servicios?categoria=mirada", label: "Diseño de Mirada" },
+  { href: "/servicios?categoria=depilacion", label: "Depilación Láser" },
 ] as const;
 
 /** Links legales */
@@ -24,14 +24,14 @@ export const legalLinks = [
 export const serviceCategories = [
   { id: "todos", label: "Todos" },
   { id: "facial", label: "Facial" },
-  { id: "mirada", label: "Mirada" },
   { id: "corporal", label: "Corporal" },
-  { id: "depilacion", label: "Depilación" },
+  { id: "mirada", label: "Diseño de Mirada" },
+  { id: "depilacion", label: "Depilación Láser" },
 ] as const;
 
 export const categoryLabels: Record<string, string> = {
   facial: "Facial",
-  mirada: "Mirada",
   corporal: "Corporal",
-  depilacion: "Depilación",
+  mirada: "Diseño de Mirada",
+  depilacion: "Depilación Láser",
 };

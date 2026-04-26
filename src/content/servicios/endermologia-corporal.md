@@ -4,6 +4,7 @@ categoria: "corporal"
 descripcion: "Protocolo corporal avanzado que activa el metabolismo local, favorece la eliminación de toxinas y ayuda a redefinir la figura de manera natural."
 duracion: "45 min"
 precio: "30€"
+imagen: ["/images/endormologia-corporal.jpg"]
 orden: 3
 ---
 

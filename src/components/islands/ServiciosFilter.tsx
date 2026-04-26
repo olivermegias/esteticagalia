@@ -23,6 +23,14 @@ interface Props {
   servicios: Servicio[];
 }
 
+const BASE_URL = import.meta.env.BASE_URL || '/';
+
+function withBase(path?: string) {
+  if (!path) return '';
+  if (/^(https?:|\/\/|data:|mailto:|tel:)/.test(path)) return path;
+  return `${BASE_URL}${path.replace(/^\//, '')}`;
+}
+
 export default function ServiciosFilter({ categorias, servicios }: Props) {
   const [activeFilter, setActiveFilter] = useState('todos');
   const [searchTerm, setSearchTerm] = useState('');
@@ -121,8 +129,9 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
       <div className="servicios-grid">
         {filteredServicios.length > 0 ? (
           filteredServicios.map((servicio, index) => (
-            <article
+            <a
               key={servicio.slug}
+              href={withBase(`/servicios/${servicio.slug}`)}
               className="servicio-card animate-in"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
@@ -130,7 +139,7 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
                 className="servicio-image"
                 style={
                   servicio.data.imagen
-                    ? { backgroundImage: `url(${servicio.data.imagen})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                    ? { backgroundImage: `url(${withBase(servicio.data.imagen)})`, backgroundSize: 'cover', backgroundPosition: 'center' }
                     : { background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)' }
                 }
               >
@@ -181,7 +190,7 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
                   {servicio.data.precio && (
                     <span className="servicio-precio">{servicio.data.precio}</span>
                   )}
-                  <a href={`/servicios/${servicio.slug}`} className="servicio-link">
+                  <span className="servicio-link">
                     Ver más
                     <svg
                       width="16"
@@ -194,10 +203,10 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
                     </svg>
-                  </a>
+                  </span>
                 </div>
               </div>
-            </article>
+            </a>
           ))
         ) : (
           <div className="no-results">

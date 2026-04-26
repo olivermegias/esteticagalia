@@ -2,11 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getBeautySalonSchema } from "../data/schema";
 import About from "../components/sections/About.astro";
-import FeaturedTreatments from "../components/sections/FeaturedTreatments.astro";
+import CenterPhotos from "../components/sections/CenterPhotos.astro";
 import LocationMap from "../components/sections/LocationMap.astro";
 import { business } from "../data/business";
 
 const schema = getBeautySalonSchema();
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 ---
 
 <BaseLayout
@@ -30,14 +31,14 @@ const schema = getBeautySalonSchema();
         </p>
         <div class="hero-buttons">
           <a href={`tel:${business.mainPhone}`} class="btn btn-primary">Llámanos</a>
-          <a href="/servicios" class="btn btn-outline">Explorar Servicios</a>
+          <a href={withBase("/servicios")} class="btn btn-secondary">Explorar Servicios</a>
         </div>
       </div>
     </div>
   </section>
 
   <About />
-  <FeaturedTreatments />
+  <CenterPhotos />
   <LocationMap />
 </BaseLayout>
 
@@ -59,8 +60,9 @@ const schema = getBeautySalonSchema();
     right: -5%;
     width: 50vw;
     height: 50vw;
-    background: #fcf7f4 url("/images/logo.png") 100% 20% no-repeat;
+    background: #fcf7f4 url("../images/logo_new.PNG") 100% 20% no-repeat;
     background-size: 90%;
+    background-blend-mode: multiply;
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     z-index: 0;
     opacity: 0.7;
@@ -132,7 +134,7 @@ const schema = getBeautySalonSchema();
     .hero-title { font-size: 1.75rem; }
     .hero-quote { font-size: 1rem; margin-top: 2rem; }
     .hero-buttons { flex-direction: column; width: 100%; gap: 1rem; }
-    .hero-buttons .btn { width: 100%; justify-content: center; }
+    .hero-buttons .btn { width: 100%; justify-content: center; text-align: center; }
   }
 
   @media (max-width: 480px) {

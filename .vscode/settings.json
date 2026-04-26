@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^\\$html = Get-Content dist/servicios/index\\.html -Raw; \\[regex\\]::Matches\\(\\$html,'background-image:url\\\\\\(\\(\\[\\^\\\\\\)\\]\\+\\)\\\\\\)'\\) \\| ForEach-Object \\{ \\$_\\.Groups\\[1\\]\\.Value \\} \\| Select-Object -Unique \\| Select-Object -First 40$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

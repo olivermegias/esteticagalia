@@ -4,7 +4,8 @@ categoria: "facial"
 descripcion: "Hidratación profunda, efecto antioxidante y renovación celular con factores de crecimiento. Un tratamiento revolucionario que combina lo mejor de la cosmética coreana."
 duracion: "75 min"
 precio: "80€"
-orden: 5
+imagen: ["/images/4d_dynamic1.jpg", "/images/tratamientos-faciales.jpg"]
+orden: 4
 ---
 
 ## Hidratación profunda, efecto antioxidante y renovación celular con factores de crecimiento

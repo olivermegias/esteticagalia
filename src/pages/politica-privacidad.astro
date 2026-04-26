@@ -1,0 +1,217 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import { business } from "../data/business";
+---
+
+<BaseLayout
+  title="Política de Privacidad - Estética GaliaBeauty"
+  description="Política de privacidad de Estética GaliaBeauty. Información sobre el tratamiento de datos personales."
+>
+  <PageHero title="Política de Privacidad" />
+
+  <section class="legal-section">
+    <div class="container">
+      <div class="legal-content">
+
+        <p class="legal-updated">Última actualización: abril de 2026</p>
+
+        <p>
+          Esta Política de Privacidad explica cómo se tratan y protegen los datos personales de las personas
+          usuarias de este sitio web, de conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018.
+        </p>
+
+        <h2>1. Responsable del tratamiento</h2>
+        <ul>
+          <li>Responsable: Ana María Guerrero Arroyo (autónoma)</li>
+          <li>NIF: pendiente de completar</li>
+          <li>Domicilio profesional: {business.address.street}, {business.address.postalCode} {business.address.city}</li>
+          <li>Correo electrónico: <a href={`mailto:${business.email}`}>{business.email}</a></li>
+          <li>Teléfono: {business.phones[0].display}</li>
+        </ul>
+
+        <h2>2. Datos que se recogen</h2>
+        <p>Podemos tratar los siguientes datos según el canal utilizado:</p>
+        <ul>
+          <li>Datos identificativos: nombre y apellidos.</li>
+          <li>Datos de contacto: email, teléfono y mensaje.</li>
+          <li>Datos de servicio: información necesaria para gestionar citas o presupuestos.</li>
+          <li>Datos técnicos básicos: IP, navegador o dispositivo cuando sea necesario por seguridad.</li>
+        </ul>
+
+        <h2>3. Finalidades del tratamiento</h2>
+        <ul>
+          <li>Atender consultas y solicitudes recibidas.</li>
+          <li>Gestionar citas y prestación de servicios.</li>
+          <li>Cumplir obligaciones legales, fiscales y administrativas.</li>
+          <li>Enviar comunicaciones comerciales solo cuando exista consentimiento.</li>
+        </ul>
+
+        <h2>4. Base legal</h2>
+        <ul>
+          <li>Consentimiento de la persona interesada.</li>
+          <li>Ejecución de medidas precontractuales o contrato de servicios.</li>
+          <li>Cumplimiento de obligaciones legales.</li>
+          <li>Interés legítimo para seguridad y correcta gestión del sitio web.</li>
+        </ul>
+
+        <h2>5. Conservación de los datos</h2>
+        <p>
+          Los datos se conservarán durante el tiempo necesario para cumplir la finalidad para la que fueron
+          recabados y, después, durante los plazos exigidos legalmente.
+        </p>
+
+        <h2>6. Destinatarios</h2>
+        <p>
+          No se cederán datos a terceros salvo obligación legal o cuando sea necesario para prestar servicios
+          (por ejemplo, proveedor de hosting o gestoría), bajo las correspondientes garantías de confidencialidad.
+        </p>
+
+        <h2>7. Transferencias internacionales</h2>
+        <p>
+          Con carácter general, no se prevén transferencias internacionales de datos. Si se produjeran,
+          se aplicarán las garantías exigidas por la normativa vigente.
+        </p>
+
+        <h2>8. Derechos de las personas interesadas</h2>
+        <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad, así como retirar el consentimiento, escribiendo a <a href={`mailto:${business.email}`}>{business.email}</a>.</p>
+        <p>
+          Si consideras que no se han respetado tus derechos, puedes presentar una reclamación ante la
+          <a href="https://www.aepd.es/es" target="_blank" rel="noopener">Agencia Española de Protección de Datos (AEPD)</a>.
+        </p>
+
+        <h2>9. Seguridad de la información</h2>
+        <p>
+          Se aplican medidas técnicas y organizativas apropiadas para proteger los datos personales frente a
+          pérdida, acceso no autorizado, alteración o divulgación indebida.
+        </p>
+
+        <h2>10. Veracidad de los datos</h2>
+        <p>
+          La persona usuaria garantiza que los datos facilitados son veraces y actualizados, siendo responsable
+          de cualquier inexactitud o falsedad.
+        </p>
+
+        <h2>11. Cookies</h2>
+        <p>
+          Este sitio puede usar cookies técnicas necesarias para su funcionamiento. Si se usan otras categorías,
+          se informará y recabará el consentimiento cuando sea obligatorio.
+        </p>
+
+        <h2>12. Cambios en esta política</h2>
+        <p>
+          Esta política puede actualizarse para adaptarse a cambios legales o técnicos. Las modificaciones se
+          publicarán en esta misma página con su fecha de actualización.
+        </p>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-section {
+    padding: 3rem 0 5rem;
+    background: var(--color-bg-soft);
+  }
+
+  .legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .legal-updated {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    color: var(--color-secondary);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  .legal-content h2:first-of-type {
+    margin-top: 0;
+  }
+
+  .legal-content p {
+    color: var(--color-muted);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .legal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+
+  .legal-content ol {
+    margin: 0 0 1rem 1.25rem;
+    padding-left: 1rem;
+  }
+
+  .legal-content li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  .legal-content li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    opacity: 0.6;
+  }
+
+  .legal-content ol li {
+    padding-left: 0;
+  }
+
+  .legal-content ol li::before {
+    content: none;
+  }
+
+  .legal-content strong {
+    color: var(--color-secondary);
+  }
+
+  .legal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .legal-content a:hover {
+    color: var(--color-brand);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .legal-section { padding: 2rem 0 3rem; }
+    .legal-content { padding: 1.5rem; }
+    .legal-content h2 { font-size: 1.1rem; }
+  }
+</style>

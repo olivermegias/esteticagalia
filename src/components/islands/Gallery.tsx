@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Props {
   imagenes: string[];
@@ -119,8 +120,8 @@ export default function Gallery({ imagenes, title }: Props) {
         )}
       </div>
 
-      {/* Lightbox */}
-      {isLightboxOpen && (
+      {/* Lightbox — renderizado en document.body para escapar del stacking context del sidebar sticky */}
+      {isLightboxOpen && createPortal(
         <div className="lightbox" onClick={closeLightbox}>
           <button
             className="lightbox-close"
@@ -174,7 +175,7 @@ export default function Gallery({ imagenes, title }: Props) {
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 }
