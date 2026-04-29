@@ -5,7 +5,7 @@ descripcion: "Un tratamiento de renovación intensiva que transforma la piel, me
 duracion: "60 min"
 precio: "60€"
 imagen: ["/images/peeling-quimico.jpg"]
-orden: 7
+orden: 9
 ---
 
 ## Renovación total, cambia tu piel desde dentro

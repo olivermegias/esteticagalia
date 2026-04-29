@@ -3,9 +3,10 @@ title: "Endermología Corporal"
 categoria: "corporal"
 descripcion: "Protocolo corporal avanzado que activa el metabolismo local, favorece la eliminación de toxinas y ayuda a redefinir la figura de manera natural."
 duracion: "45 min"
-precio: "30€"
+precio: "45€"
 imagen: ["/images/endormologia-corporal.jpg"]
-orden: 3
+orden: 8
+bono: 5
 ---
 
 ## Reduce, reafirma y redefine tu silueta

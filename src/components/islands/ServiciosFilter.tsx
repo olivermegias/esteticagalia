@@ -48,6 +48,20 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
     }
   }, [categorias]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (activeFilter !== 'todos') {
+      params.set('categoria', activeFilter);
+    } else {
+      params.delete('categoria');
+    }
+
+    const nextQuery = params.toString();
+    const nextUrl = `${window.location.pathname}${nextQuery ? `?${nextQuery}` : ''}`;
+    window.history.replaceState({}, '', nextUrl);
+  }, [activeFilter]);
+
   // Filtrar servicios
   const filteredServicios = useMemo(() => {
     let filtered = servicios;
@@ -68,6 +82,10 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
 
     return filtered;
   }, [servicios, activeFilter, searchTerm]);
+
+  const categoryQuery = activeFilter !== 'todos'
+    ? `?categoria=${encodeURIComponent(activeFilter)}`
+    : '';
 
   return (
     <div className="servicios-filter-wrapper">
@@ -131,7 +149,7 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
           filteredServicios.map((servicio, index) => (
             <a
               key={servicio.slug}
-              href={withBase(`/servicios/${servicio.slug}`)}
+              href={withBase(`/servicios/${servicio.slug}${categoryQuery}`)}
               className="servicio-card animate-in"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
@@ -188,7 +206,13 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
 
                 <div className="servicio-footer">
                   {servicio.data.precio && (
-                    <span className="servicio-precio">{servicio.data.precio}</span>
+                    <span className="servicio-precio">
+                      {servicio.slug === 'exosomas'
+                        ? 'Consultar'
+                        : servicio.slug === 'pestanas'
+                        ? '30€ / 37€'
+                        : servicio.data.precio}
+                    </span>
                   )}
                   <span className="servicio-link">
                     Ver más

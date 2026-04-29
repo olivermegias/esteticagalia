@@ -5,7 +5,7 @@ descripcion: "Masajes corporales personalizados diseñados para aliviar tensione
 duracion: "30 min / 1h"
 precio: "30€ / 45€"
 imagen: ["/images/masajes-corporales.jpg"]
-orden: 5
+orden: 3
 ---
 
 ## Relaja tu cuerpo, renueva tu energí

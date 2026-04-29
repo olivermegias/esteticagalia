@@ -2,10 +2,11 @@
 title: "4D Dynamic"
 categoria: "facial"
 descripcion: "Hidratación profunda, efecto antioxidante y renovación celular con factores de crecimiento. Un tratamiento revolucionario que combina lo mejor de la cosmética coreana."
-duracion: "75 min"
-precio: "80€"
-imagen: ["/images/4d_dynamic1.jpg", "/images/tratamientos-faciales.jpg"]
-orden: 4
+duracion: "60 min"
+precio: "70€"
+imagen: ["images/4D.jpg"]
+orden: 2
+bono: 5
 ---
 
 ## Hidratación profunda, efecto antioxidante y renovación celular con factores de crecimiento

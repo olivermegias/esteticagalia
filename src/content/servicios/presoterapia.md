@@ -5,7 +5,8 @@ descripcion: "Tecnología de compresión controlada que reactiva la circulación
 duracion: "30 min"
 precio: "15€"
 imagen: ["/images/presoterapia.png"]
-orden: 4
+orden: 5
+bono: 10
 ---
 
 ## Activa tu circulacion, redefine tu bienestar

@@ -4,8 +4,8 @@ categoria: "facial"
 descripcion: "Soluciones faciales a medida que tratan acné, hiperpigmentación, deshidratación o exceso de grasa con activos seleccionados específicamente para tu piel."
 duracion: "60 min"
 precio: "60€"
-imagen: ["/images/tratamientos-ovaco.jpg", "/images/tratamientos-faciales.jpg"]
-orden: 6
+imagen: ["images/Ovaco.png"]
+orden: 7
 ---
 
 ## Con cosmética coreana profesional tratamos las distintas alteraciones de la piel

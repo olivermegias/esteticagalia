@@ -1,7 +1,7 @@
 ---
-pregunta: "¿Qué cuidados debo seguir después del tratamiento?"
-categoria: "cuidados"
+pregunta: "¿Necesitaré cuidados después del tratamiento?"
+categoria: "tratamientos"
 orden: 2
 ---
 
-Después de cada sesión te daremos instrucciones detalladas de cuidado post-tratamiento. Normalmente recomendamos protección solar alta, evitar calor excesivo (saunas, ejercicio intenso) durante 24-48h y mantener la zona tratada hidratada. Según el tratamiento, pueden existir recomendaciones adicionales que te explicaremos en persona.
+Absolutamente SÍ. Todos los tratamientos que realizamos en cabina tan solo representan el 50% del trabajo, el resto necesitamos que en casa lo sigas manteniendo. Para ello elaboramos un protocolo personalizado de los distintos productos que tu piel necesita usar en casa.

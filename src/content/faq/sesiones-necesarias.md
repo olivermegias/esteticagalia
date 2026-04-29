@@ -1,7 +1,7 @@
 ---
-pregunta: "¿Cuántas sesiones necesitaré?"
+pregunta: "¿Cuántas sesiones necesito?"
 categoria: "tratamientos"
-orden: 2
+orden: 3
 ---
 
-Depende del tratamiento y de cada persona. En tu valoración inicial te daremos una estimación personalizada. Algunos tratamientos como la limpieza facial dan resultados visibles desde la primera sesión, mientras que otros como la depilación láser requieren varias sesiones para resultados óptimos. Siempre seremos transparentes con las expectativas.
+No existe un número exacto de sesiones. La piel es un órgano vivo que necesita un mantenimiento, de nada sirve realizar 5 sesiones seguidas y no volver a proporcionarle a tu piel ningún tipo de estímulo en 1 año. La piel necesita tiempo, cuidado y constancia.

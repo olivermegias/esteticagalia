@@ -5,7 +5,7 @@ descripcion: "Tratamiento corporal que combina exfoliación profunda y masaje re
 duracion: "60 min"
 precio: "60€"
 imagen: ["/images/masaje-exfoliacion.jpeg"]
-orden: 6
+orden: 2
 ---
 
 ## Exfolia, libera tensiones y vuelve a empezar

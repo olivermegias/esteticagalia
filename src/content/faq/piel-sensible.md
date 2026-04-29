@@ -1,7 +1,7 @@
 ---
-pregunta: "¿Puedo hacerme tratamientos si tengo la piel sensible?"
+pregunta: "¿Si tengo la piel sensible puedo hacerme un tratamiento?"
 categoria: "tratamientos"
-orden: 3
+orden: 4
 ---
 
-¡Por supuesto! Personalizamos cada tratamiento en función de tu tipo de piel. Si tienes piel sensible, reactiva o con alguna condición específica, adaptamos los productos y la intensidad del tratamiento para cuidarte al máximo. En la valoración inicial analizaremos tu piel para diseñar el protocolo más adecuado.
+Por supuesto que sí. Toda nuestra cosmética está diseñada para tratar pieles sensibles, restablecer la barrera cutánea y regenerar nuestras células. Todo ello lo llevaremos a cabo bajo un diagnóstico previo y un seguimiento personalizado.

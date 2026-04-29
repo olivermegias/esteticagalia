@@ -4,37 +4,25 @@ categoria: "depilacion"
 descripcion: "Despídete del vello para siempre con nuestra tecnología láser de última generación. Tratamiento seguro, eficaz y prácticamente indoloro."
 duracion: "Según zona"
 precio: "Consultar"
-imagen: ["/images/depilacion-laser.png"]
+imagen: ["/images/depilacion-laser.jpg", "/images/depilacion-laser.png"]
 orden: 1
 ---
 
-## Despídete del vello, da la bienvenida a la comodidad
+## Reducción progresiva del vello con resultados duraderos
 
-La depilación láser es el método más efectivo para eliminar el vello de forma permanente. Utilizamos tecnología de última generación que garantiza resultados duraderos, seguros y con el mínimo malestar. Olvídate de la cera, las cuchillas y el vello enquistado.
+La depilación láser es un tratamiento eficaz para la **reducción progresiva** del vello, que actúa directamente sobre el folículo piloso mediante energía lumínica, debilitándolo y retrasando su crecimiento. Con cada sesión, el vello se vuelve **más fino, más débil y menos abundante**, logrando una piel más suave y uniforme a largo plazo.
+
+Es importante tener en cuenta que no se trata de una depilación definitiva al 100%, ya que factores hormonales y biológicos pueden reactivar el crecimiento de algunos folículos con el tiempo. Por ello, tras completar el tratamiento inicial, pueden ser necesarias **sesiones de mantenimiento** para conservar los resultados.
+
+Olvídate de la cera, las cuchillas y el vello enquistado, aquí tienes una solución más cómoda, segura y que perdurará en el tiempo.
 
 ### Beneficios
 
-- Eliminación permanente del vello
-- Piel suave y sin irritaciones
-- Sin vello enquistado
-- Ahorro de tiempo y dinero a largo plazo
-- Tratamiento rápido y prácticamente indoloro
-- Resultados visibles desde las primeras sesiones
+- Reducción visible y duradera del vello
+- Crecimiento más lento y debilitado
+- Mejora de la textura de la piel
+- Disminución de irritaciones y vellos enquistados
 
-### Zonas tratables
+### Número de sesiones
 
-- Rostro (labio superior, barbilla, patillas)
-- Axilas
-- Brazos completos o medios
-- Ingles (brasileña, integral o bikini)
-- Piernas completas o medias
-- Espalda
-- Pecho y abdomen
-
-### ¿Para quién está indicada?
-
-Perfecta para cualquier persona que desee eliminar el vello de forma definitiva. Apta para todo tipo de pieles y fototipos. Recomendable realizar una valoración previa para determinar el número de sesiones necesarias según tu tipo de vello.
-
-### Protocolo de tratamiento
-
-El número de sesiones varía según la zona y el tipo de vello, generalmente entre 6 y 10 sesiones. Los resultados son progresivos y definitivos.
+Normalmente se necesitan entre 6 y 10 sesiones, pero cada persona y cada vello es diferente, por ello es necesaria una valoración inicial.

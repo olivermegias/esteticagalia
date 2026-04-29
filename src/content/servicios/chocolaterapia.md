@@ -5,7 +5,7 @@ descripcion: "Tratamiento corporal sensorial que combina exfoliación, nutrició
 duracion: "1h 30 min"
 precio: "80€"
 imagen: ["/images/Chocolaterapia.jpg"]
-orden: 5
+orden: 1
 ---
 
 ## Un ritual dulce para tu piel y tus sentidos

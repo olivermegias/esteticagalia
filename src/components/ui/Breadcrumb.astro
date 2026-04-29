@@ -6,6 +6,7 @@
 interface BreadcrumbItem {
   label: string;
   href?: string;
+  backToCategory?: boolean;
 }
 
 interface Props {
@@ -23,7 +24,7 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
         <>
           {i > 0 && <span class="separator" aria-hidden="true">/</span>}
           {item.href ? (
-            <a href={withBase(item.href)}>{item.label}</a>
+            <a href={withBase(item.href)} data-back-services={item.backToCategory ? "true" : undefined}>{item.label}</a>
           ) : (
             <span class="current" aria-current="page">{item.label}</span>
           )}

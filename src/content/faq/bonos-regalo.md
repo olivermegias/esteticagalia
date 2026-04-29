@@ -4,4 +4,4 @@ categoria: "pagos"
 orden: 1
 ---
 
-¡Sí! Todos nuestros tratamientos están disponibles en formato bono regalo. Es el detalle perfecto para cumpleaños, Navidad, Día de la Madre o simplemente para sorprender a alguien especial. Los bonos se pueden personalizar y no tienen fecha de caducidad. Pregúntanos y te ayudamos a elegir el regalo perfecto.
+¡Sí! Todos nuestros tratamientos están disponibles en formato bono regalo. Es el detalle perfecto para cumpleaños, Navidad, Día de la Madre o simplemente para sorprender a alguien especial. Los bonos se pueden personalizar y tienen una fecha de caducidad de 6 meses. Pregúntanos y te ayudamos a elegir el regalo perfecto.

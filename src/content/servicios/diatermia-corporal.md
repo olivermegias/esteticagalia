@@ -1,11 +1,12 @@
 ---
-title: "Diatermia / Radiofrecuencia Corporal"
+title: "Diatermia Corporal"
 categoria: "corporal"
 descripcion: "Tecnología avanzada para reducción de grasa localizada, celulitis y reafirmación corporal mediante energía térmica profunda."
 duracion: "45 min"
 precio: "45€"
-imagen: ["/images/diatermia-corporal.png"]
-orden: 2
+imagen: ["images/diatermia_corporal.jpeg", "/images/diatermia-corporal1.png"]
+orden: 7
+bono: 5
 ---
 
 ## Mejora la firmeza de la piel y combate la flacidez muscular

@@ -5,7 +5,8 @@ descripcion: "Técnica natural y efectiva que utiliza instrumentos de madera par
 duracion: "60 min"
 precio: "45€"
 imagen: ["/images/maderoterapia-1.jpg", "/images/maderoterapia-2.jpg"]
-orden: 1
+orden: 6
+bono: 5
 ---
 
 ## Descubre un tratamiento natural, no invasivo que ayuda a reducir la grasa localizada
