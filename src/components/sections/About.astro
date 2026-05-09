@@ -3,25 +3,30 @@
  * Sección "Bienvenida a GaliaBeauty" de la Home.
  */
 
-const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+const withBase = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 ---
 
 <section class="about">
   <div class="container">
     <div class="about-content">
-      <h2>Bienvenida a GaliaBeauty</h2>
+      <h2>Bienvenid@ a GaliaBeauty</h2>
       <p>
         En Estética Galia cuidamos de ti con una selección de tratamientos
         diseñados para realzar tu belleza y bienestar: faciales, corporales,
         mirada, depilación láser y asesoramiento cosmético personalizado. Te
-        escuchamos, te asesoramos y te acompañamos para encontrar el
-        tratamiento perfecto para ti, porque cada piel y cada persona son únicas.
+        escuchamos, te asesoramos y te acompañamos para encontrar el tratamiento
+        perfecto para ti, porque cada piel y cada persona son únicas.
       </p>
 
       <div class="features-grid">
         <a href={withBase("/servicios?categoria=facial")} class="feature">
           <div class="feature-image-bg">
-            <img src={withBase("/images/tratamientos-faciales.jpg")} alt="Tratamiento facial" loading="lazy" />
+            <img
+              src={withBase("/images/tratamientos-faciales.jpg")}
+              alt="Tratamiento facial"
+              loading="lazy"
+            />
             <div class="feature-overlay"></div>
           </div>
           <div class="feature-content">
@@ -32,7 +37,11 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
 
         <a href={withBase("/servicios?categoria=corporal")} class="feature">
           <div class="feature-image-bg">
-            <img src={withBase("/images/tratamiento-corporal.jpg")} alt="Tratamientos corporales" loading="lazy" />
+            <img
+              src={withBase("/images/tratamiento-corporal.jpg")}
+              alt="Tratamientos corporales"
+              loading="lazy"
+            />
             <div class="feature-overlay"></div>
           </div>
           <div class="feature-content">
@@ -43,7 +52,11 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
 
         <a href={withBase("/servicios?categoria=depilacion")} class="feature">
           <div class="feature-image-bg">
-            <img src={withBase("/images/depilacion-laser.png")} alt="Depilación láser" loading="lazy" />
+            <img
+              src={withBase("/images/depilacion-laser.png")}
+              alt="Depilación láser"
+              loading="lazy"
+            />
             <div class="feature-overlay"></div>
           </div>
           <div class="feature-content">
@@ -54,7 +67,11 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
 
         <a href={withBase("/servicios?categoria=mirada")} class="feature">
           <div class="feature-image-bg">
-            <img src={withBase("/images/Diseno-de-mirada-oficial.jpg")} alt="Diseño de mirada" loading="lazy" />
+            <img
+              src={withBase("/images/Diseno-de-mirada-oficial.jpg")}
+              alt="Diseño de mirada"
+              loading="lazy"
+            />
             <div class="feature-overlay"></div>
           </div>
           <div class="feature-content">
@@ -67,7 +84,12 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
       <div class="ovaco-badge-container">
         <p class="ovaco-badge">
           <span class="check-icon">✓</span>
-          <strong>Centro Oficial OVACO</strong> – Cosmética profesional de última generación
+          <span class="badge-text">
+            <strong>Centro Oficial OVACO</strong>
+            <span class="badge-sub">
+              Cosmética profesional de última generación</span
+            >
+          </span>
         </p>
       </div>
     </div>
@@ -154,7 +176,11 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
   .feature-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
     z-index: 2;
   }
 
@@ -203,8 +229,22 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--color-secondary);
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
     width: max-content;
+  }
+
+  .badge-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .badge-sub {
+    font-weight: 400;
+    font-size: 0.88em;
+    color: rgba(0, 0, 0, 0.55);
   }
 
   .ovaco-badge:hover {
@@ -226,19 +266,36 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
   }
 
   @media (max-width: 768px) {
-    .about { padding: 0.5rem 0 1.5rem; }
-    .about-content h2 { font-size: 1.75rem; }
-    .about-content > p { font-size: 0.95rem; margin-bottom: 2rem; }
-    .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 2rem; }
-    .feature { height: 220px; border-radius: 12px; }
-    .feature-content { padding: 1rem; }
-    .feature h3 { font-size: 1rem; margin-bottom: 0.35rem; }
-    .feature p { font-size: 0.78rem; line-height: 1.35; }
-    .ovaco-badge { padding: 0.6rem 1rem; font-size: 0.85rem; gap: 0.5rem; }
+    .ovaco-badge-container {
+      padding: 0 1rem;
+    }
+
+    .ovaco-badge {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      border-radius: 12px;
+      gap: 0.75rem;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+    }
+
+    /* El texto del badge en una sola columna fluida */
+    .ovaco-badge strong {
+      display: inline;
+    }
   }
 
   @media (min-width: 1024px) {
-    .feature { height: 450px; }
-    .feature h3 { font-size: 1.75rem; }
+    .feature {
+      height: 450px;
+    }
+    .feature h3 {
+      font-size: 1.75rem;
+    }
   }
 </style>

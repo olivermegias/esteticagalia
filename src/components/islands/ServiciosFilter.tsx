@@ -15,6 +15,7 @@ interface Servicio {
     duracion?: string;
     precio?: string;
     imagen?: string;
+    imagenLista?: string;
   };
 }
 
@@ -146,21 +147,24 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
       {/* Grid de servicios */}
       <div className="servicios-grid">
         {filteredServicios.length > 0 ? (
-          filteredServicios.map((servicio, index) => (
-            <a
-              key={servicio.slug}
-              href={withBase(`/servicios/${servicio.slug}${categoryQuery}`)}
-              className="servicio-card animate-in"
-              style={{ animationDelay: `${index * 0.05}s` }}
-            >
-              <div
-                className="servicio-image"
-                style={
-                  servicio.data.imagen
-                    ? { backgroundImage: `url(${withBase(servicio.data.imagen)})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-                    : { background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)' }
-                }
+          filteredServicios.map((servicio, index) => {
+            const imageSrc = servicio.data.imagenLista || servicio.data.imagen;
+
+            return (
+              <a
+                key={servicio.slug}
+                href={withBase(`/servicios/${servicio.slug}${categoryQuery}`)}
+                className="servicio-card animate-in"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
+                <div
+                  className="servicio-image"
+                  style={
+                    imageSrc
+                      ? { backgroundImage: `url(${withBase(imageSrc)})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                      : { background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)' }
+                  }
+                >
                 {!servicio.data.imagen && (
                   <svg
                     className="servicio-icon"
@@ -229,9 +233,10 @@ export default function ServiciosFilter({ categorias, servicios }: Props) {
                     </svg>
                   </span>
                 </div>
-              </div>
-            </a>
-          ))
+                </div>
+              </a>
+            );
+          })
         ) : (
           <div className="no-results">
             <div className="no-results-icon">🔍</div>

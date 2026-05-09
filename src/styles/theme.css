@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap");
+
 :root {
   /* Brand colors - Verde olivo y tonos marrones */
   --color-primary: #8B9474;      /* Verde olivo suave */
@@ -26,6 +28,9 @@
   --color-border-soft: #f3f4f6;
 
   --color-logo: #fcf7f4;
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
 
   /* Layout tokens */
   --radius-sm: 8px;

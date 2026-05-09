@@ -1,11 +1,12 @@
----
+﻿---
 title: "Depilación y diseño de cejas"
 categoria: "mirada"
 descripcion: "Depilación de cejas con pinza, cera o hilo, con opción de tinte para una mirada definida y natural."
 duracion: "20-30 min"
 precio: "Desde 6€"
 imagen: ["/images/cejas1.jpg", "images/cejas2.jpg", "images/cejas3.jpg"]
-orden: 4
+imagenLista: "/images/cards/cejas1-card.jpg"
+orden: 8
 ---
 
 ## Define tu mirada con el diseño de cejas que mejor te encaja

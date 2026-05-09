@@ -1,11 +1,12 @@
----
+﻿---
 title: "Limpieza Coreana"
 categoria: "facial"
 descripcion: "Un protocolo facial exclusivo que combina tecnología, activos concentrados y técnicas coreanas para ofrecer resultados visibles y una piel visiblemente renovada."
 duracion: "60 min"
 precio: "60€"
 imagen: ["/images/limpieza-coreana.jpg"]
-orden: 6
+imagenLista: "/images/cards/limpieza-coreana-card.jpg"
+orden: 12
 ---
 
 ## Más que una limpieza, un tratamiento completo para tu piel

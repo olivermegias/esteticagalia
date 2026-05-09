@@ -11,6 +11,7 @@ const serviciosCollection = defineCollection({
     duracion: z.string(),
     precio: z.string(),
     imagen: z.array(z.string()).optional(),
+    imagenLista: z.string().optional(),
     orden: z.number().default(0),
     bono: z.number().optional(),
   }),

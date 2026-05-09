@@ -1,0 +1,233 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="404 - P&aacute;gina no encontrada"
+  description="La p&aacute;gina que buscas no existe o fue movida."
+>
+  <section class="not-found">
+    <div class="container not-found-grid">
+      <div class="not-found-copy">
+        <span class="not-found-label">Error 404</span>
+        <h1>Esta p&aacute;gina no existe</h1>
+        <p>
+          Puede que el enlace haya cambiado o que la ruta ya no est&eacute;
+          disponible. Te ayudamos a volver a tu camino.
+        </p>
+        <div class="not-found-actions">
+          <a href={withBase("/")} class="btn btn-primary">Volver al inicio</a>
+          <a href={withBase("/servicios")} class="btn btn-secondary">Ver servicios</a>
+          <a href={withBase("/contacto")} class="btn btn-outline">Contactar</a>
+        </div>
+        <div class="not-found-links">
+          <span>Accesos r&aacute;pidos:</span>
+          <a href={withBase("/asesoramiento")}>Asesoramiento</a>
+          <a href={withBase("/servicios")}>Tratamientos</a>
+          <a href={withBase("/contacto")}>Reservas</a>
+        </div>
+      </div>
+
+      <div class="not-found-visual" aria-hidden="true">
+        <div class="not-found-number">404</div>
+        <div class="not-found-ring"></div>
+        <div class="not-found-caption">Belleza real, incluso en los errores.</div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :global(:root) {
+    --font-display: "Cormorant Garamond", "Garamond", "Georgia", serif;
+    --font-ui: "Source Sans 3", "Trebuchet MS", "Gill Sans", sans-serif;
+  }
+
+  .not-found {
+    position: relative;
+    padding: 6rem 0 5rem;
+    background: linear-gradient(135deg, #f7f1ea 0%, #f1e2cf 45%, #e4d4c2 100%);
+    overflow: hidden;
+  }
+
+  .not-found::before,
+  .not-found::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .not-found::before {
+    width: 420px;
+    height: 420px;
+    top: -120px;
+    right: -120px;
+  }
+
+  .not-found::after {
+    width: 320px;
+    height: 320px;
+    bottom: -140px;
+    left: -120px;
+  }
+
+  .not-found-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .not-found-copy {
+    color: var(--color-secondary);
+    font-family: var(--font-ui);
+  }
+
+  .not-found-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-brand);
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+  }
+
+  .not-found-copy h1 {
+    margin: 1.5rem 0 1rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    font-weight: 600;
+    color: var(--color-secondary);
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  .not-found-copy p {
+    margin: 0 0 2rem;
+    font-size: 1.05rem;
+    max-width: 520px;
+  }
+
+  .not-found-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .not-found-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+
+  .not-found-links span {
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+
+  .not-found-links a {
+    color: var(--color-brand);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .not-found-links a:hover {
+    text-decoration: underline;
+  }
+
+  .not-found-visual {
+    position: relative;
+    min-height: 280px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+
+  .not-found-number {
+    font-size: clamp(6rem, 18vw, 12rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: transparent;
+    background: linear-gradient(135deg, var(--color-brand), var(--color-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-family: var(--font-display);
+    text-shadow: 0 12px 24px rgba(60, 60, 60, 0.2);
+    position: relative;
+    z-index: 2;
+  }
+
+  .not-found-ring {
+    position: absolute;
+    width: min(60vw, 320px);
+    height: min(60vw, 320px);
+    border-radius: 50%;
+    border: 2px dashed rgba(139, 148, 116, 0.4);
+    animation: slow-spin 18s linear infinite;
+  }
+
+  .not-found-caption {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(130%);
+    font-size: 0.95rem;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+
+  @keyframes slow-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 900px) {
+    .not-found-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .not-found-copy,
+    .not-found-visual {
+      text-align: center;
+    }
+
+    .not-found-copy p {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .not-found-actions {
+      justify-content: center;
+    }
+
+    .not-found-links {
+      justify-content: center;
+    }
+
+    .not-found-caption {
+      position: static;
+      transform: none;
+      margin-top: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .not-found-ring {
+      animation: none;
+    }
+  }
+</style>

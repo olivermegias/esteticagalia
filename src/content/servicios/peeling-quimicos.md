@@ -1,11 +1,12 @@
----
+﻿---
 title: "Peeling químicos"
 categoria: "facial"
 descripcion: "Un tratamiento de renovación intensiva que transforma la piel, mejorando su uniformidad, luminosidad y calidad desde las capas más profundas."
 duracion: "60 min"
 precio: "60€"
 imagen: ["/images/peeling-quimico.jpg"]
-orden: 9
+imagenLista: "/images/cards/peeling-quimico-card.jpg"
+orden: 18
 ---
 
 ## Renovación total, cambia tu piel desde dentro

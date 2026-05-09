@@ -1,11 +1,12 @@
----
+﻿---
 title: "Peeling Celular"
 categoria: "facial"
 descripcion: "Transforma tu piel en dos pasos con renovación celular inteligente y regeneración profunda para una piel firme, luminosa e hidratada."
 duracion: "60 min"
-precio: "90€"
-imagen: ["/images/peeling-celular.jpg"]
-orden: 4
+precio: "80€"
+imagen: ["/images/peeling-celular.jpg", "images/PEELING_CELULAR.webp"]
+imagenLista: "/images/cards/peeling-celular-card.jpg"
+orden: 10
 ---
 
 ## Transforma tu piel en dos pasos: renovación celular inteligente y regeneración profunda con péptidos y ADN biomineral.

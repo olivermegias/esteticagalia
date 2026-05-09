@@ -1,11 +1,12 @@
----
+﻿---
 title: "HIFU Deep Lift"
 categoria: "facial"
 descripcion: "Reafirma, redefine y eleva la estructura natural del rostro sin cirugia."
 duracion: "Por definir"
 precio: "Por definir"
 imagen: ["images/hifu-facial.jpg"]
-orden: 5
+imagenLista: "/images/cards/hifu-facial-card.jpg"
+orden: 11
 ---
 
 ## Reafirma, redefine y eleva tu estructura natural

@@ -1,11 +1,12 @@
----
+﻿---
 title: "Limpieza Facial Profunda"
 categoria: "facial"
 descripcion: "Una limpieza facial profunda que eliminará todas las impurezas, puntos negros y milium, eliminando células muertas, el exceso de grasa y restos de la contaminación que obstruyen los poros."
 duracion: "60 min"
 precio: "45€"
-orden: 10
+orden: 21
 imagen: ["/images/limpieza-facial.jpg", "/images/tratamiento-facial.png"]
+imagenLista: "/images/cards/limpieza-facial-card.jpg"
 ---
 
 ## Elimina las impurezas y oxigena tu piel

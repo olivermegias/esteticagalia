@@ -141,32 +141,37 @@ const schema = getServiceSchema(servicio.data);
       <div class="container">
         <h2 class="section-title">Tratamientos Relacionados</h2>
         <div class="related-grid">
-          {serviciosRelacionados.map((s) => (
-            <article class="related-card">
-              <a href={withBase(`/servicios/${s.id.replace(/\.md$/, "")}`)} class="related-link">
-                <div
-                  class="related-image"
-                  style={
-                    s.data.imagen
-                      ? `background-image: url(${withBase(Array.isArray(s.data.imagen) ? s.data.imagen[0] : s.data.imagen)}); background-size: cover; background-position: center;`
-                      : "background: var(--color-cream);"
-                  }
-                >
-                  {!s.data.imagen && (
-                    <svg class="related-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <circle cx="12" cy="12" r="10" />
-                      <circle cx="12" cy="12" r="6" />
-                    </svg>
-                  )}
-                </div>
-                <div class="related-content">
-                  <h3>{s.data.title}</h3>
-                  <p>{s.data.descripcion}</p>
-                  {s.data.precio && <span class="related-precio">{s.data.precio}</span>}
-                </div>
-              </a>
-            </article>
-          ))}
+          {serviciosRelacionados.map((s) => {
+            const relatedImage = s.data.imagenLista
+              ?? (Array.isArray(s.data.imagen) ? s.data.imagen[0] : s.data.imagen);
+
+            return (
+              <article class="related-card">
+                <a href={withBase(`/servicios/${s.id.replace(/\.md$/, "")}`)} class="related-link">
+                  <div
+                    class="related-image"
+                    style={
+                      relatedImage
+                        ? `background-image: url(${withBase(relatedImage)}); background-size: cover; background-position: center;`
+                        : "background: var(--color-cream);"
+                    }
+                  >
+                    {!relatedImage && (
+                      <svg class="related-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="6" />
+                      </svg>
+                    )}
+                  </div>
+                  <div class="related-content">
+                    <h3>{s.data.title}</h3>
+                    <p>{s.data.descripcion}</p>
+                    {s.data.precio && <span class="related-precio">{s.data.precio}</span>}
+                  </div>
+                </a>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

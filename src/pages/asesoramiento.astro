@@ -120,18 +120,33 @@ for (const cat of categoryOrder) {
 </BaseLayout>
 
 <script is:inline>
-  // Smooth anchor scroll for index links
-  document.querySelectorAll('.faq-index-item').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = link.getAttribute('href');
-      if (!href) return;
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  let faqIndexController = null;
+
+  const cleanupFaqIndex = () => {
+    faqIndexController?.abort();
+    faqIndexController = null;
+  };
+
+  const initFaqIndex = () => {
+    cleanupFaqIndex();
+    faqIndexController = new AbortController();
+    const { signal } = faqIndexController;
+
+    document.querySelectorAll('.faq-index-item').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, { signal });
     });
-  });
+  };
+
+  document.addEventListener('astro:page-load', initFaqIndex);
+  document.addEventListener('astro:before-swap', cleanupFaqIndex);
 </script>
 
 <style>

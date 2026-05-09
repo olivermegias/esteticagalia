@@ -1,11 +1,12 @@
----
+﻿---
 title: "Lifting de Pestañas"
 categoria: "mirada"
 descripcion: "Tratamiento que levanta y riza tus pestañas naturales, proporcionando una mirada más abierta y expresiva sin necesidad de extensiones."
 duracion: "45 min"
 precio: "30€ (normal) / 37€ (con tinte)"
 imagen: ["/images/liftin2.jpg", "images/liftin.jpg"]
-orden: 1
+imagenLista: "/images/cards/liftin2-card.jpg"
+orden: 7
 ---
 
 ## Descripción del tratamiento

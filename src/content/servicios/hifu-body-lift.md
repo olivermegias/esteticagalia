@@ -1,11 +1,12 @@
----
+﻿---
 title: "HIFU Body Lift"
 categoria: "corporal"
 descripcion: "Reafirma, redefine y eleva la estructura natural del cuerpo sin cirugia."
 duracion: "Por definir"
 precio: "Por definir"
 imagen: ["images/hifu-corporal.jpg"]
-orden: 4
+imagenLista: "/images/cards/hifu-corporal-card.jpg"
+orden: 13
 ---
 
 ## Reafirma y redefine el contorno corporal

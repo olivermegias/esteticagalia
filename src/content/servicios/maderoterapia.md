@@ -1,11 +1,12 @@
----
+﻿---
 title: "Maderoterapia"
 categoria: "corporal"
 descripcion: "Técnica natural y efectiva que utiliza instrumentos de madera para modelar tu figura, eliminar la celulitis y activar la circulación."
 duracion: "60 min"
 precio: "45€"
 imagen: ["/images/maderoterapia-1.jpg", "/images/maderoterapia-2.jpg"]
-orden: 6
+imagenLista: "/images/cards/maderoterapia-1-card.jpg"
+orden: 15
 bono: 5
 ---
 

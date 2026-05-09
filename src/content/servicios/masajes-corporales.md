@@ -1,11 +1,12 @@
----
+﻿---
 title: "Masaje corporales"
 categoria: "corporal"
 descripcion: "Masajes corporales personalizados diseñados para aliviar tensiones, mejorar la circulación y proporcionar una profunda sensación de bienestar físico y mental."
 duracion: "30 min / 1h"
 precio: "30€ / 45€"
 imagen: ["/images/masajes-corporales.jpg"]
-orden: 3
+imagenLista: "/images/cards/masajes-corporales-card.jpg"
+orden: 6
 ---
 
 ## Relaja tu cuerpo, renueva tu energí
