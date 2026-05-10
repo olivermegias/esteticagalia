@@ -1,7 +1,7 @@
 ﻿---
 title: "HIFU Body Lift"
 categoria: "corporal"
-descripcion: "Reafirma, redefine y eleva la estructura natural del cuerpo sin cirugia."
+descripcion: "Reafirma, redefine y eleva la estructura natural del cuerpo sin cirugía."
 duracion: "Por definir"
 precio: "Por definir"
 imagen: ["images/hifu-corporal.jpg"]
@@ -11,17 +11,17 @@ orden: 13
 
 ## Reafirma y redefine el contorno corporal
 
-HIFU Body Lift es una tecnologia avanzada de ultrasonidos focalizados que actua en las capas profundas de la piel, donde realmente se origina la firmeza. Su precision permite estimular la produccion natural de colageno de forma controlada, progresiva y altamente eficaz.
+HIFU Body Lift es una tecnología avanzada de ultrasonidos focalizados que actúa en las capas profundas de la piel, donde realmente se origina la firmeza. Su precisión permite estimular la producción natural de colágeno de forma controlada, progresiva y altamente eficaz.
 
-Este tratamiento no trabaja en la superficie, sino en la arquitectura interna de la piel, logrando un efecto tensor visible y una mejora progresiva en la calidad, densidad y definicion del contorno corporal.
+Este tratamiento no trabaja en la superficie, sino en la arquitectura interna de la piel, logrando un efecto tensor visible y una mejora progresiva en la calidad, densidad y definición del contorno corporal.
 
 ### Beneficios
 
-- Reafirmacion progresiva de los tejidos
+- Reafirmación progresiva de los tejidos
 - Redefinicion del contorno corporal
-- Mejora visible de la flacidez cutanea
+- Mejora visible de la flacidez cutánea
 - Efecto lifting natural sin alterar la expresion
 
-### ¿Para quien esta indicada?
+### ¿Para quién está indicada?
 
-HIFU Body Lift es la opcion para quienes buscan una transformacion real, basada en la biologia de la piel y no en soluciones superficiales.
+HIFU Body Lift es la opción para quienes buscan una transformación real, basada en la biología de la piel y no en soluciones superficiales.

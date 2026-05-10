@@ -11,25 +11,25 @@ orden: 1
 
 ## Rejuvenecimiento inteligente que actúa desde el origen
 
-El tratamiento de dermapen con exosomas es una de las terapias mas avanzadas en rejuvenecimiento y regeneracion cutanea, ya que actua directamente sobre la comunicacion celular.
+El tratamiento de dermapen con exosomas es una de las terapias más avanzadas en rejuvenecimiento y regeneración cutánea, ya que actúa directamente sobre la comunicación celular.
 
-Los exosomas son pequenas vesiculas extracelulares que funcionan como mensajeros biologicos. Contienen factores de crecimiento, proteinas, lipidos y material genetico que estimulan a las celulas de la piel para que se regeneren, se reparen y funcionen de forma mas eficiente. En otras palabras, no solo tratan el sintoma, sino que reprograman el comportamiento celular.
+Los exosomas son pequeñas vesículas extracelulares que funcionan como mensajeros biológicos. Contienen factores de crecimiento, proteínas, lípidos y material genético que estimulan a las células de la piel para que se regeneren, se reparen y funcionen de forma más eficiente. En otras palabras, no solo tratan el síntoma, sino que reprograman el comportamiento celular.
 
 Cuando se combinan con microneedling, el tratamiento potencia enormemente su eficacia. El Dermapen crea microcanales en la piel que:
 
-- Facilitan la penetracion profunda de los exosomas
-- Activan el proceso natural de reparacion cutanea
-- Estimulan la produccion de colageno y elastina
+- Facilitan la penetración profunda de los exosomas
+- Activan el proceso natural de reparación cutánea
+- Estimulan la producción de colágeno y elastina
 
-Una vez aplicados, los exosomas de Ovaco actuan acelerando la regeneracion, reduciendo la inflamacion y mejorando la calidad de la piel desde dentro.
+Una vez aplicados, los exosomas de Ovaco actúan acelerando la regeneración, reduciendo la inflamación y mejorando la calidad de la piel desde dentro.
 
 ### Beneficios visibles
 
-- Piel mas firme, luminosa y uniforme
+- Piel más firme, luminosa y uniforme
 - Mejora de textura, poros y marcas
-- Reduccion de lineas finas y signos de envejecimiento
+- Reducción de líneas finas y signos de envejecimiento
 - Efecto regenerador profundo (no solo superficial)
 
-### ¿Para quien esta indicado?
+### ¿Para quién está indicado?
 
-Al ser un tratamiento biotecnologico de ultima generacion que combina estimulacion mecanica junto con regeneracion celular avanzada, esta indicado para pieles que buscan un rejuvenecimiento real y progresivo. No es solo un efecto superficial, sino una mejora real de la calidad de la piel.
+Al ser un tratamiento biotecnológico de última generación que combina estimulación mecánica junto con regeneración celular avanzada, está indicado para pieles que buscan un rejuvenecimiento real y progresivo. No es solo un efecto superficial, sino una mejora real de la calidad de la piel.
