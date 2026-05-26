@@ -18,6 +18,7 @@ export const footerServiceLinks = [
 export const legalLinks = [
   { href: "/politica-privacidad", label: "Política de privacidad" },
   { href: "/aviso-legal", label: "Aviso legal" },
+  { href: "/politica-cookies", label: "Política de cookies" },
 ] as const;
 
 /** Categorías de servicios */

@@ -14,94 +14,124 @@ import { business } from "../data/business";
     <div class="container">
       <div class="legal-content">
 
-        <p class="legal-updated">Última actualización: abril de 2026</p>
+        <p class="legal-updated">Última actualización: 15 de mayo de 2026</p>
 
         <p>
-          Esta Política de Privacidad explica cómo se tratan y protegen los datos personales de las personas
-          usuarias de este sitio web, de conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018.
+          En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de
+          2016 (RGPD) y de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y
+          garantía de los derechos digitales (LOPDGDD), se informa a los usuarios sobre el tratamiento de sus
+          datos personales.
         </p>
 
         <h2>1. Responsable del tratamiento</h2>
         <ul>
-          <li>Responsable: Ana María Guerrero Arroyo (autónoma)</li>
-          <li>NIF: pendiente de completar</li>
-          <li>Domicilio profesional: {business.address.street}, {business.address.postalCode} {business.address.city}</li>
-          <li>Correo electrónico: <a href={`mailto:${business.email}`}>{business.email}</a></li>
-          <li>Teléfono: {business.phones[0].display}</li>
+          <li><strong>Responsable:</strong> Ana María Guerrero Arroyo</li>
+          <li><strong>NIF:</strong> {business.nif}</li>
+          <li><strong>Domicilio:</strong> {business.address.street}, {business.address.postalCode} {business.address.city} ({business.address.country})</li>
+          <li><strong>Teléfono:</strong> {business.legalPhone}</li>
+          <li><strong>Correo electrónico:</strong> <a href={`mailto:${business.legalEmail}`}>{business.legalEmail}</a></li>
         </ul>
 
-        <h2>2. Datos que se recogen</h2>
-        <p>Podemos tratar los siguientes datos según el canal utilizado:</p>
+        <h2>2. Recogida y tratamiento de datos personales</h2>
+        <p>
+          Los datos personales recogidos a través de este sitio web son los necesarios, adecuados y pertinentes
+          para las finalidades descritas en esta política. Con carácter general, se pueden recoger y tratar
+          los siguientes datos:
+        </p>
         <ul>
           <li>Datos identificativos: nombre y apellidos.</li>
-          <li>Datos de contacto: email, teléfono y mensaje.</li>
-          <li>Datos de servicio: información necesaria para gestionar citas o presupuestos.</li>
-          <li>Datos técnicos básicos: IP, navegador o dispositivo cuando sea necesario por seguridad.</li>
+          <li>Datos de contacto: dirección de correo electrónico y número de teléfono.</li>
+          <li>Datos de prestación del servicio: información facilitada para la gestión de citas y tratamientos.</li>
+          <li>Datos técnicos: dirección IP y datos de navegación, cuando sea necesario para la seguridad del sitio.</li>
         </ul>
+        <p>
+          La recogida de datos se produce cuando el usuario utiliza formularios de contacto, solicita cita o
+          se pone en contacto directamente con el establecimiento.
+        </p>
 
-        <h2>3. Finalidades del tratamiento</h2>
+        <h2>3. Finalidades y legitimación del tratamiento</h2>
+        <p>Los datos personales son tratados para las siguientes finalidades:</p>
         <ul>
-          <li>Atender consultas y solicitudes recibidas.</li>
-          <li>Gestionar citas y prestación de servicios.</li>
-          <li>Cumplir obligaciones legales, fiscales y administrativas.</li>
-          <li>Enviar comunicaciones comerciales solo cuando exista consentimiento.</li>
+          <li>Gestión y respuesta a las solicitudes de información y consultas remitidas por los usuarios.</li>
+          <li>Gestión de citas previas y prestación de servicios de estética.</li>
+          <li>Cumplimiento de las obligaciones legales aplicables.</li>
+          <li>Envío de comunicaciones comerciales sobre servicios propios, cuando el usuario haya otorgado su consentimiento expreso.</li>
         </ul>
-
-        <h2>4. Base legal</h2>
+        <p>La base legal que legitima el tratamiento es, según el caso:</p>
         <ul>
-          <li>Consentimiento de la persona interesada.</li>
-          <li>Ejecución de medidas precontractuales o contrato de servicios.</li>
-          <li>Cumplimiento de obligaciones legales.</li>
-          <li>Interés legítimo para seguridad y correcta gestión del sitio web.</li>
+          <li>El consentimiento del interesado (art. 6.1.a RGPD).</li>
+          <li>La ejecución de un contrato o medidas precontractuales (art. 6.1.b RGPD).</li>
+          <li>El cumplimiento de obligaciones legales aplicables al responsable (art. 6.1.c RGPD).</li>
+          <li>El interés legítimo del responsable para la seguridad y correcto funcionamiento del sitio web (art. 6.1.f RGPD).</li>
         </ul>
 
-        <h2>5. Conservación de los datos</h2>
+        <h2>4. Conservación de los datos</h2>
         <p>
-          Los datos se conservarán durante el tiempo necesario para cumplir la finalidad para la que fueron
-          recabados y, después, durante los plazos exigidos legalmente.
+          Los datos personales se conservarán durante el tiempo imprescindible para cumplir la finalidad para
+          la que fueron recabados y, posteriormente, durante los plazos de prescripción legal que resulten
+          aplicables. Una vez expirados dichos plazos, los datos serán suprimidos o anonimizados.
         </p>
 
-        <h2>6. Destinatarios</h2>
+        <h2>5. Destinatarios</h2>
         <p>
-          No se cederán datos a terceros salvo obligación legal o cuando sea necesario para prestar servicios
-          (por ejemplo, proveedor de hosting o gestoría), bajo las correspondientes garantías de confidencialidad.
+          Con carácter general, los datos no se cederán a terceros salvo que exista obligación legal o
+          sea necesario para la prestación del servicio contratado (por ejemplo, proveedores de servicios
+          de alojamiento web o gestoría), siempre bajo las garantías contractuales y de confidencialidad
+          exigidas por la normativa vigente.
+        </p>
+        <p>
+          No se prevén transferencias internacionales de datos fuera del Espacio Económico Europeo. En caso
+          de producirse, se adoptarán las garantías adecuadas exigidas por el RGPD.
         </p>
 
-        <h2>7. Transferencias internacionales</h2>
+        <h2>6. Derechos de los interesados</h2>
         <p>
-          Con carácter general, no se prevén transferencias internacionales de datos. Si se produjeran,
-          se aplicarán las garantías exigidas por la normativa vigente.
+          Cualquier persona tiene derecho a obtener confirmación sobre si se están tratando datos personales
+          que le conciernan. Los interesados tienen derecho a:
+        </p>
+        <ul>
+          <li><strong>Acceso:</strong> conocer qué datos se tratan.</li>
+          <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos.</li>
+          <li><strong>Supresión («derecho al olvido»):</strong> solicitar la eliminación de los datos cuando, entre otros motivos, ya no sean necesarios para los fines para los que fueron recogidos.</li>
+          <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos en determinadas circunstancias.</li>
+          <li><strong>Limitación del tratamiento:</strong> solicitar la restricción del tratamiento en ciertos supuestos.</li>
+          <li><strong>Portabilidad:</strong> recibir los datos en un formato estructurado, de uso común y lectura mecánica.</li>
+          <li><strong>Retirada del consentimiento:</strong> en cualquier momento, cuando el tratamiento se base en el consentimiento.</li>
+        </ul>
+        <p>
+          Para ejercer estos derechos puede dirigirse al responsable del tratamiento por correo electrónico a{" "}
+          <a href={`mailto:${business.legalEmail}`}>{business.legalEmail}</a>, o por correo postal a{" "}
+          {business.address.street}, {business.address.postalCode} {business.address.city},
+          adjuntando copia de su documento de identidad.
+        </p>
+        <p>
+          Si considera que sus derechos no han sido debidamente atendidos, puede presentar una reclamación
+          ante la{" "}
+          <a href="https://sedeagpd.gob.es/sede-electronica-web/" target="_blank" rel="noopener noreferrer">
+            Agencia Española de Protección de Datos (AEPD)
+          </a>.
         </p>
 
-        <h2>8. Derechos de las personas interesadas</h2>
-        <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad, así como retirar el consentimiento, escribiendo a <a href={`mailto:${business.email}`}>{business.email}</a>.</p>
+        <h2>7. Seguridad de los datos</h2>
         <p>
-          Si consideras que no se han respetado tus derechos, puedes presentar una reclamación ante la
-          <a href="https://www.aepd.es/es" target="_blank" rel="noopener">Agencia Española de Protección de Datos (AEPD)</a>.
+          El responsable del tratamiento aplica las medidas técnicas y organizativas necesarias para garantizar
+          la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no
+          autorizado, teniendo en cuenta el estado de la tecnología, la naturaleza de los datos almacenados
+          y los riesgos a los que están expuestos.
         </p>
 
-        <h2>9. Seguridad de la información</h2>
+        <h2>8. Modificación de la política de privacidad</h2>
         <p>
-          Se aplican medidas técnicas y organizativas apropiadas para proteger los datos personales frente a
-          pérdida, acceso no autorizado, alteración o divulgación indebida.
+          El responsable se reserva el derecho a modificar la presente política de privacidad para adaptarla
+          a novedades legislativas, jurisprudenciales o de práctica empresarial. Los cambios serán publicados
+          en esta misma página con su fecha de actualización. Se recomienda a los usuarios revisar
+          periódicamente esta política.
         </p>
 
-        <h2>10. Veracidad de los datos</h2>
-        <p>
-          La persona usuaria garantiza que los datos facilitados son veraces y actualizados, siendo responsable
-          de cualquier inexactitud o falsedad.
-        </p>
-
-        <h2>11. Cookies</h2>
-        <p>
-          Este sitio puede usar cookies técnicas necesarias para su funcionamiento. Si se usan otras categorías,
-          se informará y recabará el consentimiento cuando sea obligatorio.
-        </p>
-
-        <h2>12. Cambios en esta política</h2>
-        <p>
-          Esta política puede actualizarse para adaptarse a cambios legales o técnicos. Las modificaciones se
-          publicarán en esta misma página con su fecha de actualización.
+        <p class="legal-note">
+          Política de privacidad revisada por PROTECTION REPORT S, S.L., empresa de RGPD, quien se reserva
+          las acciones legales que correspondan contra todo aquel que copie y utilice de forma ilegítima el
+          contenido.
         </p>
 
       </div>
@@ -159,11 +189,6 @@ import { business } from "../data/business";
     margin: 0 0 1rem;
   }
 
-  .legal-content ol {
-    margin: 0 0 1rem 1.25rem;
-    padding-left: 1rem;
-  }
-
   .legal-content li {
     position: relative;
     padding-left: 1.25rem;
@@ -185,14 +210,6 @@ import { business } from "../data/business";
     opacity: 0.6;
   }
 
-  .legal-content ol li {
-    padding-left: 0;
-  }
-
-  .legal-content ol li::before {
-    content: none;
-  }
-
   .legal-content strong {
     color: var(--color-secondary);
   }
@@ -207,6 +224,15 @@ import { business } from "../data/business";
   .legal-content a:hover {
     color: var(--color-brand);
     text-decoration: underline;
+  }
+
+  .legal-note {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-light);
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    font-style: italic;
   }
 
   @media (max-width: 768px) {

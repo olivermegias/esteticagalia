@@ -28,6 +28,11 @@ export const business = {
 
   email: "esteticagaliaguerrero@gmail.com",
 
+  /** Datos para textos legales (RGPD/LSSI) — según auditoría PROTECTION REPORT */
+  nif: "77557379E",
+  legalEmail: "anitarroyo2003@gmail.com",
+  legalPhone: "633 587 576",
+
   social: {
     instagram: "https://www.instagram.com/estetica_galiabeauty",
     instagramHandle: "@estetica_galiabeauty",
