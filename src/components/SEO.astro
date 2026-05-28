@@ -3,6 +3,8 @@
  * Componente SEO centralizado.
  * Gestiona title, meta description, Open Graph y Schema.org.
  */
+import { business } from "../data/business";
+
 interface Props {
   title: string;
   description: string;
@@ -10,6 +12,7 @@ interface Props {
   type?: "website" | "article";
   schema?: Record<string, unknown>;
   canonical?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -19,6 +22,7 @@ const {
   type = "website",
   schema,
   canonical,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = "https://esteticagalia.es";
@@ -32,6 +36,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
 <link rel="canonical" href={canonicalUrl} />
 
 <!-- Open Graph -->
@@ -40,7 +45,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 <meta property="og:description" content={description} />
 <meta property="og:image" content={fullImageUrl} />
 <meta property="og:url" content={canonicalUrl} />
-<meta property="og:site_name" content="Estética GaliaBeauty" />
+<meta property="og:site_name" content={business.name} />
 <meta property="og:locale" content="es_ES" />
 
 <!-- Twitter / X -->

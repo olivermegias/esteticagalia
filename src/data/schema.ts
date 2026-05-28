@@ -5,6 +5,7 @@ export function getBeautySalonSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
+    "@id": business.url,
     name: business.name,
     description: business.description,
     url: business.url,
@@ -12,12 +13,24 @@ export function getBeautySalonSchema() {
     email: business.email,
     priceRange: business.priceRange,
     image: `${business.url}/images/logo.png`,
+    hasMap: business.mapDirectionsUrl,
+    currenciesAccepted: "EUR",
+    paymentAccepted: "Efectivo, Tarjeta de crédito, Tarjeta de débito",
     address: {
       "@type": "PostalAddress",
       streetAddress: business.address.street,
       addressLocality: business.address.city,
       postalCode: business.address.postalCode,
       addressCountry: business.address.countryCode,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 37.1552452,
+      longitude: -3.5919465,
+    },
+    areaServed: {
+      "@type": "City",
+      name: "Granada",
     },
     openingHoursSpecification: [
       {
@@ -44,18 +57,27 @@ export function getBeautySalonSchema() {
 }
 
 /** Schema.org – Service (para páginas de servicio individual) */
-export function getServiceSchema(service: {
-  title: string;
-  descripcion: string;
-  precio?: string;
-}) {
+export function getServiceSchema(
+  service: {
+    title: string;
+    descripcion: string;
+    precio?: string;
+  },
+  pageUrl?: string,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.title,
     description: service.descripcion,
+    ...(pageUrl ? { url: pageUrl } : {}),
+    areaServed: {
+      "@type": "City",
+      name: "Granada",
+    },
     provider: {
       "@type": "BeautySalon",
+      "@id": business.url,
       name: business.name,
       address: {
         "@type": "PostalAddress",
@@ -75,5 +97,21 @@ export function getServiceSchema(service: {
           },
         }
       : {}),
+  };
+}
+
+/** Schema.org – FAQPage (para página de asesoramiento/preguntas frecuentes) */
+export function getFAQSchema(faqs: { pregunta: string; respuesta: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.pregunta,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.respuesta,
+      },
+    })),
   };
 }

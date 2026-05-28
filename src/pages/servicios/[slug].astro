@@ -43,14 +43,17 @@ const imagenes = servicio.data?.imagen
 
 const bonoSesiones = (servicio.data as { bono?: number }).bono;
 
-const schema = getServiceSchema(servicio.data);
+const slug = servicio.id.replace(/\.md$/, "");
+const pageUrl = `/servicios/${slug}`;
+const schema = getServiceSchema(servicio.data, pageUrl);
 ---
 
 <BaseLayout
-  title={`${servicio.data.title} - Estética GaliaBeauty`}
-  description={servicio.data.descripcion}
+  title={`${servicio.data.title} en Granada | Estética GaliaBeauty`}
+  description={`${servicio.data.descripcion} Centro de estética en Granada, barrio del Zaidín. Reserva tu cita.`}
   image={imagenes[0]}
   schema={schema}
+  canonical={pageUrl}
 >
   <Breadcrumb
     items={[

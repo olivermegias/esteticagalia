@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 import PageHero from "../components/sections/PageHero.astro";
 import CtaBanner from "../components/sections/CtaBanner.astro";
-import { getBeautySalonSchema } from "../data/schema";
+import { getBeautySalonSchema, getFAQSchema } from "../data/schema";
 
 const allFaqs = await getCollection("faq");
 
@@ -39,6 +39,16 @@ const categoryIcons: Record<string, string> = {
 
 const schema = getBeautySalonSchema();
 
+// Construir FAQPage schema con datos reales de las FAQ
+const faqSchemaData = getFAQSchema(
+  allFaqs
+    .sort((a, b) => a.data.orden - b.data.orden)
+    .map((faq) => ({
+      pregunta: faq.data.pregunta,
+      respuesta: (faq.body ?? "").replace(/\n+/g, " ").trim(),
+    })),
+);
+
 // Pre-render all FAQ content components
 type RenderedFaq = {
   pregunta: string;
@@ -59,10 +69,13 @@ for (const cat of categoryOrder) {
 ---
 
 <BaseLayout
-  title="Asesoramiento - Estética GaliaBeauty"
-  description="Resolvemos tus dudas sobre tratamientos estéticos, citas, preparación y cuidados. Preguntas frecuentes del centro de estética GaliaBeauty en Granada."
+  title="Preguntas Frecuentes sobre Tratamientos Estéticos en Granada | GaliaBeauty"
+  description="Resolvemos tus dudas sobre tratamientos estéticos, citas, preparación y cuidados posteriores. Asesoramiento personalizado en nuestro centro de estética de Granada."
   schema={schema}
 >
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchemaData)} />
+  </Fragment>
   <PageHero
     title="Asesoramiento"
     subtitle="Resolvemos tus dudas más frecuentes para que te sientas segura y bien informada"

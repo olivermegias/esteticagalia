@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 
 /** @type {import('vite').Plugin} */
 const suppressAstroScriptsServeWarning = {
@@ -23,7 +24,7 @@ const suppressAstroScriptsServeWarning = {
 
 export default defineConfig({
   site: 'https://esteticagalia.es',
-  integrations: [react()],
+  integrations: [react(), sitemap()],
   vite: {
     plugins: [suppressAstroScriptsServeWarning],
   },
