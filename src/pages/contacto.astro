@@ -215,54 +215,49 @@ const schema = getBeautySalonSchema();
 </BaseLayout>
 
 <script>
-  (function () {
-    var mapRoot = document.querySelector("[data-contact-map]");
+  let _cleanupContactMap: any = null;
 
+  function initContactMap() {
+    _cleanupContactMap?.();
+
+    const mapRoot = document.querySelector("[data-contact-map]");
     if (!(mapRoot instanceof HTMLElement)) return;
 
-    var mapRootElement = mapRoot;
-    var placeholderElement = mapRootElement.querySelector("[data-contact-map-placeholder]");
-    var templateElement = mapRootElement.querySelector("[data-contact-map-template]");
-    var placeholder = placeholderElement instanceof HTMLElement ? placeholderElement : null;
-    var template = templateElement instanceof HTMLTemplateElement ? templateElement : null;
-    var consentKey = "cookie-consent";
-    var mapRendered = false;
+    const placeholder = mapRoot.querySelector("[data-contact-map-placeholder]");
+    const template    = mapRoot.querySelector("[data-contact-map-template]");
+    if (!(template instanceof HTMLTemplateElement)) return;
+
+    let rendered = false;
+    const CONSENT_KEY = "cookie-consent";
 
     function getConsent() {
-      try {
-        return localStorage.getItem(consentKey);
-      } catch (error) {
-        return null;
-      }
+      try { return localStorage.getItem(CONSENT_KEY); } catch { return null; }
     }
 
-    function renderMap() {
-      if (mapRendered || getConsent() !== "accepted" || !template) return;
+    function sync(consentValue: any) {
+      const c = consentValue ?? getConsent();
 
-      mapRootElement.appendChild(template.content.cloneNode(true));
-      mapRendered = true;
-
-      if (placeholder) {
-        placeholder.hidden = true;
-      }
-    }
-
-    function syncMap() {
-      if (getConsent() === "accepted") {
-        renderMap();
-        return;
-      }
-
-      if (placeholder) {
+      if (c === "accepted" && !rendered) {
+        mapRoot?.appendChild(template?.content?.cloneNode(true));
+        rendered = true;
+        if (placeholder instanceof HTMLElement) placeholder.hidden = true;
+      } else if (c !== "accepted" && placeholder instanceof HTMLElement) {
         placeholder.hidden = false;
       }
     }
 
-    document.addEventListener("astro:page-load", syncMap);
-    window.addEventListener("cookie-consent-change", syncMap);
+    function onConsentChange(e: any) {
+      sync(e.detail?.consent);
+    }
 
-    syncMap();
-  })();
+    window.addEventListener("cookie-consent-change", onConsentChange);
+    _cleanupContactMap = () =>
+      window.removeEventListener("cookie-consent-change", onConsentChange);
+
+    sync();
+  }
+
+  document.addEventListener("astro:page-load", initContactMap);
 </script>
 
 <style>

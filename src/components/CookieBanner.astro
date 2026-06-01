@@ -22,15 +22,14 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
 </div>
 
 <script>
-  (function () {
-    var banner = document.getElementById("cookie-banner");
-    var btn = document.getElementById("cookie-accept-btn");
-    var rejectBtn = document.getElementById("cookie-reject-btn");
-    var consentKey = "cookie-consent";
+  // Declaramos una función limpia que se ejecutará en cada navegación
+  function initCookieBanner() {
+    const banner = document.getElementById("cookie-banner");
+    const btn = document.getElementById("cookie-accept-btn");
+    const rejectBtn = document.getElementById("cookie-reject-btn");
+    const consentKey = "cookie-consent";
 
     if (!(banner instanceof HTMLElement)) return;
-
-    var cookieBanner = banner;
 
     function getStoredConsent() {
       try {
@@ -44,28 +43,35 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
       try {
         localStorage.setItem(consentKey, value);
       } catch (error) {
-        // Sin almacenamiento persistente, la decisión solo aplica a esta visita.
+        // Fallback si el almacenamiento local está bloqueado
       }
       window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: { consent: value } }));
+      console.log("Consentimiento de cookies guardado:", value);
     }
 
     function hideBanner() {
-      cookieBanner.style.display = "none";
-      cookieBanner.setAttribute("aria-hidden", "true");
+      if (!banner) return;
+      banner.style.display = "none";
+      banner.setAttribute("aria-hidden", "true");
     }
 
     function showBanner() {
-      cookieBanner.style.display = "block";
-      cookieBanner.removeAttribute("aria-hidden");
+      if (!banner) return;
+      banner.style.display = "block";
+      banner.removeAttribute("aria-hidden");
     }
 
-    if (getStoredConsent() === "accepted" || getStoredConsent() === "rejected") {
+    // Evaluación en cada carga/cambio de página
+    const currentConsent = getStoredConsent();
+    if (currentConsent === "accepted" || currentConsent === "rejected") {
       hideBanner();
-      return;
+      return; // El consentimiento ya existe, no asignamos listeners
     }
 
+    // Si no hay respuesta previa, nos aseguramos de mostrar el banner
     showBanner();
 
+    // Como los elementos se destruyen y recrean en cada página, asignamos listeners siempre de cero
     if (btn) {
       btn.addEventListener("click", function () {
         saveConsent("accepted");
@@ -79,7 +85,10 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
         hideBanner();
       });
     }
-  })();
+  }
+
+  // Se ejecuta la primera vez Y cada vez que cambies de ruta con ClientRouter
+  document.addEventListener("astro:page-load", initCookieBanner);
 </script>
 
 <style>

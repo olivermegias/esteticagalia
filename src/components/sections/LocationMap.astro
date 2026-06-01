@@ -15,7 +15,11 @@ import { business } from "../../data/business";
           <MapPinIcon size={24} class="info-icon" />
           <div>
             <strong>Dirección</strong>
-            <p>{business.address.street}<br />{business.address.city}, {business.address.postalCode}</p>
+            <p>
+              {business.address.street}<br />{business.address.city}, {
+                business.address.postalCode
+              }
+            </p>
           </div>
         </div>
 
@@ -24,12 +28,14 @@ import { business } from "../../data/business";
           <div>
             <strong>Teléfono</strong>
             <p>
-              {business.phones.map((p, i) => (
-                <>
-                  <a href={`tel:${p.number}`}>{p.display}</a>
-                  {i < business.phones.length - 1 && " / "}
-                </>
-              ))}
+              {
+                business.phones.map((p, i) => (
+                  <>
+                    <a href={`tel:${p.number}`}>{p.display}</a>
+                    {i < business.phones.length - 1 && " / "}
+                  </>
+                ))
+              }
             </p>
           </div>
         </div>
@@ -50,11 +56,17 @@ import { business } from "../../data/business";
       <div class="location-map" data-cookie-map>
         <div class="location-map__placeholder" data-cookie-map-placeholder>
           <p>
-            Para mostrar el mapa de Google Maps necesitamos tu consentimiento para cookies de terceros.
-            Si las aceptas, podrás ver la ubicación exacta aquí mismo. Si las rechazas, no cargaremos
-            contenido de Google y podrás abrir la ruta en un enlace externo.
+            Para mostrar el mapa de Google Maps necesitamos tu consentimiento
+            para cookies de terceros. Si las aceptas, podrás ver la ubicación
+            exacta aquí mismo. Si las rechazas, no cargaremos contenido de
+            Google y podrás abrir la ruta en un enlace externo.
           </p>
-          <a class="location-map__link" href={business.mapDirectionsUrl} target="_blank" rel="noopener noreferrer">
+          <a
+            class="location-map__link"
+            href={business.mapDirectionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Abrir en Google Maps
           </a>
         </div>
@@ -63,12 +75,11 @@ import { business } from "../../data/business";
             src={business.mapEmbedUrl}
             width="600"
             height="450"
-            style="border:0;"
+            style="width:100%; height:100%; border:0; display:block;"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Ubicación de Estética GaliaBeauty en Granada"
-          ></iframe>
+            title="Ubicación de Estética GaliaBeauty en Granada"></iframe>
         </template>
       </div>
     </div>
@@ -76,57 +87,80 @@ import { business } from "../../data/business";
 </section>
 
 <script>
-  (function () {
-    var mapRoot = document.querySelector("[data-cookie-map]");
+  let _cleanupLocationMap: any = null;
 
+  function initLocationMap() {
+    // Limpia listener anterior (navegaciones repetidas con Astro View Transitions)
+    _cleanupLocationMap?.();
+
+    const mapRoot = document.querySelector("[data-cookie-map]");
     if (!(mapRoot instanceof HTMLElement)) return;
 
-    var mapRootElement = mapRoot;
+    const placeholder = mapRoot.querySelector("[data-cookie-map-placeholder]");
+    const template = mapRoot.querySelector("[data-cookie-map-template]");
 
-    var placeholderElement = mapRootElement.querySelector("[data-cookie-map-placeholder]");
-    var templateElement = mapRootElement.querySelector("[data-cookie-map-template]");
-    var placeholder = placeholderElement instanceof HTMLElement ? placeholderElement : null;
-    var template = templateElement instanceof HTMLTemplateElement ? templateElement : null;
-    var consentKey = "cookie-consent";
-    var mapRendered = false;
+    // Validamos e indicamos a TS que es un HTMLTemplateElement de forma estricta
+    if (
+      !(template instanceof HTMLTemplateElement) ||
+      !(placeholder instanceof HTMLElement)
+    )
+      return;
+
+    let rendered = false;
+    const CONSENT_KEY = "cookie-consent";
 
     function getConsent() {
       try {
-        return localStorage.getItem(consentKey);
-      } catch (error) {
+        return localStorage.getItem(CONSENT_KEY);
+      } catch {
         return null;
       }
     }
 
-    function renderMap() {
-      if (mapRendered || getConsent() !== "accepted" || !template) return;
+    // Pasamos explícitamente las referencias ya validadas y tipadas
+    function sync(
+      consentValue: any,
+      targetMapRoot: HTMLElement,
+      targetTemplate: HTMLTemplateElement,
+      targetPlaceholder: HTMLElement,
+    ) {
+      const c = consentValue ?? getConsent();
 
-      mapRootElement.appendChild(template.content.cloneNode(true));
-      mapRendered = true;
+      console.log("Consentimiento actual:", c);
 
-      if (placeholder) {
-        placeholder.hidden = true;
+      if (c === "accepted" && !rendered) {
+        console.log("Cargando mapa de Google Maps...");
+
+        // Clonamos el contenido del template (TS ahora sabe perfectamente que .content existe)
+        const mapContent = targetTemplate.content.cloneNode(true);
+
+        // Eliminamos el placeholder por completo del flujo visual para que no empuje al iframe
+        targetPlaceholder.style.display = "none";
+
+        // Añadimos el iframe del mapa
+        targetMapRoot.appendChild(mapContent);
+        rendered = true;
+
+        console.log("Mapa cargado con éxito.");
+      } else if (c !== "accepted") {
+        targetPlaceholder.style.display = "flex";
+        // Opcional: si desaceptan las cookies, aquí podrías remover el iframe si existiera
       }
     }
 
-    function syncMap() {
-      if (getConsent() === "accepted") {
-        renderMap();
-        return;
-      }
-
-      if (placeholder) {
-        placeholder.hidden = false;
-      }
+    function onConsentChange(e: any) {
+      sync(e.detail?.consent, mapRoot, template, placeholder);
     }
 
-    document.addEventListener("astro:page-load", syncMap);
-    window.addEventListener("cookie-consent-change", function () {
-      syncMap();
-    });
+    window.addEventListener("cookie-consent-change", onConsentChange);
+    _cleanupLocationMap = () =>
+      window.removeEventListener("cookie-consent-change", onConsentChange);
 
-    syncMap();
-  })();
+    // Ejecución inicial
+    sync(null, mapRoot, template, placeholder);
+  }
+
+  document.addEventListener("astro:page-load", initLocationMap);
 </script>
 
 <style>
@@ -190,7 +224,11 @@ import { business } from "../../data/business";
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    background: linear-gradient(135deg, rgba(201, 168, 124, 0.12), rgba(255, 255, 255, 0.96));
+    background: linear-gradient(
+      135deg,
+      rgba(201, 168, 124, 0.12),
+      rgba(255, 255, 255, 0.96)
+    );
     border: 1px solid var(--color-border-light);
   }
 
@@ -206,7 +244,7 @@ import { business } from "../../data/business";
 
   .location-map__placeholder p {
     margin: 0;
-    color: 'black';
+    color: "black";
     line-height: 1.7;
   }
 
@@ -222,7 +260,9 @@ import { business } from "../../data/business";
     color: #fff;
     font-weight: 600;
     text-decoration: none;
-    transition: transform var(--transition-base), opacity var(--transition-base);
+    transition:
+      transform var(--transition-base),
+      opacity var(--transition-base);
   }
 
   .location-map__link:hover {
@@ -236,8 +276,16 @@ import { business } from "../../data/business";
   }
 
   @media (max-width: 768px) {
-    .location { padding: 2.5rem 0; }
-    .location-info h2 { font-size: 1.5rem; text-align: center; }
-    .location-map { height: 280px; border-radius: 12px; }
+    .location {
+      padding: 2.5rem 0;
+    }
+    .location-info h2 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    .location-map {
+      height: 280px;
+      border-radius: 12px;
+    }
   }
 </style>
