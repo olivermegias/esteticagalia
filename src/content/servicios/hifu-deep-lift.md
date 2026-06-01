@@ -4,8 +4,8 @@ categoria: "facial"
 descripcion: "Reafirma, redefine y eleva la estructura natural del rostro sin cirugía."
 duracion: "Por definir"
 precio: "Por definir"
-imagen: ["images/hifu-facial.jpg"]
-imagenLista: "/images/cards/hifu-facial-card.jpg"
+imagen: ["images/hifu-facial.webp"]
+imagenLista: "/images/cards/hifu-facial-card.webp"
 orden: 11
 ---
 

@@ -4,8 +4,8 @@ categoria: "corporal"
 descripcion: "Tratamiento corporal sensorial que combina exfoliación, nutrición e hidratación profunda con las propiedades antioxidantes y revitalizantes del cacao."
 duracion: "1h 30 min"
 precio: "80€"
-imagen: ["/images/Chocolaterapia.jpg"]
-imagenLista: "/images/cards/Chocolaterapia-card.jpg"
+imagen: ["/images/chocolaterapia.webp"]
+imagenLista: "/images/cards/chocolaterapia-card.webp"
 orden: 4
 ---
 

@@ -4,8 +4,8 @@ categoria: "corporal"
 descripcion: "Tecnología de compresión controlada que reactiva la circulación, favorece el drenaje y mejora el confort corporal de forma segura y eficaz."
 duracion: "30 min"
 precio: "15€"
-imagen: ["/images/presoterapia.png"]
-imagenLista: "/images/cards/presoterapia-card.jpg"
+imagen: ["/images/presoterapia.webp"]
+imagenLista: "/images/cards/presoterapia-card.webp"
 orden: 14
 bono: 10
 ---

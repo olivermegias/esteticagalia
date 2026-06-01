@@ -4,8 +4,8 @@ categoria: "corporal"
 descripcion: "Reafirma, redefine y eleva la estructura natural del cuerpo sin cirugía."
 duracion: "Por definir"
 precio: "Por definir"
-imagen: ["images/hifu-corporal.jpg"]
-imagenLista: "/images/cards/hifu-corporal-card.jpg"
+imagen: ["images/hifu-corporal.webp"]
+imagenLista: "/images/cards/hifu-corporal-card.webp"
 orden: 13
 ---
 

@@ -4,8 +4,8 @@ categoria: "facial"
 descripcion: "Renueva tu piel desde dentro con un tratamiento que estimula su regeneración natural y mejora visiblemente su textura y firmeza."
 duracion: "60 min"
 precio: "65€"
-imagen: ["images/dermapen.jpg"]
-imagenLista: "/images/cards/dermapen-card.jpg"
+imagen: ["images/dermapen.webp"]
+imagenLista: "/images/cards/dermapen-card.webp"
 orden: 3
 bono: 6
 ---

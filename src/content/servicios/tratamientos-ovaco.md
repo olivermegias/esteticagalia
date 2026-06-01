@@ -4,8 +4,8 @@ categoria: "facial"
 descripcion: "Soluciones faciales a medida que tratan acné, hiperpigmentación, deshidratación o exceso de grasa con activos seleccionados específicamente para tu piel."
 duracion: "60 min"
 precio: "60€"
-imagen: ["images/Ovaco.png"]
-imagenLista: "/images/cards/Ovaco-card.jpg"
+imagen: ["images/ovaco.webp"]
+imagenLista: "/images/cards/ovaco-card.webp"
 orden: 16
 ---
 

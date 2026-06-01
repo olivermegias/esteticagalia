@@ -4,8 +4,8 @@ categoria: "facial"
 descripcion: "Un tratamiento de renovación intensiva que transforma la piel, mejorando su uniformidad, luminosidad y calidad desde las capas más profundas."
 duracion: "60 min"
 precio: "60€"
-imagen: ["/images/peeling-quimico.jpg"]
-imagenLista: "/images/cards/peeling-quimico-card.jpg"
+imagen: ["/images/peeling-quimico.webp"]
+imagenLista: "/images/cards/peeling-quimico-card.webp"
 orden: 18
 ---
 

@@ -73,7 +73,7 @@ descripcion: "Descripción breve del tratamiento"
 duracion: "60 min"
 precio: "50€"
 orden: 1
-imagen: ["/images/imagen.jpg"]
+imagen: ["/images/imagen.webp"]
 ---
 
 ## Descripción del tratamiento

@@ -4,8 +4,8 @@ categoria: "corporal"
 descripcion: "Tecnología avanzada para reducción de grasa localizada, celulitis y reafirmación corporal mediante energía térmica profunda."
 duracion: "45 min"
 precio: "45€"
-imagen: ["images/diatermia_corporal.jpeg", "/images/diatermia-corporal1.png"]
-imagenLista: "/images/cards/diatermia_corporal-card.jpg"
+imagen: ["images/diatermia_corporal.webp", "/images/diatermia-corporal1.webp"]
+imagenLista: "/images/cards/diatermia_corporal-card.webp"
 orden: 19
 bono: 5
 ---

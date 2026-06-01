@@ -4,9 +4,9 @@ categoria: "depilacion"
 descripcion: "Despídete del vello para siempre con nuestra tecnología láser de última generación. Tratamiento seguro, eficaz y prácticamente indoloro."
 duracion: "Según zona"
 precio: "Consultar"
-imagen: ["/images/depilacion-laser.jpg", "/images/depilacion-laser.png"]
+imagen: ["/images/depilacion-laser1.webp", "/images/depilacion-laser.webp"]
 orden: 9
-imagenLista: "/images/cards/depilacion-laser-card.jpg"
+imagenLista: "/images/cards/depilacion-laser-card.webp"
 ---
 
 ## Reducción progresiva del vello con resultados duraderos

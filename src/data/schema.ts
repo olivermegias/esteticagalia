@@ -12,7 +12,7 @@ export function getBeautySalonSchema() {
     telephone: business.mainPhone,
     email: business.email,
     priceRange: business.priceRange,
-    image: `${business.url}/images/logo.png`,
+    image: `${business.url}/images/logo.webp`,
     hasMap: business.mapDirectionsUrl,
     currenciesAccepted: "EUR",
     paymentAccepted: "Efectivo, Tarjeta de crédito, Tarjeta de débito",

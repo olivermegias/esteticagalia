@@ -5,8 +5,8 @@ descripcion: "Una limpieza facial profunda que eliminará todas las impurezas, p
 duracion: "60 min"
 precio: "45€"
 orden: 21
-imagen: ["/images/limpieza-facial.jpg", "/images/tratamiento-facial.png"]
-imagenLista: "/images/cards/limpieza-facial-card.jpg"
+imagen: ["/images/limpieza-facial.webp", "/images/tratamiento-facial.webp"]
+imagenLista: "/images/cards/limpieza-facial-card.webp"
 ---
 
 ## Elimina las impurezas y oxigena tu piel

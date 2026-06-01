@@ -4,8 +4,8 @@ categoria: "facial"
 descripcion: "Rejuvenecimiento inteligente que actúa desde el origen"
 duracion: "1h y 15 min"
 precio: " Con diatermia 80€ y con dermapen 100€"
-imagen: ["/images/exosomas2.jpg", "/images/EXOSOMAS.webp"]
-imagenLista: "/images/cards/exosomas2-card.jpg"
+imagen: ["/images/exosomas2.webp", "/images/EXOSOMAS.webp"]
+imagenLista: "/images/cards/exosomas2-card.webp"
 orden: 1
 ---
 

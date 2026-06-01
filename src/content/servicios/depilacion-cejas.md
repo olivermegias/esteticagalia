@@ -4,8 +4,8 @@ categoria: "mirada"
 descripcion: "Depilación de cejas con pinza, cera o hilo, con opción de tinte para una mirada definida y natural."
 duracion: "20-30 min"
 precio: "Desde 6€"
-imagen: ["/images/cejas1.jpg", "images/cejas2.jpg", "images/cejas3.jpg"]
-imagenLista: "/images/cards/cejas1-card.jpg"
+imagen: ["/images/cejas1.webp", "images/cejas2.webp", "images/cejas3.webp"]
+imagenLista: "/images/cards/cejas1-card.webp"
 orden: 8
 ---
 

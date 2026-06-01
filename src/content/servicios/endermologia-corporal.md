@@ -4,8 +4,8 @@ categoria: "corporal"
 descripcion: "Protocolo corporal avanzado que activa el metabolismo local, favorece la eliminación de toxinas y ayuda a redefinir la figura de manera natural."
 duracion: "45 min"
 precio: "45€"
-imagen: ["/images/endormologia-corporal.jpg"]
-imagenLista: "/images/cards/endormologia-corporal-card.jpg"
+imagen: ["/images/endormologia-corporal.webp"]
+imagenLista: "/images/cards/endormologia-corporal-card.webp"
 orden: 20
 bono: 5
 ---

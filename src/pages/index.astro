@@ -11,21 +11,21 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
 ---
 
 <BaseLayout
-  title="Centro de Estética Avanzada en Granada | Estética GaliaBeauty"
-  description="Centro de estética avanzada en Granada especializado en tratamientos faciales, corporales, depilación láser y diseño de mirada. Centro oficial OVACO. Reserva tu cita."
+  title="Centro de Estética Avanzada en Granada | GaliaBeauty"
+  description="Centro de estética avanzada en Granada especializado en tratamientos faciales, corporales, depilación láser y diseño de mirada. Centro oficial OVACO."
   schema={schema}
 >
   <Fragment slot="head">
     <link
       rel="preload"
       as="image"
-      href={withBase("/images/fondo.png")}
+      href={withBase("/images/fondo.webp")}
       fetchpriority="high"
     />
   </Fragment>
 
   <!-- Hero Section -->
-  <section class="hero" style={`--hero-bg: url('${withBase("/images/fondo.png")}')`}>
+  <section class="hero" style={`--hero-bg: url('${withBase("/images/fondo.webp")}')`}>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-media">
