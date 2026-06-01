@@ -47,21 +47,87 @@ import { business } from "../../data/business";
         </div>
       </div>
 
-      <div class="location-map">
-        <iframe
-          src={business.mapEmbedUrl}
-          width="600"
-          height="450"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación de Estética GaliaBeauty en Granada"
-        ></iframe>
+      <div class="location-map" data-cookie-map>
+        <div class="location-map__placeholder" data-cookie-map-placeholder>
+          <p>
+            Para mostrar el mapa de Google Maps necesitamos tu consentimiento para cookies de terceros.
+            Si las aceptas, podrás ver la ubicación exacta aquí mismo. Si las rechazas, no cargaremos
+            contenido de Google y podrás abrir la ruta en un enlace externo.
+          </p>
+          <a class="location-map__link" href={business.mapDirectionsUrl} target="_blank" rel="noopener noreferrer">
+            Abrir en Google Maps
+          </a>
+        </div>
+        <template data-cookie-map-template>
+          <iframe
+            src={business.mapEmbedUrl}
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Estética GaliaBeauty en Granada"
+          ></iframe>
+        </template>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var mapRoot = document.querySelector("[data-cookie-map]");
+
+    if (!(mapRoot instanceof HTMLElement)) return;
+
+    var mapRootElement = mapRoot;
+
+    var placeholderElement = mapRootElement.querySelector("[data-cookie-map-placeholder]");
+    var templateElement = mapRootElement.querySelector("[data-cookie-map-template]");
+    var placeholder = placeholderElement instanceof HTMLElement ? placeholderElement : null;
+    var template = templateElement instanceof HTMLTemplateElement ? templateElement : null;
+    var consentKey = "cookie-consent";
+    var mapRendered = false;
+
+    function getConsent() {
+      try {
+        return localStorage.getItem(consentKey);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function renderMap() {
+      if (mapRendered || getConsent() !== "accepted" || !template) return;
+
+      mapRootElement.appendChild(template.content.cloneNode(true));
+      mapRendered = true;
+
+      if (placeholder) {
+        placeholder.hidden = true;
+      }
+    }
+
+    function syncMap() {
+      if (getConsent() === "accepted") {
+        renderMap();
+        return;
+      }
+
+      if (placeholder) {
+        placeholder.hidden = false;
+      }
+    }
+
+    document.addEventListener("astro:page-load", syncMap);
+    window.addEventListener("cookie-consent-change", function () {
+      syncMap();
+    });
+
+    syncMap();
+  })();
+</script>
 
 <style>
   .location {
@@ -124,6 +190,44 @@ import { business } from "../../data/business";
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, rgba(201, 168, 124, 0.12), rgba(255, 255, 255, 0.96));
+    border: 1px solid var(--color-border-light);
+  }
+
+  .location-map__placeholder {
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .location-map__placeholder p {
+    margin: 0;
+    color: 'black';
+    line-height: 1.7;
+  }
+
+  .location-map__link {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-secondary);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+  }
+
+  .location-map__link:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
   }
 
   .location-map iframe {

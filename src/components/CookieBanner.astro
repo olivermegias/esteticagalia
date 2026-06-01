@@ -5,13 +5,19 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
 <div id="cookie-banner" class="cookie-banner" aria-live="polite" role="region" aria-label="Aviso de cookies">
   <div class="cookie-banner__inner">
     <p class="cookie-banner__text">
-      Este sitio web utiliza cookies de terceros (Google Maps) para mostrar nuestra ubicación.
-      Al continuar navegando aceptas su uso.
+      Este sitio web utiliza cookies de terceros de Google Maps para mostrar nuestra ubicación.
+      Si las aceptas, el mapa se cargará y Google podrá instalar cookies asociadas a ese servicio.
+      Si las rechazas, no se cargará el mapa y podrás seguir usando el resto de la web.
       <a href={withBase("/politica-cookies")} class="cookie-banner__link">Más información</a>
     </p>
-    <button id="cookie-accept-btn" class="cookie-banner__btn" type="button">
-      Aceptar
-    </button>
+    <div class="cookie-banner__actions">
+      <button id="cookie-reject-btn" class="cookie-banner__btn cookie-banner__btn--secondary" type="button">
+        Rechazar
+      </button>
+      <button id="cookie-accept-btn" class="cookie-banner__btn" type="button">
+        Aceptar
+      </button>
+    </div>
   </div>
 </div>
 
@@ -19,21 +25,58 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
   (function () {
     var banner = document.getElementById("cookie-banner");
     var btn = document.getElementById("cookie-accept-btn");
+    var rejectBtn = document.getElementById("cookie-reject-btn");
+    var consentKey = "cookie-consent";
 
-    if (!banner) return;
+    if (!(banner instanceof HTMLElement)) return;
 
-    // Ocultar si ya se aceptó
-    if (localStorage.getItem("cookie-consent") === "accepted") {
-      banner.style.display = "none";
+    var cookieBanner = banner;
+
+    function getStoredConsent() {
+      try {
+        return localStorage.getItem(consentKey);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function saveConsent(value: "accepted" | "rejected") {
+      try {
+        localStorage.setItem(consentKey, value);
+      } catch (error) {
+        // Sin almacenamiento persistente, la decisión solo aplica a esta visita.
+      }
+      window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: { consent: value } }));
+    }
+
+    function hideBanner() {
+      cookieBanner.style.display = "none";
+      cookieBanner.setAttribute("aria-hidden", "true");
+    }
+
+    function showBanner() {
+      cookieBanner.style.display = "block";
+      cookieBanner.removeAttribute("aria-hidden");
+    }
+
+    if (getStoredConsent() === "accepted" || getStoredConsent() === "rejected") {
+      hideBanner();
       return;
     }
 
-    banner.style.display = "block";
+    showBanner();
 
     if (btn) {
       btn.addEventListener("click", function () {
-        localStorage.setItem("cookie-consent", "accepted");
-        if (banner) banner.style.display = "none";
+        saveConsent("accepted");
+        hideBanner();
+      });
+    }
+
+    if (rejectBtn) {
+      rejectBtn.addEventListener("click", function () {
+        saveConsent("rejected");
+        hideBanner();
       });
     }
   })();
@@ -70,6 +113,12 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
     color: rgba(255, 255, 255, 0.9);
   }
 
+  .cookie-banner__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
   .cookie-banner__link {
     color: var(--color-primary, #c9a87c);
     text-decoration: underline;
@@ -99,6 +148,17 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
     opacity: 0.85;
   }
 
+  .cookie-banner__btn--secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: #fff;
+  }
+
+  .cookie-banner__btn--secondary:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
   @media (max-width: 540px) {
     .cookie-banner__inner {
       flex-direction: column;
@@ -109,6 +169,10 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
     .cookie-banner__btn {
       align-self: stretch;
       text-align: center;
+    }
+
+    .cookie-banner__actions {
+      width: 100%;
     }
   }
 </style>

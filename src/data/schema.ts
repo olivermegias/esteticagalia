@@ -65,12 +65,15 @@ export function getServiceSchema(
   },
   pageUrl?: string,
 ) {
+  const rawPrice = service.precio?.match(/(\d+)/)?.[1];
+  const hasValidPrice = rawPrice && !Number.isNaN(Number(rawPrice));
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.title,
     description: service.descripcion,
-    ...(pageUrl ? { url: pageUrl } : {}),
+    ...(pageUrl ? { url: `${business.url}${pageUrl}` } : {}),
     areaServed: {
       "@type": "City",
       name: "Granada",
@@ -88,12 +91,15 @@ export function getServiceSchema(
       },
       telephone: business.mainPhone,
     },
-    ...(service.precio
+    ...(hasValidPrice
       ? {
           offers: {
             "@type": "Offer",
-            price: service.precio.replace("€", "").trim(),
             priceCurrency: "EUR",
+            price: rawPrice,
+            priceValidUntil: new Date(new Date().getFullYear() + 1, 11, 31)
+              .toISOString()
+              .split("T")[0],
           },
         }
       : {}),

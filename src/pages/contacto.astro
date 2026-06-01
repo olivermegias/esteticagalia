@@ -35,16 +35,33 @@ const schema = getBeautySalonSchema();
               <MapPinIcon size={22} />
               Cómo llegar
             </h2>
-            <div class="map-container">
-              <iframe
-                src={business.mapEmbedUrl}
-                width="100%"
-                height="100%"
-                style="border:0;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Ubicación de Estética GaliaBeauty en Granada"></iframe>
+            <div class="map-container" data-contact-map>
+              <div class="map-placeholder" data-contact-map-placeholder>
+                <p>
+                  Para mostrar el mapa de Google Maps necesitamos tu consentimiento para cookies de terceros.
+                  Si las aceptas, el mapa se cargará aquí. Si las rechazas, podrás usar el enlace de abajo.
+                </p>
+                <a
+                  href={business.mapDirectionsUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-outline"
+                >
+                  <MapPinIcon size={16} />
+                  Abrir en Google Maps
+                </a>
+              </div>
+              <template data-contact-map-template>
+                <iframe
+                  src={business.mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Ubicación de Estética GaliaBeauty en Granada"></iframe>
+              </template>
             </div>
             <div class="map-footer">
               <p>
@@ -56,6 +73,7 @@ const schema = getBeautySalonSchema();
                 target="_blank"
                 rel="noopener"
                 class="btn btn-outline"
+
               >
                 <MapPinIcon size={16} />
                 Abrir en Google Maps
@@ -196,6 +214,57 @@ const schema = getBeautySalonSchema();
   />
 </BaseLayout>
 
+<script>
+  (function () {
+    var mapRoot = document.querySelector("[data-contact-map]");
+
+    if (!(mapRoot instanceof HTMLElement)) return;
+
+    var mapRootElement = mapRoot;
+    var placeholderElement = mapRootElement.querySelector("[data-contact-map-placeholder]");
+    var templateElement = mapRootElement.querySelector("[data-contact-map-template]");
+    var placeholder = placeholderElement instanceof HTMLElement ? placeholderElement : null;
+    var template = templateElement instanceof HTMLTemplateElement ? templateElement : null;
+    var consentKey = "cookie-consent";
+    var mapRendered = false;
+
+    function getConsent() {
+      try {
+        return localStorage.getItem(consentKey);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function renderMap() {
+      if (mapRendered || getConsent() !== "accepted" || !template) return;
+
+      mapRootElement.appendChild(template.content.cloneNode(true));
+      mapRendered = true;
+
+      if (placeholder) {
+        placeholder.hidden = true;
+      }
+    }
+
+    function syncMap() {
+      if (getConsent() === "accepted") {
+        renderMap();
+        return;
+      }
+
+      if (placeholder) {
+        placeholder.hidden = false;
+      }
+    }
+
+    document.addEventListener("astro:page-load", syncMap);
+    window.addEventListener("cookie-consent-change", syncMap);
+
+    syncMap();
+  })();
+</script>
+
 <style>
   /* ── Section ── */
   .contact-section {
@@ -262,6 +331,10 @@ const schema = getBeautySalonSchema();
     width: 100%;
     height: 100%;
     min-height: 260px;
+  }
+
+  .map-container p {
+    color: var(--color-muted);
   }
 
   .map-footer {
